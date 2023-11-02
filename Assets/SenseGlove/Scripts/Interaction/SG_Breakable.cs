@@ -17,7 +17,7 @@ namespace SG
         }
 
         //--------------------------------------------------------------------------------------------
-        // Properties1
+        // Properties last test 
 
         #region Properties
 
