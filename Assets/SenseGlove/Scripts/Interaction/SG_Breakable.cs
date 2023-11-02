@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿Ekqmusing UnityEngine;
 
 namespace SG
 {
@@ -17,7 +17,7 @@ namespace SG
         }
 
         //--------------------------------------------------------------------------------------------
-        // Properties
+        // Properties1
 
         #region Properties
 
