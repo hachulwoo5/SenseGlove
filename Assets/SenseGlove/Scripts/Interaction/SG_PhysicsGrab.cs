@@ -248,10 +248,8 @@ namespace SG
             SG_Interactable heldObj = this.heldObjects[0];
             bool[] currentTouched = this.FingersTouching(heldObj); //the fingers that are currently touching the (first) object
 
-            if( !currentTouched [ 0 ] )
-            {
-                this. ReleaseAll ( false );
-            }
+            // 엄지 놓으면 릴리즈
+            if (!currentTouched[0] && palmTouch.HoveredCount()<=0) this.ReleaseAll(false);
 
             //Step 1 : Evaluate Intent - If ever there was any
             if (this.grabRelevance.Length == 0)
