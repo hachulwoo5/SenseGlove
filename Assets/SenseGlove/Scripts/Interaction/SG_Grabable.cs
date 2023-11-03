@@ -343,7 +343,7 @@ namespace SG
                     {
                         //Add veloctiy of either this object or of the hand...
                         this.physicsBody.angularVelocity = this.SmoothedAngularVelocity;
-                        this.physicsBody.velocity = this.SmoothedVelocity;
+                        this.physicsBody.velocity = this.SmoothedVelocity*1.5f;
                     }
                 }
             }

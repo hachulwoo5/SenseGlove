@@ -53,7 +53,7 @@
     <UnityVersion>2022.3.10f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.10f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.10f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
@@ -134,6 +134,7 @@
     <Compile Include="Assets\SenseGlove\Scripts\Controls\SG_HandDetector.cs" />
     <Compile Include="Assets\SenseGlove\CalibrationVoid\SG_CalibrationVoid.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Util\SG_ResetFloor.cs" />
+    <Compile Include="Assets\FastScriptReload\Samples\Basic\Scripts\Graph.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Controls\SG_DropZone.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Tracking\SG_FingerProjector1DoF.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Util\SG_PhysicsHelper.cs" />
@@ -143,21 +144,47 @@
     <Compile Include="Assets\SenseGlove\Scripts\Devices\SG_HapticGlove.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Tracking\SG_HandProjection.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Interaction\SG_HoverCollider.cs" />
+    <Compile Include="Assets\FastScriptReload\Samples\Basic\Scripts\FunctionLibrary.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Tracking\SG_HandPhysics.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\VR\SG_XR_ControllerTracking.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Tracking\SG_TrackedHand.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\FastScriptReload\Plugins\Roslyn\2019+\RoslynLicense.txt" />
+    <None Include="Assets\FastScriptReload\Plugins\Roslyn\2021+\System.Collections.Immutable.FSR.dll" />
     <None Include="Assets\SenseGlove\Plugins\Windows\SGCoreCs.xml" />
+    <None Include="Assets\FastScriptReload\Plugins\Harmony\HarmonyLicense.txt" />
+    <None Include="Assets\FastScriptReload\Plugins\ImmersiveVrToolsCommon\ImmersiveVRTools.Common.Runtime.dll" />
+    <None Include="Assets\FastScriptReload\Plugins\Roslyn\2021+\Microsoft.CodeAnalysis.CSharp.dll" />
+    <None Include="Assets\FastScriptReload\Plugins\Roslyn\2021+\System.Threading.Tasks.Extensions.dll" />
+    <None Include="Assets\FastScriptReload\Plugins\Roslyn\2019+\System.Reflection.Metadata.dll" />
     <None Include="Assets\SenseGlove\Plugins\Android\SGCoreCs.dll" />
     <None Include="Assets\SenseGlove\Materials\Shaders\Hologram.shader" />
+    <None Include="Assets\FastScriptReload\Plugins\ImmersiveVrToolsCommon\ImmersiveVRToolsCommonLicense.txt" />
+    <None Include="Assets\FastScriptReload\Plugins\Roslyn\2021+\System.Reflection.Metadata.dll" />
     <None Include="Assets\SenseGlove\Doc\metaData.txt" />
     <None Include="Assets\SenseGlove\Plugins\Windows\SGConnect.dll" />
+    <None Include="Assets\FastScriptReload\Plugins\Roslyn\Microsoft.CSharp.dll.IMPORTANT.txt.txt" />
+    <None Include="Assets\FastScriptReload\Samples\Basic\Point\Point Surface.shader" />
+    <None Include="Assets\FastScriptReload\Plugins\Roslyn\2019+\Microsoft.CodeAnalysis.dll" />
+    <None Include="Assets\FastScriptReload\Plugins\Roslyn\2021+\System.Runtime.CompilerServices.Unsafe.xml" />
+    <None Include="Assets\FastScriptReload\Plugins\Roslyn\2021+\RoslynLicense.txt" />
     <None Include="Assets\SenseGlove\Plugins\Windows\SGCoreCs.dll" />
     <None Include="Assets\SenseGlove\Plugins\Android\SGCoreCs.xml" />
+    <None Include="Assets\FastScriptReload\Plugins\Roslyn\2021+\System.Reflection.Metadata.xml" />
+    <None Include="Assets\FastScriptReload\Plugins\Harmony\net48\0Harmony.dll" />
+    <None Include="Assets\FastScriptReload\Plugins\Harmony\net48\0Harmony.xml" />
+    <None Include="Assets\FastScriptReload\Plugins\Roslyn\2019+\System.Threading.Tasks.Extensions.dll" />
+    <None Include="Assets\FastScriptReload\Plugins\Roslyn\2019+\Microsoft.CodeAnalysis.CSharp.dll" />
+    <None Include="Assets\FastScriptReload\Plugins\Roslyn\2021+\Microsoft.CodeAnalysis.dll" />
     <None Include="Assets\SenseGlove\Plugins\Linux\SGCoreCs.xml" />
     <None Include="Assets\SenseGlove\Plugins\Linux\SGCoreCs.dll" />
+    <None Include="Assets\FastScriptReload\Plugins\Roslyn\2021+\System.Runtime.CompilerServices.Unsafe.dll" />
     <None Include="Assets\SenseGlove\Doc\ChangeLog.txt" />
+    <None Include="Assets\FastScriptReload\Plugins\ImmersiveVrToolsCommon\ImmersiveVRTools.Common.Editor.dll" />
+    <None Include="Assets\FastScriptReload\Plugins\Roslyn\Microsoft.CSharp.dll" />
+    <None Include="Assets\FastScriptReload\Plugins\Roslyn\2021+\System.Collections.Immutable.dll" />
+    <None Include="Assets\FastScriptReload\Plugins\Roslyn\2019+\System.Collections.Immutable.dll" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -420,6 +447,9 @@
     </Reference>
     <Reference Include="Valve.Newtonsoft.Json">
       <HintPath>Assets\SteamVR\Input\Plugins\JSON.NET\Valve.Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe">
+      <HintPath>Assets\FastScriptReload\Plugins\Roslyn\2021+\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Android.Types">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.10f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>

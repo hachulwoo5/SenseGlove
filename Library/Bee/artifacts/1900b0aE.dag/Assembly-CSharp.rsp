@@ -120,6 +120,7 @@
 -define:TEXTCORE_FONT_ENGINE_1_5_OR_NEWER
 -define:CSHARP_7_OR_LATER
 -define:CSHARP_7_3_OR_NEWER
+-r:"Assets/FastScriptReload/Plugins/Roslyn/2021+/System.Runtime.CompilerServices.Unsafe.dll"
 -r:"Assets/SenseGlove/Plugins/Windows/SGCoreCs.dll"
 -r:"Assets/SteamVR/Input/Plugins/JSON.NET/Valve.Newtonsoft.Json.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2022.3.10f1/Editor/Data/Managed/UnityEngine/UnityEditor.CoreModule.dll"
@@ -370,6 +371,8 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.XR.LegacyInputHelpers.ref.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2022.3.10f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2022.3.10f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
+"Assets/FastScriptReload/Samples/Basic/Scripts/FunctionLibrary.cs"
+"Assets/FastScriptReload/Samples/Basic/Scripts/Graph.cs"
 "Assets/SenseGlove/CalibrationVoid/SG_CalibrationVoid.cs"
 "Assets/SenseGlove/CalibrationVoid/SG_DoubleControlButton.cs"
 "Assets/SenseGlove/CalibrationVoid/SG_XR_ControllerButton.cs"

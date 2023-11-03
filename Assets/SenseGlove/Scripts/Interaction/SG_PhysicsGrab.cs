@@ -23,7 +23,7 @@ namespace SG
         /// <summary> Keeps track of the 'grabbing' pose of fingers </summary>
         protected bool[] wantsGrab = new bool[3];
         /// <summary> Above these flexions, the hand is considered 'open' </summary>
-        protected static float[] openHandThresholds = new float[5] { 0.1f, 0.2f, 0.2f, 0.2f, 0.2f };
+        protected static float[] openHandThresholds = new float[5] { 0.1f, 0.2f, 0.2f, 0.2f, 0.3f };
         /// <summary> below these flexions, the hand is considered 'open' </summary>
         protected static float[] closedHandThresholds = new float[5] { 2, 0.9f, 0.9f, 0.9f, 0.9f }; //set to -360 so it won;t trigger for now
 
@@ -248,6 +248,11 @@ namespace SG
             SG_Interactable heldObj = this.heldObjects[0];
             bool[] currentTouched = this.FingersTouching(heldObj); //the fingers that are currently touching the (first) object
 
+            if( !currentTouched [ 0 ] )
+            {
+                this. ReleaseAll ( false );
+            }
+
             //Step 1 : Evaluate Intent - If ever there was any
             if (this.grabRelevance.Length == 0)
             {
@@ -380,7 +385,7 @@ namespace SG
             {
                 EvaluateGrab();
             }
-
+            
             
 
         }
