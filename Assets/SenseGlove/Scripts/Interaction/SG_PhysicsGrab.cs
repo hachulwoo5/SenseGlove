@@ -414,7 +414,6 @@ namespace SG
         public override void UpdateGrabLogic(float dT)
         {
             base.UpdateGrabLogic(dT);  //updates reference location(s).
-            Debug.Log(this.handPoseProvider.OverrideGrab());
 
             // Update Physics Colliders
             for (int i = 0; i < this.hoverScripts.Length; i++)

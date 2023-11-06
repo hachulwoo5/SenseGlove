@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638348539854828583
-    m_Hash: 3062535511
+      ticks: 638348461881463837
+    m_Hash: 1486859757
   m_LockFileStatus:
     m_FilePath: C:/hcw/SenseGlove/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638348539854828583
-    m_Hash: 3394418941
+      ticks: 638348461881513703
+    m_Hash: 1118140754
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
@@ -31,7 +31,7 @@ m_LocalPackages:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638345082910312626
+      ticks: 638345076466824565
     m_Hash: 2919789393
 m_ProjectPath: C:/hcw/SenseGlove/Packages
 m_EditorVersion: 2022.3.10f1 (ff3792e53c62)
@@ -287,7 +287,7 @@ m_ResolvedPackages:
     email: 
     url: 
   category: 
-  type: 
+  type: asset
   description: 'The Recorder allows you to capture and save data from the Unity Editor
     during Play mode: animations, videos, images, audio, arbitrary output variables
     (AOVs), and more.'
@@ -295,7 +295,36 @@ m_ResolvedPackages:
   errors: []
   versions:
     all:
+    - 2.0.0-preview.6
+    - 2.0.1-preview.1
+    - 2.0.2-preview.3
+    - 2.0.3-preview.1
+    - 2.1.0-preview.1
+    - 2.2.0-preview.4
+    - 2.3.0-preview.3
+    - 2.4.0-preview.1
+    - 2.5.0-pre.1
+    - 2.5.2
+    - 2.5.4
+    - 2.5.5
+    - 2.5.7
+    - 2.6.0-exp.3
+    - 2.6.0-exp.4
+    - 3.0.0-pre.1
+    - 3.0.0-pre.2
+    - 3.0.0
+    - 3.0.1
+    - 3.0.2
+    - 3.0.3
+    - 4.0.0-pre.1
+    - 4.0.0-pre.2
+    - 4.0.0-pre.3
+    - 4.0.0-pre.4
+    - 4.0.0-pre.5
+    - 4.0.0
     - 4.0.1
+    - 5.0.0-pre.1
+    - 5.0.0
     compatible:
     - 4.0.1
     recommended: 4.0.1
@@ -337,7 +366,7 @@ m_ResolvedPackages:
     configSource: 0
   hideInEditor: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 0
+  datePublishedTicks: 638199375730000000
   documentationUrl: https://docs.unity3d.com/Packages/com.unity.recorder@4.0/manual/index.html
   hasRepository: 1
   repository:
