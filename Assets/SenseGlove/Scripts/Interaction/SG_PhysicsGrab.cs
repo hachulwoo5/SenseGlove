@@ -21,7 +21,7 @@ namespace SG
         public SG_HoverCollider pinkyTouch;
 
         /// <summary> Keeps track of the 'grabbing' pose of fingers </summary>
-        protected bool[] wantsGrab = new bool[3];
+        protected bool[] wantsGrab = new bool[5];
         /// <summary> Above these flexions, the hand is considered 'open' </summary>
         protected static float[] openHandThresholds = new float[5] { 0.1f, 0.2f, 0.2f, 0.2f, 0.3f };
         /// <summary> below these flexions, the hand is considered 'open' </summary>
@@ -60,6 +60,8 @@ namespace SG
 
 
         }
+        
+        
 
         protected override void CollectDebugComponents(out List<GameObject> objects, out List<MeshRenderer> renderers)
         {
@@ -157,21 +159,70 @@ namespace SG
         {
             List<SG_Interactable> res = new List<SG_Interactable>();
             // Thumb - Finger only for now.
-            if (thumbTouch.HoveredCount() > 0)
+            if ( thumbTouch. HoveredCount ( ) > 0 && wantsGrab [ 0 ])  // 조건 && wantsGrab [ 0 ] 들어간 이유 : 엄지를 펴고 다른 손가락 끼리 그랩하려고 할 때 강제로 인식되서 넣어둠 
             {
-                for (int f = 1; f < fingerScripts.Length; f++) //go through each finger -but- the thumb.
+                for ( int f = 1 ; f < fingerScripts. Length ; f++ ) //go through each finger -but- the thumb.
                 {
-                    if (wantsGrab[f]) //this finger wants to grab on to objects
+                    if ( wantsGrab [ f ] ) //this finger wants to grab on to objects
                     {
-                        SG_Interactable[] matching = fingerScripts[0].GetMatchingObjects(fingerScripts[f]);
+                        SG_Interactable [ ] matching = fingerScripts [ 0 ]. GetMatchingObjects ( fingerScripts [ f ] );
                         // Debug.Log("Found " + matching.Length + " matching objects between " + fingerScripts[0].name + " and " + fingerScripts[f].name);
-                        for (int i = 0; i < matching.Length; i++)
+                        for ( int i = 0 ; i < matching. Length ; i++ )
                         {
-                            SG.Util.SG_Util.SafelyAdd(matching[i], res);
+                            SG. Util. SG_Util. SafelyAdd ( matching [ i ] , res );
                         }
                     }
                 }
             }
+            #region test
+
+            else if ( indexTouch. HoveredCount ( ) > 0 )
+            {
+                for ( int f = 2 ; f < fingerScripts. Length ; f++ ) //go through each finger -but- the thumb.
+                {
+                    if ( wantsGrab [ f ] && palmTouch.HoveredCount()>0) //this finger wants to grab on to objects
+                    {
+                        SG_Interactable [ ] matching = fingerScripts [ 1 ]. GetMatchingObjects ( fingerScripts [ f ] );
+                        // Debug.Log("Found " + matching.Length + " matching objects between " + fingerScripts[0].name + " and " + fingerScripts[f].name);
+                        for ( int i = 0 ; i < matching. Length ; i++ )
+                        {
+                            SG. Util. SG_Util. SafelyAdd ( matching [ i ] , res );
+                        }
+                    }
+                }
+            }
+            else if ( middleTouch. HoveredCount ( ) > 0 )
+            {
+                for ( int f = 3 ; f < fingerScripts. Length ; f++ ) //go through each finger -but- the thumb.
+                {
+                    if ( wantsGrab [ f ] && palmTouch. HoveredCount ( ) > 0 ) //this finger wants to grab on to objects
+                    {
+                        SG_Interactable [ ] matching = fingerScripts [ 2 ]. GetMatchingObjects ( fingerScripts [ f ] );
+                        // Debug.Log("Found " + matching.Length + " matching objects between " + fingerScripts[0].name + " and " + fingerScripts[f].name);
+                        for ( int i = 0 ; i < matching. Length ; i++ )
+                        {
+                            SG. Util. SG_Util. SafelyAdd ( matching [ i ] , res );
+                        }
+                    }
+                }
+            }
+            else if ( ringTouch. HoveredCount ( ) > 0 )
+            {
+                for ( int f = 4 ; f < fingerScripts. Length ; f++ ) //go through each finger -but- the thumb.
+                {
+                    if ( wantsGrab [ f ] && palmTouch. HoveredCount ( ) > 0 ) //this finger wants to grab on to objects
+                    {
+                        SG_Interactable [ ] matching = fingerScripts [ 3 ]. GetMatchingObjects ( fingerScripts [ f ] );
+                        // Debug.Log("Found " + matching.Length + " matching objects between " + fingerScripts[0].name + " and " + fingerScripts[f].name);
+                        for ( int i = 0 ; i < matching. Length ; i++ )
+                        {
+                            SG. Util. SG_Util. SafelyAdd ( matching [ i ] , res );
+                        }
+                    }
+                }
+            }
+       
+            #endregion
             return res;
         }
 
@@ -221,7 +272,8 @@ namespace SG
                 for (int i = 0; i < sortedGrabables.Length; i++)
                 {
                     TryGrab(sortedGrabables[i]);
-                    if (!CanGrabNewObjects) { break; } //stop going through the objects if we can no longer grab one
+                    Debug. Log ( "잡았따" );
+                    if ( !CanGrabNewObjects) { break; } //stop going through the objects if we can no longer grab one
                 }
             }
             else if (this.handPoseProvider != null && this.handPoseProvider.OverrideGrab() > overrideGrabThreshold)
@@ -231,7 +283,7 @@ namespace SG
                 for (int i = 0; i < grabablesInHover.Length; i++)
                 {
                     TryGrab(grabablesInHover[i]);
-                    if (!CanGrabNewObjects) { break; } //stop going through the objects if we can no longer grab one
+                    if ( !CanGrabNewObjects) { break; } //stop going through the objects if we can no longer grab one
                 }
             }
             if (this.IsGrabbing) //we managed to grab something.
@@ -248,8 +300,14 @@ namespace SG
             SG_Interactable heldObj = this.heldObjects[0];
             bool[] currentTouched = this.FingersTouching(heldObj); //the fingers that are currently touching the (first) object
 
-            // 엄지 놓으면 릴리즈
-            if (!currentTouched[0] && palmTouch.HoveredCount()<=0) this.ReleaseAll(false);
+                if (!currentTouched[0] && palmTouch.HoveredCount() <= 0)
+                {
+                    this.ReleaseAll(false);
+                }
+            
+            // 예외 한손가락만 남았을 때 처리해야함 
+            // 각 손가락별로 그랩가능상태일때를 알리는 bool값.. 찾고싶음
+            
 
             //Step 1 : Evaluate Intent - If ever there was any
             if (this.grabRelevance.Length == 0)
@@ -342,6 +400,7 @@ namespace SG
                     //Debug.Log("Detected no grab intent anymore: Override = " + (overrideGrab ? "True" : "False") + ", GrabCodes: " + SG.Util.SG_Util.ToString(grabCodes));
                     //Debug.Log(Time.timeSinceLevelLoad + ": Released Objects");
                     this.ReleaseAll(false);
+                    Debug. Log ( "놓았따" );
                 }
             }
         }
@@ -384,10 +443,9 @@ namespace SG
                 EvaluateGrab();
             }
             
-            
 
         }
-
+        
 
     }
 }

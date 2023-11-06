@@ -424,10 +424,7 @@ namespace SG
 		protected void UpdateColliderLocation_Local(SG_HandPose physicsPose, SG_SimpleTracking colliderTracking)
         {
             handForce = this.handRigidbody.velocity.magnitude * this.handRigidbody.mass;
-            if (handForce > 1f)
-            {
-                Debug.Log(handForce);
-            }
+            
 
             int finger; int jointIndex;
             SG_HandPoser3D.ToFinger(colliderTracking.linkMeTo, out finger, out jointIndex);
