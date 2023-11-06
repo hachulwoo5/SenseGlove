@@ -20,6 +20,7 @@ namespace SG
         public SG_HoverCollider ringTouch;
         public SG_HoverCollider pinkyTouch;
 
+        public bool thumbGrab;
         /// <summary> Keeps track of the 'grabbing' pose of fingers </summary>
         protected bool[] wantsGrab = new bool[3];
         /// <summary> Above these flexions, the hand is considered 'open' </summary>
@@ -57,6 +58,7 @@ namespace SG
             hoverScripts[3] = palmTouch;
             hoverScripts[4] = ringTouch;
             hoverScripts[5] = pinkyTouch;
+            thumbGrab = false;
 
 
         }
@@ -168,6 +170,52 @@ namespace SG
                         for (int i = 0; i < matching.Length; i++)
                         {
                             SG.Util.SG_Util.SafelyAdd(matching[i], res);
+                            thumbGrab = true;
+                        }
+                    }
+                }
+            }
+            else if (indexTouch.HoveredCount() > 0)
+            {
+                for (int f = 2; f < fingerScripts.Length; f++) //go through each finger -but- the thumb.
+                {
+                    if (wantsGrab[f]) //this finger wants to grab on to objects
+                    {
+                        SG_Interactable[] matching = fingerScripts[0].GetMatchingObjects(fingerScripts[f]);
+                        // Debug.Log("Found " + matching.Length + " matching objects between " + fingerScripts[0].name + " and " + fingerScripts[f].name);
+                        for (int i = 0; i < matching.Length; i++)
+                        {
+                            SG.Util.SG_Util.SafelyAdd(matching[i], res);
+                        }
+                    }
+                }
+            }
+            else if (middleTouch.HoveredCount() > 0)
+            {
+                for (int f = 3; f < fingerScripts.Length; f++) //go through each finger -but- the thumb.
+                {
+                    if (wantsGrab[f]) //this finger wants to grab on to objects
+                    {
+                        SG_Interactable[] matching = fingerScripts[0].GetMatchingObjects(fingerScripts[f]);
+                        // Debug.Log("Found " + matching.Length + " matching objects between " + fingerScripts[0].name + " and " + fingerScripts[f].name);
+                        for (int i = 0; i < matching.Length; i++)
+                        {
+                            SG.Util.SG_Util.SafelyAdd(matching[i], res);
+                        }
+                    }
+                }
+            }
+            else if (ringTouch.HoveredCount() > 0)
+            {
+                for (int f = 4; f < fingerScripts.Length; f++) //go through each finger -but- the thumb.
+                {
+                    if (wantsGrab[f]) //this finger wants to grab on to objects
+                    {
+                        SG_Interactable[] matching = fingerScripts[0].GetMatchingObjects(fingerScripts[f]);
+                        // Debug.Log("Found " + matching.Length + " matching objects between " + fingerScripts[0].name + " and " + fingerScripts[f].name);
+                        for (int i = 0; i < matching.Length; i++)
+                        {
+                            SG.Util.SG_Util.SafelyAdd(matching[i], res);
                         }
                     }
                 }
@@ -248,8 +296,14 @@ namespace SG
             SG_Interactable heldObj = this.heldObjects[0];
             bool[] currentTouched = this.FingersTouching(heldObj); //the fingers that are currently touching the (first) object
 
-            // 엄지 놓으면 릴리즈
-            if (!currentTouched[0] && palmTouch.HoveredCount()<=0) this.ReleaseAll(false);
+            if(thumbGrab)
+            {
+                if (!currentTouched[0] && palmTouch.HoveredCount() <= 0)
+                {
+                    thumbGrab = false;
+                    this.ReleaseAll(false);
+                }
+            }
 
             //Step 1 : Evaluate Intent - If ever there was any
             if (this.grabRelevance.Length == 0)
