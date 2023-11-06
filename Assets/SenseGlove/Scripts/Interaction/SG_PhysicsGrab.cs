@@ -22,7 +22,7 @@ namespace SG
 
         public bool thumbGrab;
         /// <summary> Keeps track of the 'grabbing' pose of fingers </summary>
-        protected bool[] wantsGrab = new bool[3];
+        protected bool[] wantsGrab = new bool[5];
         /// <summary> Above these flexions, the hand is considered 'open' </summary>
         protected static float[] openHandThresholds = new float[5] { 0.1f, 0.2f, 0.2f, 0.2f, 0.3f };
         /// <summary> below these flexions, the hand is considered 'open' </summary>
@@ -303,6 +303,12 @@ namespace SG
                     thumbGrab = false;
                     this.ReleaseAll(false);
                 }
+            }
+            // 예외 한손가락만 남았을 때 처리해야함 
+            // 각 손가락별로 그랩가능상태일때를 알리는 bool값.. 찾고싶음
+            else if (currentTouched.Length<2)
+            {
+                this.ReleaseAll(false);
             }
 
             //Step 1 : Evaluate Intent - If ever there was any
