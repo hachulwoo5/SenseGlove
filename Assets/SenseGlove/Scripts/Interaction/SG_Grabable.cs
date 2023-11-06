@@ -69,8 +69,8 @@ namespace SG
         public static int maxVelocityPoints = 10;
 
         /// <summary> The xyz velocities during the last few frames, used to determine the average impact velocity. </summary>
-        protected List<Vector3> velocities = new List<Vector3>(); //storing as xyz vector to allow for greater flexibility in the future.
         /// <summary> The angular velocity during the previous frames. </summary>
+        protected List<Vector3> velocities = new List<Vector3>(); //storing as xyz vector to allow for greater flexibility in the future.
         protected List<Vector3> angularVelocities = new List<Vector3>();
 
         /// <summary> This object's position during the last frame, used to determine velocity. </summary>
