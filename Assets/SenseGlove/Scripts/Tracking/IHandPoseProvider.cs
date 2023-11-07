@@ -57,6 +57,10 @@
         /// <summary> Returns true if this script wants to grab objects regardless of HandPose. Useful when you have it mapped to a button. </summary>
         /// <remarks> Is a float so we can determine between a light and hard grasp. If it's a simple button, just use 0 and 1. </remarks>
         /// <returns></returns>
+        /// 이 값을 손 오브젝트에서 쥔 강도에 따라 0.3f값을 부여한다면 overrideThreshold값을 적절히 조정해서 
+        /// 쥔 강도를 적절히 판별해서 그랩 / 릴리즈 정할 수 있지 않을까?
+        /// 힘 감지 센서가 있으면 여기로 받아와서.. 해도 될듯 ..
+        /// 아니면 손가락 각도의 합을 평균내든지.. 기준점은 overrideGrabThreshold가 되지 않을까 
         float OverrideGrab();
 
         /// <summary> Returns true if this script wants to "use" an object is is currently holding, like a drill. Useful when you have it mapped to a button. </summary>
