@@ -27,8 +27,10 @@ namespace SG
         /// <summary> below these flexions, the hand is considered 'open' </summary>
         protected static float[] closedHandThresholds = new float[5] { 2, 0.9f, 0.9f, 0.9f, 0.9f }; //set to -360 so it won;t trigger for now
 
+        public float[] grabDiff = new float[5]; //DEBUG
+
         protected float releaseThreshold = 0.05f;
-        protected bool[] grabRelevance = new bool[5];
+        public bool[] grabRelevance = new bool[5];
         protected bool snapFrame = false;
 
         /// <summary> All fingers, used to iterate through the fingers only. </summary>
@@ -159,11 +161,13 @@ namespace SG
         {
             List<SG_Interactable> res = new List<SG_Interactable>();
             // Thumb - Finger only for now.
-            if ( thumbTouch. HoveredCount ( ) > 0 && wantsGrab [ 0 ])  // 조건 && wantsGrab [ 0 ] 들어간 이유 : 엄지를 펴고 다른 손가락 끼리 그랩하려고 할 때 강제로 인식되서 넣어둠 
+            // 조건 && wantsGrab [ 0 ] 들어간 이유 : 엄지를 펴고 다른 손가락 끼리 그랩하려고 할 때 강제로 인식되서 넣어둠 
+
+            if ( thumbTouch. HoveredCount ( ) > 0 && wantsGrab [ 0 ])  
             {
-                for ( int f = 1 ; f < fingerScripts. Length ; f++ ) //go through each finger -but- the thumb.
+                for ( int f = 1 ; f < fingerScripts. Length ; f++ ) 
                 {
-                    if ( wantsGrab [ f ] ) //this finger wants to grab on to objects
+                    if ( wantsGrab [ f ] )
                     {
                         SG_Interactable [ ] matching = fingerScripts [ 0 ]. GetMatchingObjects ( fingerScripts [ f ] );
                         // Debug.Log("Found " + matching.Length + " matching objects between " + fingerScripts[0].name + " and " + fingerScripts[f].name);
@@ -175,6 +179,9 @@ namespace SG
                 }
             }
             #region test
+            // 하위 구문들은 엄지 없이 물건 집는다는 소리고 손바닥을 필요로 함. 
+            // 추후 젓가락 그랩은 손톱주변에 콜라이더 따로 만들어서 그랩법 만들어야할듯함 >> 지문쪽만 콜라이더 작게바꿔야 할거임
+            // 손가락 사이드, 손톱부분 그랩법 따로 필요할듯
 
             else if ( indexTouch. HoveredCount ( ) > 0 )
             {
@@ -288,6 +295,7 @@ namespace SG
             }
             if (this.IsGrabbing) //we managed to grab something.
             {
+                Debug.Log(" 여기도 실행되는지 테스트해보자");
                 this.grabRelevance = new bool[0]; //clear this so we re-register it the first frame
                 snapFrame = false; //we don't check for collision the first frame after grabbing.
                 //Debug.Log(Time.timeSinceLevelLoad + ": " + (this.handPoseProvider.TracksRightHand() ? "Right Hand" : "Left Hand") + " Grabbed Object(s)");
@@ -300,16 +308,16 @@ namespace SG
             SG_Interactable heldObj = this.heldObjects[0];
             bool[] currentTouched = this.FingersTouching(heldObj); //the fingers that are currently touching the (first) object
 
-                if (!currentTouched[0] && palmTouch.HoveredCount() <= 0)
-                {
-                    this.ReleaseAll(false);
-                }
-            
-            // 예외 한손가락만 남았을 때 처리해야함 
-            // 각 손가락별로 그랩가능상태일때를 알리는 bool값.. 찾고싶음
-            
+               
+
+           
 
             //Step 1 : Evaluate Intent - If ever there was any
+
+            // grabRelevance가 비었다 = 오브젝트를 처음으로 잡는다
+            // 손가락이 하나라도 오브젝트에 닿고 있는지 판별한다.
+            // 닿고있다? grabRelevance 배열에 currentTouched배열을 넣는다
+            // normalizedOnGrab에 lastNormalized배열을 넣는다
             if (this.grabRelevance.Length == 0)
             {
                 //first time after snapping. HoverColliders should have had a frame to catch up.
@@ -320,6 +328,7 @@ namespace SG
                     {
                         oneGrabRelevance = true;
                         break;
+                        
                     }
                 }
                 if (oneGrabRelevance) //there is a t least one relevant finger now touching.
@@ -328,11 +337,16 @@ namespace SG
                     this.normalizedOnGrab = Util.SG_Util.ArrayCopy(this.lastNormalized);
                 }
             }
-            else //check for any changes in grabrelevance
+
+            // 이미 이전에 손가락이 물체를 잡았던 상태이며, grabRelevance 배열의 변화를 확인하는 데 사용
+            // 물건을 잡았기 때문에 grabRelevance배열이 들어있음. 이전에 grabRelevance가 false였는데 currentTouched가 true인지 확인해서
+            // true면 grabRelevance을 true로 바꿈. <즉 전엔 터치 안했던 손가락이 현재는 터치 중이면 값 최신화 하는 것>
+            // 역시 normalizedOnGrab배열에 lastNormalized배열을 넣는다 ( 위와 구조는 비슷함 )
+            else 
             {
                 for (int f = 1; f < fingerScripts.Length; f++)
                 {
-                    if (!grabRelevance[f] && currentTouched[f]) //first time this finger touches the object after grasping. Log its flexion.
+                    if (!grabRelevance[f] && currentTouched[f]) 
                     {
                         normalizedOnGrab[f] = lastNormalized[f];
                         grabRelevance[f] = true;
@@ -344,7 +358,7 @@ namespace SG
             if (lastNormalized.Length > 0) //we successfully got some grab parameters.
             {
                 //We will release if all relevant fingers are either above the "open threshold" OR have relevant fingers, and these have extended above / below
-                float[] grabDiff = new float[5]; //DEBUG
+                //float[] grabDiff = new float[5]; //DEBUG
                 int[] grabCodes = new int[5]; // 0 and up means grab, < zero means release.
                 for (int f = 0; f < fingerScripts.Length; f++)
                 {
@@ -357,31 +371,68 @@ namespace SG
                         grabCodes[f] = -2;
                     }
                     else if (grabRelevance.Length > f && grabRelevance[f]) // we're within the right threshold(s)
-                    {   //check or undo grabrelevance
-                        grabDiff[f] = this.normalizedOnGrab[f] - this.lastNormalized[f];//i'd normally use latest - ongrab, but then extension is negative and I'd have to invert releaseThreshold. So we subract it the other way around. very tiny optimizations make me happy,
-                        if (grabDiff[f] > releaseThreshold) //the finger is now above the threshold, and we think you want to release.
+                    { 
+                        grabDiff[f] = this.normalizedOnGrab[f] - this.lastNormalized[f];
+                        // lastNormalized값이 현재 그랩된 각도보다 작을 때 즉 손을 펼 때 해당된다.
+                        // 물건을 쥐었을 때 각도보다 0.05f만큼 손을 벌리면 물건을 놓는다
+                        // normalizedOnGrab = 물건 쥐었을 때 저장된 각도
+                        // lastNormalized = 실시간 손 각도
+                        // this.normalizedOnGrab[f] - this.lastNormalized[f] == 물건 쥐고 얼마나 손을 폈는지 검사함
+                        // 특정 물건을 쥐었을 때 그 크기에 맞게 쥐기 성공했다 ( normalizedOnGrab에 각도 값이 저장됐을 것 )
+                        // 임계값이 안벗어났더라도, 임계값이 아닌 즉 이 물건의 크기를 고려한 ( normalizedOnGrab에 저장된 각도 값)
+                        // 쥐었을 때보다 0.05f만큼 더 펼쳤는지 확인하고 release할 조건의 grabCodes -3을 부여
+
+                        if (grabDiff[f] > releaseThreshold) 
                         {
-                            grabCodes[f] = -3; //want to release because we've extended a bit above when we grabbed the object
+                            grabCodes[f] = -3; 
                         }
                     }
                     //Reset relevance if the gesture thinks we've released, and we're not currently touching.
                     if (grabCodes[f] < 0 && grabRelevance.Length > f && grabRelevance[f] && !currentTouched[f])
                     {
                         grabRelevance[f] = false;
+                        // 버그발생시 디버깅에 용이할 때 사용할 확률 높음
+                        // 이 단계에서 grabRelevance가 false가 된다고 Release에 영향을 주는 것은 아님
+                        // 스텝3~4에서 보는건 결국 grabCodes임 > grabDesired bool값으로 이어짐
+                        // 주석 : 제스처가 우리가 해제했다고 생각하고 현재 접촉하지 않는 경우 관련성을 재설정합니다.
                     }
                 }
 
                 //Step 3 - After evaluating finger states, determine grab intent.
                 //This is a separate step so later down the line, we can make a difference between finger-thumb, finger-palm, and thumb-palm grabbing
                 bool grabDesired = false;
-                for (int f = 1; f < this.fingerScripts.Length; f++) //Assuming only thumb-finger and finger-palm (NOT thumb-palm) grasps. So skipping 0 (thumb)
-                {
-                    if (grabCodes[f] > -1) //there's one finger that wants to hold on (and is allowed to hold on).
-                    {
-                        grabDesired = true;
-                        break; //can break here because evaluation is done in a separate loop
-                    }
+
+                // 엄지가 닿아있으면.. 검지~새끼중 하나라도 있으면 그랩 유지 ! 
+                if (currentTouched[0])
+                {                   
+                        for (int f = 1; f < this.fingerScripts.Length; f++) // 
+                        {
+                            if (grabCodes[f] > -1) // 한 마디로 <검지~새끼 손가락 중 최소 하나가 그랩 중>이다
+                            {
+                                grabDesired = true;
+                            }
+                        }                                       
                 }
+                else // 엄지가 안닿아 있는데 +
+                {
+                    if (palmTouch.HoveredCount() > 0) // 엄지가 안닿아 있지만 손바닥이 관여하고, 검지~새끼 중 하나라도 그랩 중이다
+                    {
+                        for (int f = 1; f < this.fingerScripts.Length; f++) // 
+                        {
+                            if (grabCodes[f] > -1) // 한 마디로 <검지~새끼 손가락 중 최소 하나가 그랩 중>이다
+                            {
+                                grabDesired = true;
+                            }
+                        }
+                    }
+                    else // 엄지도 없고 손바닥도 없다. 네손가락으로 물건을 집는건 불가능하다.
+                    {
+                        grabDesired = false;
+                    }                   
+                }
+                // 배열에서 fingergrabing의 true 갯수 뽑아내자
+
+
 
                 //Step 4 - Compare with override to make a final judgement. Can be optimized by placing this before Step 2 and skipping it entirely while GrabOverride is true.
 
@@ -393,14 +444,13 @@ namespace SG
                     //TODO: Add a timing component? If not hovering for x frames / s?
                 }
 
+                //Step 4 - Compare with override to make a final judgement. Can be optimized by placing this before Step 2 and skipping it entirely while GrabOverride is true.
                 bool overrideGrab = this.handPoseProvider != null && this.handPoseProvider.OverrideGrab() > overrideGrabThreshold; //we start with wanting to release based on overriding.
                 bool shouldRelease = !(grabDesired || overrideGrab);
                 if (shouldRelease) //We can no longer grab anything
                 {
-                    //Debug.Log("Detected no grab intent anymore: Override = " + (overrideGrab ? "True" : "False") + ", GrabCodes: " + SG.Util.SG_Util.ToString(grabCodes));
-                    //Debug.Log(Time.timeSinceLevelLoad + ": Released Objects");
                     this.ReleaseAll(false);
-                    Debug. Log ( "놓았따" );
+
                 }
             }
         }
