@@ -34,7 +34,7 @@ namespace SG
         public float moveSpeed = 100;
         /// <summary> How quickly this object moves to match its target rotation, in deg/s. </summary>
         public float rotateSpeed = 900;
-
+        public float correctionValue;
         /// <summary> The starting values of this Object's RigidBody, to which we'll return once we fully release it. </summary>
         protected Util.RigidBodyStats rbDefaults = null;
 
@@ -343,7 +343,7 @@ namespace SG
                     {
                         //Add veloctiy of either this object or of the hand...
                         this.physicsBody.angularVelocity = this.SmoothedAngularVelocity;
-                        this.physicsBody.velocity = this.SmoothedVelocity*1.5f;
+                        this.physicsBody.velocity = this.SmoothedVelocity * correctionValue / this.physicsBody.mass;
                     }
                 }
             }
@@ -489,6 +489,7 @@ namespace SG
         protected override void Start()
         {
             base.Start();
+            correctionValue = 1.3f;
             if (SG_HandPhysics.ActiveInProject && this.physicsBody != null)
             {
                 Vector3 physicsScale = this.physicsBody.transform.lossyScale;
