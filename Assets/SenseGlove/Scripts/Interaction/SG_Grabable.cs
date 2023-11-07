@@ -35,6 +35,7 @@ namespace SG
         /// <summary> How quickly this object moves to match its target rotation, in deg/s. </summary>
         public float rotateSpeed = 900;
         public float correctionValue;
+        public bool NotReset;
         /// <summary> The starting values of this Object's RigidBody, to which we'll return once we fully release it. </summary>
         protected Util.RigidBodyStats rbDefaults = null;
 
@@ -148,6 +149,9 @@ namespace SG
         /// <param name="resetRBStats">If true, this paratmeter resets the Rigidbody's stats as well (UseGravity, IsKinematic </param>
         public void ResetLocation(bool resetRBStats)
         {
+            if (NotReset)
+                return;
+
             Transform myTransf = this.MyTransform;
             Vector3 currBasePos; Quaternion currBaseRot;
             SG.Util.SG_Util.GetCurrentBaseLocation(myTransf, baseStartParent, this.baseStartPosition, this.baseStartRotation, out currBasePos, out currBaseRot);
@@ -489,7 +493,7 @@ namespace SG
         protected override void Start()
         {
             base.Start();
-            correctionValue = 1.3f;
+            correctionValue = 1.5f;
             if (SG_HandPhysics.ActiveInProject && this.physicsBody != null)
             {
                 Vector3 physicsScale = this.physicsBody.transform.lossyScale;

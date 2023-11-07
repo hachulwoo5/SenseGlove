@@ -212,6 +212,7 @@ MonoBehaviour:
   moveSpeed: 100
   rotateSpeed: 900
   correctionValue: 1.5
+  NotReset: 0
   snapOptions: {fileID: 0}
   alwaysTrackVelocity: 0
 --- !u!114 &24385786
@@ -354,6 +355,10 @@ PrefabInstance:
     - target: {fileID: 3035081092441523737, guid: 3f2e1f2f8f52faf45a13008de2f9b735, type: 3}
       propertyPath: m_Name
       value: Ball_3 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379017530668686813, guid: 3f2e1f2f8f52faf45a13008de2f9b735, type: 3}
+      propertyPath: m_Mass
+      value: 0.6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -834,6 +839,7 @@ MonoBehaviour:
   moveSpeed: 100
   rotateSpeed: 900
   correctionValue: 1.5
+  NotReset: 0
   snapOptions: {fileID: 0}
   alwaysTrackVelocity: 0
 --- !u!54 &292474872
@@ -1056,6 +1062,7 @@ MonoBehaviour:
   moveSpeed: 100
   rotateSpeed: 900
   correctionValue: 1.5
+  NotReset: 0
   snapOptions: {fileID: 0}
   alwaysTrackVelocity: 0
 --- !u!114 &342366641
@@ -1304,6 +1311,7 @@ MonoBehaviour:
   moveSpeed: 100
   rotateSpeed: 900
   correctionValue: 1.5
+  NotReset: 0
   snapOptions: {fileID: 0}
   alwaysTrackVelocity: 0
 --- !u!114 &388528594
@@ -1548,6 +1556,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ball_2 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3181880432900389367, guid: 59913a28597ce5944a638a43a8e805f4, type: 3}
+      propertyPath: m_Mass
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 3432617401216472973, guid: 59913a28597ce5944a638a43a8e805f4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.111888595
@@ -1682,6 +1694,7 @@ MonoBehaviour:
   moveSpeed: 100
   rotateSpeed: 900
   correctionValue: 1.5
+  NotReset: 0
   snapOptions: {fileID: 0}
   alwaysTrackVelocity: 0
 --- !u!114 &526037574
@@ -2210,6 +2223,7 @@ MonoBehaviour:
   moveSpeed: 100
   rotateSpeed: 900
   correctionValue: 1.5
+  NotReset: 0
   snapOptions: {fileID: 0}
   alwaysTrackVelocity: 0
 --- !u!114 &646739429
@@ -2709,6 +2723,7 @@ MonoBehaviour:
   moveSpeed: 100
   rotateSpeed: 900
   correctionValue: 1.5
+  NotReset: 0
   snapOptions: {fileID: 0}
   alwaysTrackVelocity: 0
 --- !u!54 &810361988
@@ -2848,6 +2863,10 @@ PrefabInstance:
     - target: {fileID: 1341705655827008328, guid: 59913a28597ce5944a638a43a8e805f4, type: 3}
       propertyPath: m_Name
       value: Ball_2 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3181880432900389367, guid: 59913a28597ce5944a638a43a8e805f4, type: 3}
+      propertyPath: m_Mass
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 3432617401216472973, guid: 59913a28597ce5944a638a43a8e805f4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3036,6 +3055,7 @@ MonoBehaviour:
   moveSpeed: 100
   rotateSpeed: 900
   correctionValue: 1.5
+  NotReset: 0
   snapOptions: {fileID: 0}
   alwaysTrackVelocity: 0
 --- !u!23 &864293108
@@ -3330,6 +3350,7 @@ MonoBehaviour:
   moveSpeed: 100
   rotateSpeed: 900
   correctionValue: 1.5
+  NotReset: 0
   snapOptions: {fileID: 0}
   alwaysTrackVelocity: 0
 --- !u!23 &943758023
@@ -4118,6 +4139,7 @@ MonoBehaviour:
   moveSpeed: 100
   rotateSpeed: 900
   correctionValue: 1.5
+  NotReset: 0
   snapOptions: {fileID: 0}
   alwaysTrackVelocity: 0
 --- !u!114 &1352591975
@@ -4397,6 +4419,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ball_3
       objectReference: {fileID: 0}
+    - target: {fileID: 4379017530668686813, guid: 3f2e1f2f8f52faf45a13008de2f9b735, type: 3}
+      propertyPath: m_Mass
+      value: 0.6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4413,6 +4439,10 @@ PrefabInstance:
     - target: {fileID: 1341705655827008328, guid: 59913a28597ce5944a638a43a8e805f4, type: 3}
       propertyPath: m_Name
       value: Ball_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3181880432900389367, guid: 59913a28597ce5944a638a43a8e805f4, type: 3}
+      propertyPath: m_Mass
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 3432617401216472973, guid: 59913a28597ce5944a638a43a8e805f4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4600,6 +4630,7 @@ MonoBehaviour:
   moveSpeed: 100
   rotateSpeed: 900
   correctionValue: 1.5
+  NotReset: 0
   snapOptions: {fileID: 0}
   alwaysTrackVelocity: 0
 --- !u!23 &1675019944
@@ -4861,6 +4892,7 @@ MonoBehaviour:
   moveSpeed: 100
   rotateSpeed: 900
   correctionValue: 1.5
+  NotReset: 0
   snapOptions: {fileID: 0}
   alwaysTrackVelocity: 0
 --- !u!114 &1700714536
@@ -5018,6 +5050,10 @@ PrefabInstance:
     - target: {fileID: 3035081092441523737, guid: 3f2e1f2f8f52faf45a13008de2f9b735, type: 3}
       propertyPath: m_Name
       value: Ball_3 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379017530668686813, guid: 3f2e1f2f8f52faf45a13008de2f9b735, type: 3}
+      propertyPath: m_Mass
+      value: 0.6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5189,7 +5225,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 1.2, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1807044680
 MeshRenderer:
@@ -10286,6 +10322,7 @@ MonoBehaviour:
   moveSpeed: 100
   rotateSpeed: 900
   correctionValue: 1.5
+  NotReset: 0
   snapOptions: {fileID: 0}
   alwaysTrackVelocity: 0
 --- !u!114 &1949982997
