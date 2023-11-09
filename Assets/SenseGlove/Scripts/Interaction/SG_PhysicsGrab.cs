@@ -183,52 +183,63 @@ namespace SG
             // 추후 젓가락 그랩은 손톱주변에 콜라이더 따로 만들어서 그랩법 만들어야할듯함 >> 지문쪽만 콜라이더 작게바꿔야 할거임
             // 손가락 사이드, 손톱부분 그랩법 따로 필요할듯
 
-            else if ( indexTouch. HoveredCount ( ) > 0 )
+            else if (indexTouch.HoveredCount() > 0)
             {
-                for ( int f = 2 ; f < fingerScripts. Length ; f++ ) //go through each finger -but- the thumb.
+                for (int f = 1; f < fingerScripts.Length; f++)  // 기존 f값은 2 자신 제외하고 matching 확인
                 {
-                    if ( wantsGrab [ f ] && palmTouch.HoveredCount()>0) //this finger wants to grab on to objects
+                    if (wantsGrab[f] && palmTouch.HoveredCount() > 0)
                     {
-                        SG_Interactable [ ] matching = fingerScripts [ 1 ]. GetMatchingObjects ( fingerScripts [ f ] );
-                        // Debug.Log("Found " + matching.Length + " matching objects between " + fingerScripts[0].name + " and " + fingerScripts[f].name);
-                        for ( int i = 0 ; i < matching. Length ; i++ )
+                        SG_Interactable[] matching = fingerScripts[1].GetMatchingObjects(fingerScripts[f]);
+                        for (int i = 0; i < matching.Length; i++)
                         {
-                            SG. Util. SG_Util. SafelyAdd ( matching [ i ] , res );
+                            SG.Util.SG_Util.SafelyAdd(matching[i], res);
                         }
                     }
                 }
             }
-            else if ( middleTouch. HoveredCount ( ) > 0 )
+            else if (middleTouch.HoveredCount() > 0)
             {
-                for ( int f = 3 ; f < fingerScripts. Length ; f++ ) //go through each finger -but- the thumb.
+                for (int f = 2; f < fingerScripts.Length; f++)
                 {
-                    if ( wantsGrab [ f ] && palmTouch. HoveredCount ( ) > 0 ) //this finger wants to grab on to objects
+                    if (wantsGrab[f] && palmTouch.HoveredCount() > 0)
                     {
-                        SG_Interactable [ ] matching = fingerScripts [ 2 ]. GetMatchingObjects ( fingerScripts [ f ] );
-                        // Debug.Log("Found " + matching.Length + " matching objects between " + fingerScripts[0].name + " and " + fingerScripts[f].name);
-                        for ( int i = 0 ; i < matching. Length ; i++ )
+                        SG_Interactable[] matching = fingerScripts[2].GetMatchingObjects(fingerScripts[f]);
+                        for (int i = 0; i < matching.Length; i++)
                         {
-                            SG. Util. SG_Util. SafelyAdd ( matching [ i ] , res );
+                            SG.Util.SG_Util.SafelyAdd(matching[i], res);
                         }
                     }
                 }
             }
-            else if ( ringTouch. HoveredCount ( ) > 0 )
+            else if (ringTouch.HoveredCount() > 0)
             {
-                for ( int f = 4 ; f < fingerScripts. Length ; f++ ) //go through each finger -but- the thumb.
+                for (int f = 3; f < fingerScripts.Length; f++)
                 {
-                    if ( wantsGrab [ f ] && palmTouch. HoveredCount ( ) > 0 ) //this finger wants to grab on to objects
+                    if (wantsGrab[f] && palmTouch.HoveredCount() > 0)
                     {
-                        SG_Interactable [ ] matching = fingerScripts [ 3 ]. GetMatchingObjects ( fingerScripts [ f ] );
-                        // Debug.Log("Found " + matching.Length + " matching objects between " + fingerScripts[0].name + " and " + fingerScripts[f].name);
-                        for ( int i = 0 ; i < matching. Length ; i++ )
+                        SG_Interactable[] matching = fingerScripts[3].GetMatchingObjects(fingerScripts[f]);
+                        for (int i = 0; i < matching.Length; i++)
                         {
-                            SG. Util. SG_Util. SafelyAdd ( matching [ i ] , res );
+                            SG.Util.SG_Util.SafelyAdd(matching[i], res);
                         }
                     }
                 }
             }
-       
+            else if (pinkyTouch.HoveredCount() > 0)
+            {
+                for (int f = 4; f < fingerScripts.Length; f++)
+                {
+                    if (wantsGrab[f] && palmTouch.HoveredCount() > 0) 
+                    {
+                        SG_Interactable[] matching = fingerScripts[4].GetMatchingObjects(fingerScripts[f]);
+                        for (int i = 0; i < matching.Length; i++)
+                        {
+                            SG.Util.SG_Util.SafelyAdd(matching[i], res);
+                        }
+                    }
+                }
+            }
+
             #endregion
             return res;
         }
@@ -391,7 +402,7 @@ namespace SG
                     if (grabCodes[f] < 0 && grabRelevance.Length > f && grabRelevance[f] && !currentTouched[f])
                     {
                         grabRelevance[f] = false;
-                        // 버그발생시 디버깅에 용이할 때 사용할 확률 높음
+                        // 버그 발생시 디버깅에 용이할 때 사용할 확률 높음
                         // 이 단계에서 grabRelevance가 false가 된다고 Release에 영향을 주는 것은 아님
                         // 스텝3~4에서 보는건 결국 grabCodes임 > grabDesired bool값으로 이어짐
                         // 주석 : 제스처가 우리가 해제했다고 생각하고 현재 접촉하지 않는 경우 관련성을 재설정합니다.
@@ -430,7 +441,6 @@ namespace SG
                         grabDesired = false;
                     }                   
                 }
-                // 배열에서 fingergrabing의 true 갯수 뽑아내자
 
 
 

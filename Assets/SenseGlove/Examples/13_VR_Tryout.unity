@@ -14545,7 +14545,7 @@ Transform:
   m_GameObject: {fileID: 1782421403622429}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.1604, y: -0.020199977, z: -0.0475}
+  m_LocalPosition: {x: 0.16328, y: -0.020199977, z: -0.0434}
   m_LocalScale: {x: 0.034223508, y: 0.034223508, z: 0.034223508}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15616,7 +15616,7 @@ Transform:
   m_GameObject: {fileID: 1512747596316115}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.1432, y: -0.0202, z: 0.0301}
+  m_LocalPosition: {x: 0.144, y: -0.0202, z: 0.0301}
   m_LocalScale: {x: 0.034223508, y: 0.034223508, z: 0.034223508}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -16201,7 +16201,7 @@ Transform:
   m_GameObject: {fileID: 1686783296428591}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.1883, y: -0.013, z: 0.0328}
+  m_LocalPosition: {x: 0.1883, y: -0.0141, z: 0.0328}
   m_LocalScale: {x: 0.03422443, y: 0.03422443, z: 0.03422443}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -16375,7 +16375,7 @@ Transform:
   m_GameObject: {fileID: 1318467766886215}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.1883, y: -0.014999975, z: -0.0196}
+  m_LocalPosition: {x: 0.18888, y: -0.014999975, z: -0.0196}
   m_LocalScale: {x: 0.034223508, y: 0.034223508, z: 0.034223508}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17288,7 +17288,7 @@ Transform:
   m_GameObject: {fileID: 1105085706055949}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.2024, y: -0.015299976, z: 0.0069}
+  m_LocalPosition: {x: 0.20347, y: -0.015299976, z: 0.0069}
   m_LocalScale: {x: 0.034223508, y: 0.034223508, z: 0.034223508}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -25368,6 +25368,13 @@ MonoBehaviour:
   middleTouch: {fileID: 114854881652184195}
   ringTouch: {fileID: 0}
   pinkyTouch: {fileID: 0}
+  grabDiff:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  grabRelevance: 0000000000
   lastNormalized:
   - 0
   - 0
@@ -25543,7 +25550,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.3
   m_Height: 1
   m_Direction: 0
   m_Center: {x: -0.07, y: 0.46, z: 0.02}
@@ -25630,7 +25637,7 @@ MonoBehaviour:
   trackingTarget: {fileID: 0}
   updateTime: 0
   linkMeTo: 21
-  finger: 0
+  finger: 2
   debugDirections: 1
   debugTextElement: {fileID: 102817790699986091}
 --- !u!136 &114328219214556196
@@ -25652,7 +25659,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.3
   m_Height: 1
   m_Direction: 0
   m_Center: {x: -0.03, y: 0.31, z: -0.03}
@@ -26513,7 +26520,7 @@ MonoBehaviour:
   trackingTarget: {fileID: 0}
   updateTime: 0
   linkMeTo: 21
-  finger: 0
+  finger: 3
   debugDirections: 1
   debugTextElement: {fileID: 102917607657986297}
 --- !u!136 &114838808806316614
@@ -26535,7 +26542,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.3
   m_Height: 1
   m_Direction: 0
   m_Center: {x: -0.03, y: 0.31, z: 0}
@@ -26626,7 +26633,7 @@ MonoBehaviour:
   trackingTarget: {fileID: 0}
   updateTime: 0
   linkMeTo: 21
-  finger: 0
+  finger: 4
   debugDirections: 1
   debugTextElement: {fileID: 102827759786847301}
 --- !u!136 &114895473992993316
@@ -26648,7 +26655,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.18
+  m_Radius: 0.255
   m_Height: 1
   m_Direction: 0
   m_Center: {x: -0.12, y: 0.34, z: 0}
@@ -26685,6 +26692,13 @@ MonoBehaviour:
   middleTouch: {fileID: 114694341046739117}
   ringTouch: {fileID: 1156946911}
   pinkyTouch: {fileID: 640336318}
+  grabDiff:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  grabRelevance: 0000000000
   lastNormalized:
   - 0
   - 0
@@ -26917,7 +26931,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.3
   m_Height: 1
   m_Direction: 0
   m_Center: {x: 0.09, y: 0.25, z: 0}
