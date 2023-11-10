@@ -15,7 +15,9 @@ namespace SG
         public SG_HoverCollider thumbTouch;
         /// <summary> Index collider, used to determine finger/thumb and finger/palm collision </summary>
         public SG_HoverCollider indexTouch;
-        /// <summary> Index collider, used to determine finger/thumb and finger/palm collision </summary>
+        public SG_HoverCollider indexTouchSideL;
+        public SG_HoverCollider indexTouchSideR;
+
         public SG_HoverCollider middleTouch;
         public SG_HoverCollider ringTouch;
         public SG_HoverCollider pinkyTouch;
@@ -46,19 +48,24 @@ namespace SG
         protected override void CreateComponents()
         {
             base.CreateComponents();
-            fingerScripts = new SG_HoverCollider[5];
+            fingerScripts = new SG_HoverCollider[7];
             fingerScripts[0] = thumbTouch;
             fingerScripts[1] = indexTouch;
             fingerScripts[2] = middleTouch;
             fingerScripts[3] = ringTouch;
             fingerScripts[4] = pinkyTouch;
-            hoverScripts = new SG_HoverCollider[6];
+            fingerScripts[5] = indexTouchSideL;
+            fingerScripts[6] = indexTouchSideR;
+
+            hoverScripts = new SG_HoverCollider[8];
             hoverScripts[0] = thumbTouch;
             hoverScripts[1] = indexTouch;
             hoverScripts[2] = middleTouch;
             hoverScripts[3] = palmTouch;
             hoverScripts[4] = ringTouch;
             hoverScripts[5] = pinkyTouch;
+            hoverScripts[4] = indexTouchSideL;
+            hoverScripts[5] = indexTouchSideR;
 
 
         }
@@ -178,14 +185,17 @@ namespace SG
                     }
                 }
             }
-            #region test
+            #region 검지~새끼 주체 그랩 
             // 하위 구문들은 엄지 없이 물건 집는다는 소리고 손바닥을 필요로 함. 
             // 추후 젓가락 그랩은 손톱주변에 콜라이더 따로 만들어서 그랩법 만들어야할듯함 >> 지문쪽만 콜라이더 작게바꿔야 할거임
             // 손가락 사이드, 손톱부분 그랩법 따로 필요할듯
 
             else if (indexTouch.HoveredCount() > 0)
             {
-                for (int f = 1; f < fingerScripts.Length; f++)  // 기존 f값은 2 자신 제외하고 matching 확인
+                for (int f = 1; f < fingerScripts.Length; f++)
+                // 기존 f값은 2였음
+                // (자신 제외하고 wantsGrab 및 matching 확인)
+                // 수정 후 자신도 확인 ( 손바닥과 단일 손가락 그랩용 )
                 {
                     if (wantsGrab[f] && palmTouch.HoveredCount() > 0)
                     {
@@ -240,6 +250,51 @@ namespace SG
                 }
             }
 
+            /*
+            // 추후 최적화 로직
+            // 여러 콜라이더 들이면 복잡해질 수도 있음.
+            else if (pinkyTouch.HoveredCount() > 0)
+            {
+                    CheckFinger(4);                                 
+            }
+
+            void CheckFinger(int fingernumber)
+            {
+                for (int f = fingernumber; f < fingerScripts.Length; f++)
+                {
+                    if (wantsGrab[f] && palmTouch.HoveredCount() > 0)
+                    {
+                        SG_Interactable[] matching = fingerScripts[fingernumber].GetMatchingObjects(fingerScripts[f]);
+                        for (int i = 0; i < matching.Length; i++)
+                        {
+                            SG.Util.SG_Util.SafelyAdd(matching[i], res);
+                        }
+                    }
+                }
+            }
+            */
+
+            #endregion
+
+            #region 손가락 옆면
+
+            else if(CheckHoveredCount(indexTouchSideL))
+            {
+                Debug.Log("indexTouchSideL 감지");
+            }
+            else if (CheckHoveredCount(indexTouchSideR))
+            {
+                Debug.Log("indexTouchSideR 감지");
+            }
+
+            bool CheckHoveredCount(SG_HoverCollider finger)
+            {
+                if (finger.HoveredCount() > 0)
+                {
+                    return true;
+                }
+                else return false;
+            }
             #endregion
             return res;
         }
@@ -505,7 +560,5 @@ namespace SG
             
 
         }
-        
-
     }
 }
