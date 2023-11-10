@@ -54,6 +54,7 @@ namespace SG
             fingerScripts[2] = middleTouch;
             fingerScripts[3] = ringTouch;
             fingerScripts[4] = pinkyTouch;
+
             fingerScripts[5] = indexTouchSideL;
             fingerScripts[6] = indexTouchSideR;
 
@@ -64,14 +65,17 @@ namespace SG
             hoverScripts[3] = palmTouch;
             hoverScripts[4] = ringTouch;
             hoverScripts[5] = pinkyTouch;
+
             hoverScripts[4] = indexTouchSideL;
             hoverScripts[5] = indexTouchSideR;
 
 
         }
-        
-        
 
+
+        #region 내가안보는부분
+
+        
         protected override void CollectDebugComponents(out List<GameObject> objects, out List<MeshRenderer> renderers)
         {
             base.CollectDebugComponents(out objects, out renderers);
@@ -151,7 +155,7 @@ namespace SG
             }
             return new SG_Interactable[] { };
         }
-
+        #endregion
 
         /// <summary> Returns true if a specific fingers wants to grab on (when not grabbing). </summary>
         /// <param name="finger"></param>
@@ -172,7 +176,7 @@ namespace SG
 
             if ( thumbTouch. HoveredCount ( ) > 0 && wantsGrab [ 0 ])  
             {
-                for ( int f = 1 ; f < fingerScripts. Length ; f++ ) 
+                for ( int f = 1 ; f <5 ; f++ ) 
                 {
                     if ( wantsGrab [ f ] )
                     {
@@ -192,7 +196,7 @@ namespace SG
 
             else if (indexTouch.HoveredCount() > 0)
             {
-                for (int f = 1; f < fingerScripts.Length; f++)
+                for (int f = 1; f < 5; f++)
                 // 기존 f값은 2였음
                 // (자신 제외하고 wantsGrab 및 matching 확인)
                 // 수정 후 자신도 확인 ( 손바닥과 단일 손가락 그랩용 )
@@ -209,7 +213,7 @@ namespace SG
             }
             else if (middleTouch.HoveredCount() > 0)
             {
-                for (int f = 2; f < fingerScripts.Length; f++)
+                for (int f = 2; f < 5 ; f++)
                 {
                     if (wantsGrab[f] && palmTouch.HoveredCount() > 0)
                     {
@@ -223,7 +227,7 @@ namespace SG
             }
             else if (ringTouch.HoveredCount() > 0)
             {
-                for (int f = 3; f < fingerScripts.Length; f++)
+                for (int f = 3; f < 5 ; f++)
                 {
                     if (wantsGrab[f] && palmTouch.HoveredCount() > 0)
                     {
@@ -237,7 +241,7 @@ namespace SG
             }
             else if (pinkyTouch.HoveredCount() > 0)
             {
-                for (int f = 4; f < fingerScripts.Length; f++)
+                for (int f = 4; f < 5; f++)
                 {
                     if (wantsGrab[f] && palmTouch.HoveredCount() > 0) 
                     {
@@ -301,16 +305,19 @@ namespace SG
 
         /// <summary> Returns a list of fingers that are currently touching a particular interactable </summary>
         /// <returns></returns>
+        /// 기존 반복문 없앰. 손가락마다 케이스 정의별도로 함 / 세분화 정밀 / 코드 동작 원리 명확히
         public bool[] FingersTouching(SG_Interactable obj)
         {
             bool[] res = new bool[5];
-            for (int f = 0; f < this.fingerScripts.Length; f++)
-            {
-                res[f] = this.fingerScripts[f].IsTouching(obj);
-            }
+            res[0] = this.fingerScripts[0].IsTouching(obj);
+            res[1] = this.fingerScripts[1].IsTouching(obj) || this.fingerScripts[5].IsTouching(obj) || this.fingerScripts[6].IsTouching(obj);
+            res[2] = this.fingerScripts[2].IsTouching(obj);
+            res[3] = this.fingerScripts[3].IsTouching(obj);
+            res[4] = this.fingerScripts[4].IsTouching(obj);
+
             return res;
         }
-
+       
 
 
 
@@ -345,7 +352,6 @@ namespace SG
                 for (int i = 0; i < sortedGrabables.Length; i++)
                 {
                     TryGrab(sortedGrabables[i]);
-                    Debug. Log ( "잡았따" );
                     if ( !CanGrabNewObjects) { break; } //stop going through the objects if we can no longer grab one
                 }
             }
@@ -372,6 +378,9 @@ namespace SG
         protected void EvaluateRelease()
         {
             SG_Interactable heldObj = this.heldObjects[0];
+
+            // currentTouched 현재 fingerscripts0~4가 터치 중인지 확인함
+            // 물체에 닿고 있는 손가락의 상태.. 사이드도 포괄해서 뭔가 되나 ?
             bool[] currentTouched = this.FingersTouching(heldObj); //the fingers that are currently touching the (first) object
 
                
@@ -393,8 +402,7 @@ namespace SG
                     if (currentTouched[f])
                     {
                         oneGrabRelevance = true;
-                        break;
-                        
+                        break;                      
                     }
                 }
                 if (oneGrabRelevance) //there is a t least one relevant finger now touching.
@@ -410,7 +418,7 @@ namespace SG
             // 역시 normalizedOnGrab배열에 lastNormalized배열을 넣는다 ( 위와 구조는 비슷함 )
             else 
             {
-                for (int f = 1; f < fingerScripts.Length; f++)
+                for (int f = 1; f <5; f++)
                 {
                     if (!grabRelevance[f] && currentTouched[f]) 
                     {
@@ -426,7 +434,7 @@ namespace SG
                 //We will release if all relevant fingers are either above the "open threshold" OR have relevant fingers, and these have extended above / below
                 //float[] grabDiff = new float[5]; //DEBUG
                 int[] grabCodes = new int[5]; // 0 and up means grab, < zero means release.
-                for (int f = 0; f < fingerScripts.Length; f++)
+                for (int f = 0; f < 5; f++)
                 {
                     if (lastNormalized[f] < openHandThresholds[f]) // This finger is above the max extension
                     {
@@ -471,7 +479,7 @@ namespace SG
                 // 엄지가 닿아있으면.. 검지~새끼중 하나라도 있으면 그랩 유지 ! 
                 if (currentTouched[0])
                 {                   
-                        for (int f = 1; f < this.fingerScripts.Length; f++) // 
+                        for (int f = 1; f <5; f++) // 
                         {
                             if (grabCodes[f] > -1) // 한 마디로 <검지~새끼 손가락 중 최소 하나가 그랩 중>이다
                             {
@@ -483,7 +491,7 @@ namespace SG
                 {
                     if (palmTouch.HoveredCount() > 0) // 엄지가 안닿아 있지만 손바닥이 관여하고, 검지~새끼 중 하나라도 그랩 중이다
                     {
-                        for (int f = 1; f < this.fingerScripts.Length; f++) // 
+                        for (int f = 1; f < 5; f++) // 
                         {
                             if (grabCodes[f] > -1) // 한 마디로 <검지~새끼 손가락 중 최소 하나가 그랩 중>이다
                             {
