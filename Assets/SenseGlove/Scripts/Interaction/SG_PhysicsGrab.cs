@@ -331,9 +331,13 @@ namespace SG
                 if (CheckHoveredCount(middleTouchSideL))
                 {
                     SG_Interactable[] matching = fingerScripts[6].GetMatchingObjects(fingerScripts[7]);
-                    for (int i = 0; i < matching.Length; i++)
+                    Debug. Log ( matching[0].name);
+
+                    for ( int i = 0; i < matching.Length; i++)
                     {
                         SG.Util.SG_Util.SafelyAdd(matching[i], res);
+                        Debug. Log ( "123" );
+
                     }
                 }
                 else if (CheckHoveredCount(ringTouchSideL))
