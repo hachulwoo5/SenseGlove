@@ -66,6 +66,12 @@ namespace SG
 
             fingerScripts[5] = indexTouchSideL;
             fingerScripts[6] = indexTouchSideR;
+            fingerScripts[7] = middleTouchSideL;
+            fingerScripts[8] = middleTouchSideR;
+            fingerScripts[9] = ringTouchSideL;
+            fingerScripts[10] = ringTouchSideR;
+            fingerScripts[11] = pinkyTouchSideL;
+            fingerScripts[12] = pinkyTouchSideR;
 
             hoverScripts = new SG_HoverCollider[14];
             hoverScripts[0] = thumbTouch;
@@ -189,7 +195,7 @@ namespace SG
         {
             List<SG_Interactable> res = new List<SG_Interactable>();
             // Thumb - Finger only for now.
-            // 조건 && wantsGrab [ 0 ] 들어간 이유 : 엄지를 펴고 다른 손가락 끼리 그랩하려고 할 때 강제로 인식되서 넣어둠 
+            // 조건 && wantsGrab [ 0 ] 들어간 이유 : 엄지를 펴고 다른 손가락끼리 그랩하려고 할 때 강제로 인식되서 넣어둠 
 
             if ( thumbTouch. HoveredCount ( ) > 0 && wantsGrab [ 0 ])  
             {
@@ -302,9 +308,43 @@ namespace SG
             else if(CheckHoveredCount(indexTouchSideL))
             {
                 Debug.Log("indexTouchSideL 감지");
+                /*
+                 
+                for (int f = 1; f < 5; f++)
+                {
+                    if (wantsGrab[f])
+                    {
+                        SG_Interactable[] matching = fingerScripts[0].GetMatchingObjects(fingerScripts[f]);
+                        // Debug.Log("Found " + matching.Length + " matching objects between " + fingerScripts[0].name + " and " + fingerScripts[f].name);
+                        for (int i = 0; i < matching.Length; i++)
+                        {
+                            SG.Util.SG_Util.SafelyAdd(matching[i], res);
+                        }
+                    }
+                } 
+
+                */
+
             }
             else if (CheckHoveredCount(indexTouchSideR))
             {
+                if (CheckHoveredCount(middleTouchSideL))
+                {
+                    SG_Interactable[] matching = fingerScripts[6].GetMatchingObjects(fingerScripts[7]);
+                    for (int i = 0; i < matching.Length; i++)
+                    {
+                        SG.Util.SG_Util.SafelyAdd(matching[i], res);
+                    }
+                }
+                else if (CheckHoveredCount(ringTouchSideL))
+                {
+                    SG_Interactable[] matching = fingerScripts[6].GetMatchingObjects(fingerScripts[9]);
+                }
+                else if (CheckHoveredCount(pinkyTouchSideL))
+                {
+                    SG_Interactable[] matching = fingerScripts[6].GetMatchingObjects(fingerScripts[11]);
+                }
+
                 Debug.Log("indexTouchSideR 감지");
             }
 
@@ -328,9 +368,9 @@ namespace SG
             bool[] res = new bool[5];
             res[0] = this.fingerScripts[0].IsTouching(obj);
             res[1] = this.fingerScripts[1].IsTouching(obj) || this.fingerScripts[5].IsTouching(obj) || this.fingerScripts[6].IsTouching(obj);
-            res[2] = this.fingerScripts[2].IsTouching(obj);
-            res[3] = this.fingerScripts[3].IsTouching(obj);
-            res[4] = this.fingerScripts[4].IsTouching(obj);
+            res[2] = this.fingerScripts[2].IsTouching(obj) || this.fingerScripts[7].IsTouching(obj) || this.fingerScripts[8].IsTouching(obj);
+            res[3] = this.fingerScripts[3].IsTouching(obj) || this.fingerScripts[9].IsTouching(obj) || this.fingerScripts[10].IsTouching(obj);
+            res[4] = this.fingerScripts[4].IsTouching(obj) || this.fingerScripts[11].IsTouching(obj) || this.fingerScripts[12].IsTouching(obj);
 
             return res;
         }
@@ -518,6 +558,10 @@ namespace SG
                     }
                     else // 엄지도 없고 손바닥도 없다. 네손가락으로 물건을 집는건 불가능하다.
                     {
+                        if(currentTouched.Length>1)
+                        {
+                            grabDesired = true;
+                        }
                         grabDesired = false;
                     }                   
                 }
