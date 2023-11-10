@@ -2104,7 +2104,7 @@ Transform:
   m_GameObject: {fileID: 589429168}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0039120903, y: 0.0947226, z: 0.04107946, w: 0.9946481}
-  m_LocalPosition: {x: 0.16444, y: -0.00692, z: -0.04657}
+  m_LocalPosition: {x: 0.1647, y: -0.00692, z: -0.0512}
   m_LocalScale: {x: 0.03303839, y: 0.03303839, z: 0.03303839}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2197,7 +2197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trackingTarget: {fileID: 0}
   updateTime: 0
-  linkMeTo: 7
+  linkMeTo: 19
   debugTxt: {fileID: 0}
 --- !u!23 &589429174
 MeshRenderer:
@@ -2373,7 +2373,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trackingTarget: {fileID: 0}
   updateTime: 0
-  linkMeTo: 7
+  linkMeTo: 15
   debugTxt: {fileID: 0}
 --- !u!23 &620505389
 MeshRenderer:
@@ -2631,7 +2631,7 @@ Transform:
   m_GameObject: {fileID: 640336314}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.1572, y: -0.0246, z: -0.04298}
+  m_LocalPosition: {x: 0.1572, y: -0.0246, z: -0.0469}
   m_LocalScale: {x: 0.03304, y: 0.03304, z: 0.03304}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2972,7 +2972,7 @@ Transform:
   m_GameObject: {fileID: 665628266}
   serializedVersion: 2
   m_LocalRotation: {x: -0.0012061868, y: -0.029205143, z: 0.041247685, w: 0.99872136}
-  m_LocalPosition: {x: 0.16651, y: -0.00698, z: -0.05538}
+  m_LocalPosition: {x: 0.16677, y: -0.00698, z: -0.06000997}
   m_LocalScale: {x: 0.03303839, y: 0.03303839, z: 0.03303839}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3065,7 +3065,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trackingTarget: {fileID: 0}
   updateTime: 0
-  linkMeTo: 7
+  linkMeTo: 19
   debugTxt: {fileID: 0}
 --- !u!23 &665628272
 MeshRenderer:
@@ -5047,7 +5047,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trackingTarget: {fileID: 0}
   updateTime: 0
-  linkMeTo: 7
+  linkMeTo: 11
   debugTxt: {fileID: 0}
 --- !u!23 &1243710783
 MeshRenderer:
@@ -5717,7 +5717,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1512590739
 Transform:
   m_ObjectHideFlags: 0
@@ -5791,7 +5791,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1512590738}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 11a9dc139a711ae4980048600804891d, type: 3}
   m_Name: 
@@ -6400,7 +6400,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trackingTarget: {fileID: 0}
   updateTime: 0
-  linkMeTo: 7
+  linkMeTo: 11
   debugTxt: {fileID: 0}
 --- !u!23 &1726028850
 MeshRenderer:
@@ -12047,7 +12047,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trackingTarget: {fileID: 0}
   updateTime: 0
-  linkMeTo: 7
+  linkMeTo: 15
   debugTxt: {fileID: 0}
 --- !u!23 &1968363014
 MeshRenderer:
@@ -27045,8 +27045,14 @@ MonoBehaviour:
   indexTouchSideL: {fileID: 0}
   indexTouchSideR: {fileID: 0}
   middleTouch: {fileID: 114854881652184195}
+  middleTouchSideL: {fileID: 0}
+  middleTouchSideR: {fileID: 0}
   ringTouch: {fileID: 0}
+  ringTouchSideL: {fileID: 0}
+  ringTouchSideR: {fileID: 0}
   pinkyTouch: {fileID: 0}
+  pinkyTouchSideL: {fileID: 0}
+  pinkyTouchSideR: {fileID: 0}
   grabDiff:
   - 0
   - 0
@@ -28391,11 +28397,17 @@ MonoBehaviour:
   palmTouch: {fileID: 114441204111338613}
   thumbTouch: {fileID: 114496475104416897}
   indexTouch: {fileID: 114365445208771977}
-  indexTouchSideL: {fileID: 627820219}
-  indexTouchSideR: {fileID: 165369372}
+  indexTouchSideL: {fileID: 165369372}
+  indexTouchSideR: {fileID: 627820219}
   middleTouch: {fileID: 114694341046739117}
+  middleTouchSideL: {fileID: 1243710782}
+  middleTouchSideR: {fileID: 1726028849}
   ringTouch: {fileID: 1156946911}
+  ringTouchSideL: {fileID: 620505388}
+  ringTouchSideR: {fileID: 1968363013}
   pinkyTouch: {fileID: 640336318}
+  pinkyTouchSideL: {fileID: 589429173}
+  pinkyTouchSideR: {fileID: 665628271}
   grabDiff:
   - 0
   - 0

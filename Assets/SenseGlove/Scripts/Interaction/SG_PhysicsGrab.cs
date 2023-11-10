@@ -19,11 +19,20 @@ namespace SG
         public SG_HoverCollider indexTouchSideR;
 
         public SG_HoverCollider middleTouch;
+        public SG_HoverCollider middleTouchSideL;
+        public SG_HoverCollider middleTouchSideR;
+
         public SG_HoverCollider ringTouch;
+        public SG_HoverCollider ringTouchSideL;
+        public SG_HoverCollider ringTouchSideR;
+
         public SG_HoverCollider pinkyTouch;
+        public SG_HoverCollider pinkyTouchSideL;
+        public SG_HoverCollider pinkyTouchSideR;
+
 
         /// <summary> Keeps track of the 'grabbing' pose of fingers </summary>
-        protected bool[] wantsGrab = new bool[5];
+        protected bool [ ] wantsGrab = new bool[5];
         /// <summary> Above these flexions, the hand is considered 'open' </summary>
         protected static float[] openHandThresholds = new float[5] { 0.1f, 0.2f, 0.2f, 0.2f, 0.3f };
         /// <summary> below these flexions, the hand is considered 'open' </summary>
@@ -58,7 +67,7 @@ namespace SG
             fingerScripts[5] = indexTouchSideL;
             fingerScripts[6] = indexTouchSideR;
 
-            hoverScripts = new SG_HoverCollider[8];
+            hoverScripts = new SG_HoverCollider[14];
             hoverScripts[0] = thumbTouch;
             hoverScripts[1] = indexTouch;
             hoverScripts[2] = middleTouch;
@@ -66,8 +75,16 @@ namespace SG
             hoverScripts[4] = ringTouch;
             hoverScripts[5] = pinkyTouch;
 
-            hoverScripts[4] = indexTouchSideL;
-            hoverScripts[5] = indexTouchSideR;
+            hoverScripts[6] = indexTouchSideL;
+            hoverScripts[7] = indexTouchSideR;
+            hoverScripts[8] = middleTouchSideL;
+            hoverScripts[9] = middleTouchSideR;
+            hoverScripts[10] = ringTouchSideL;
+            hoverScripts[11] = ringTouchSideR;
+            hoverScripts [ 12 ] = pinkyTouchSideL;
+            hoverScripts [ 13 ] = pinkyTouchSideR;
+
+
 
 
         }
