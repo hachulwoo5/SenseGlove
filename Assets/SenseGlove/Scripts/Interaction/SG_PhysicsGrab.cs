@@ -57,7 +57,7 @@ namespace SG
         protected override void CreateComponents()
         {
             base.CreateComponents();
-            fingerScripts = new SG_HoverCollider[7];
+            fingerScripts = new SG_HoverCollider[13];
             fingerScripts[0] = thumbTouch;
             fingerScripts[1] = indexTouch;
             fingerScripts[2] = middleTouch;
