@@ -28,7 +28,7 @@ namespace SG
 
         //the previously calculated finger angles. Used for optmization purposes.
 
-        float[] lastFlexForLocks = new float[5] { -1.0f, -1.0f, -1.0f, -1.0f, -1.0f }; //The highest extension measured while we'e under the flexion value of an object
+        public float [ ] lastFlexForLocks = new float[5] { 15f , 15f , 15f , 15f , 15f}; //The highest extension measured while we'e under the flexion value of an object
 
 
         
@@ -37,8 +37,8 @@ namespace SG
         Vector3[][] calc_JointPositions = new Vector3[5][];
         Quaternion[][] calc_JointRotations = new Quaternion[5][];
         // The last flexions / abd pair used for calculations, used to prevent re-calculating every frame.
-        float[] calc_Flex = new float[5] { -1.0f, -1.0f, -1.0f, -1.0f, -1.0f }; //start these at -1 so we calculate the values the very first time...
-        float[] calc_Abd = new float[5] { -1.0f, -1.0f, -1.0f, -1.0f, -1.0f }; //start these at -1 so we calculate the values the very first time...
+        public float [ ] calc_Flex = new float[5] { -1.0f, -1.0f, -1.0f, -1.0f, -1.0f }; //start these at -1 so we calculate the values the very first time...
+        public float [ ] calc_Abd = new float[5] { -1.0f, -1.0f, -1.0f, -1.0f, -1.0f }; //start these at -1 so we calculate the values the very first time...
 
         /// <summary> Text of the DebugElement </summary>
         public string DebugText

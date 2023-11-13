@@ -1,16 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Linq;
 namespace SG
 {
 
     public class SG_PhysicsGrab : SG_GrabScript
     {
         /// <summary> The Hand Palm collider, used when grabbing objects between the palm and finger (tool/handle grips) </summary>
-        [Header("Physics Grab Components")]
+        [ Header ( "Physics Grab Components" )]
         public SG_HoverCollider palmTouch;
-
+        public bool isPalmTouch;
         /// <summary> Thumb collider, used to determine finger/thumb collision </summary>
         public SG_HoverCollider thumbTouch;
         /// <summary> Index collider, used to determine finger/thumb and finger/palm collision </summary>
@@ -32,61 +32,61 @@ namespace SG
 
 
         /// <summary> Keeps track of the 'grabbing' pose of fingers </summary>
-        protected bool [ ] wantsGrab = new bool[5];
+        protected bool [ ] wantsGrab = new bool [ 5 ];
         /// <summary> Above these flexions, the hand is considered 'open' </summary>
-        protected static float[] openHandThresholds = new float[5] { 0.1f, 0.2f, 0.2f, 0.2f, 0.3f };
+        protected static float [ ] openHandThresholds = new float [ 5 ] { 0.1f , 0.2f , 0.2f , 0.2f , 0.3f };
         /// <summary> below these flexions, the hand is considered 'open' </summary>
-        protected static float[] closedHandThresholds = new float[5] { 2, 0.9f, 0.9f, 0.9f, 0.9f }; //set to -360 so it won;t trigger for now
+        protected static float [ ] closedHandThresholds = new float [ 5 ] { 2 , 0.9f , 0.9f , 0.9f , 0.9f }; //set to -360 so it won;t trigger for now
 
-        public float[] grabDiff = new float[5]; //DEBUG
+        public float [ ] grabDiff = new float [ 5 ]; //DEBUG
 
         protected float releaseThreshold = 0.05f;
-        public bool[] grabRelevance = new bool[5];
+        public bool [ ] grabRelevance = new bool [ 5 ];
         protected bool snapFrame = false;
 
         /// <summary> All fingers, used to iterate through the fingers only. </summary>
-        protected SG_HoverCollider[] fingerScripts = new SG_HoverCollider[0];
+        protected SG_HoverCollider [ ] fingerScripts = new SG_HoverCollider [ 0 ];
         /// <summary> All HoverScripts, easier to iterate trhough </summary>
-        protected SG_HoverCollider[] hoverScripts = new SG_HoverCollider[0];
+        protected SG_HoverCollider [ ] hoverScripts = new SG_HoverCollider [ 0 ];
 
         protected static float overrideGrabThreshold = 0.01f;
 
-        public float[] lastNormalized = new float[5];
-        protected float[] normalizedOnGrab = new float[5];
+        public float [ ] lastNormalized = new float [ 5 ];
+        protected float [ ] normalizedOnGrab = new float [ 5 ];
 
-        protected override void CreateComponents()
+        protected override void CreateComponents ( )
         {
-            base.CreateComponents();
-            fingerScripts = new SG_HoverCollider[13];
-            fingerScripts[0] = thumbTouch;
-            fingerScripts[1] = indexTouch;
-            fingerScripts[2] = middleTouch;
-            fingerScripts[3] = ringTouch;
-            fingerScripts[4] = pinkyTouch;
+            base. CreateComponents ( );
+            fingerScripts = new SG_HoverCollider [ 13 ];
+            fingerScripts [ 0 ] = thumbTouch;
+            fingerScripts [ 1 ] = indexTouch;
+            fingerScripts [ 2 ] = middleTouch;
+            fingerScripts [ 3 ] = ringTouch;
+            fingerScripts [ 4 ] = pinkyTouch;
 
-            fingerScripts[5] = indexTouchSideL;
-            fingerScripts[6] = indexTouchSideR;
-            fingerScripts[7] = middleTouchSideL;
-            fingerScripts[8] = middleTouchSideR;
-            fingerScripts[9] = ringTouchSideL;
-            fingerScripts[10] = ringTouchSideR;
-            fingerScripts[11] = pinkyTouchSideL;
-            fingerScripts[12] = pinkyTouchSideR;
+            fingerScripts [ 5 ] = indexTouchSideL;
+            fingerScripts [ 6 ] = indexTouchSideR;
+            fingerScripts [ 7 ] = middleTouchSideL;
+            fingerScripts [ 8 ] = middleTouchSideR;
+            fingerScripts [ 9 ] = ringTouchSideL;
+            fingerScripts [ 10 ] = ringTouchSideR;
+            fingerScripts [ 11 ] = pinkyTouchSideL;
+            fingerScripts [ 12 ] = pinkyTouchSideR;
 
-            hoverScripts = new SG_HoverCollider[14];
-            hoverScripts[0] = thumbTouch;
-            hoverScripts[1] = indexTouch;
-            hoverScripts[2] = middleTouch;
-            hoverScripts[3] = palmTouch;
-            hoverScripts[4] = ringTouch;
-            hoverScripts[5] = pinkyTouch;
+            hoverScripts = new SG_HoverCollider [ 14 ];
+            hoverScripts [ 0 ] = thumbTouch;
+            hoverScripts [ 1 ] = indexTouch;
+            hoverScripts [ 2 ] = middleTouch;
+            hoverScripts [ 3 ] = palmTouch;
+            hoverScripts [ 4 ] = ringTouch;
+            hoverScripts [ 5 ] = pinkyTouch;
 
-            hoverScripts[6] = indexTouchSideL;
-            hoverScripts[7] = indexTouchSideR;
-            hoverScripts[8] = middleTouchSideL;
-            hoverScripts[9] = middleTouchSideR;
-            hoverScripts[10] = ringTouchSideL;
-            hoverScripts[11] = ringTouchSideR;
+            hoverScripts [ 6 ] = indexTouchSideL;
+            hoverScripts [ 7 ] = indexTouchSideR;
+            hoverScripts [ 8 ] = middleTouchSideL;
+            hoverScripts [ 9 ] = middleTouchSideR;
+            hoverScripts [ 10 ] = ringTouchSideL;
+            hoverScripts [ 11 ] = ringTouchSideR;
             hoverScripts [ 12 ] = pinkyTouchSideL;
             hoverScripts [ 13 ] = pinkyTouchSideR;
 
@@ -98,36 +98,36 @@ namespace SG
 
         #region 내가안보는부분
 
-        
-        protected override void CollectDebugComponents(out List<GameObject> objects, out List<MeshRenderer> renderers)
+
+        protected override void CollectDebugComponents ( out List<GameObject> objects , out List<MeshRenderer> renderers )
         {
-            base.CollectDebugComponents(out objects, out renderers);
-            for (int i = 0; i < this.hoverScripts.Length; i++)
+            base. CollectDebugComponents ( out objects , out renderers );
+            for ( int i = 0 ; i < this. hoverScripts. Length ; i++ )
             {
-                Util.SG_Util.CollectComponent(hoverScripts[i], ref renderers);
-                Util.SG_Util.CollectGameObject(hoverScripts[i].debugTxt, ref objects);
+                Util. SG_Util. CollectComponent ( hoverScripts [ i ] , ref renderers );
+                Util. SG_Util. CollectGameObject ( hoverScripts [ i ]. debugTxt , ref objects );
             }
         }
 
-        protected override List<Collider> CollectPhysicsColliders()
+        protected override List<Collider> CollectPhysicsColliders ( )
         {
-            List<Collider> res = base.CollectPhysicsColliders();
-            for (int i = 0; i < this.hoverScripts.Length; i++)
+            List<Collider> res = base. CollectPhysicsColliders ( );
+            for ( int i = 0 ; i < hoverScripts .LongLength; i++ )
             {
-                SG.Util.SG_Util.GetAllColliders(this.hoverScripts[i].gameObject, ref res);
+                SG. Util. SG_Util. GetAllColliders ( this. hoverScripts [ i ]. gameObject , ref res );
             }
             return res;
         }
 
-        protected override void LinkToHand_Internal(SG_TrackedHand newHand, bool firstLink)
+        protected override void LinkToHand_Internal ( SG_TrackedHand newHand , bool firstLink )
         {
-            base.LinkToHand_Internal(newHand, firstLink);
+            base. LinkToHand_Internal ( newHand , firstLink );
             //link colliders
-            SG_HandPoser3D trackingTargets = newHand.GetPoser(SG_TrackedHand.TrackingLevel.VirtualPose);
-            for (int i = 0; i < this.hoverScripts.Length; i++) //link them to wherever they want to be
+            SG_HandPoser3D trackingTargets = newHand. GetPoser ( SG_TrackedHand. TrackingLevel. VirtualPose );
+            for ( int i = 0 ; i < hoverScripts .Length; i++ ) //link them to wherever they want to be
             {
-                trackingTargets.ParentObject(hoverScripts[i].transform, hoverScripts[i].linkMeTo); //Instead of following a frame behind, we're childing.
-                hoverScripts[i].updateTime = SG_SimpleTracking.UpdateDuring.Off; //we still need it for hovering(!)
+                trackingTargets. ParentObject ( hoverScripts [ i ]. transform , hoverScripts [ i ]. linkMeTo ); //Instead of following a frame behind, we're childing.
+                hoverScripts [ i ]. updateTime = SG_SimpleTracking. UpdateDuring. Off; //we still need it for hovering(!)
                 //Transform target = trackingTargets.GetTransform(hoverScripts[i].linkMeTo);
                 //hoverScripts[i].SetTrackingTarget(target, true);
                 //hoverScripts[i].updateTime = SG_SimpleTracking.UpdateDuring.Off; //no longer needs to update...
@@ -143,11 +143,11 @@ namespace SG
         /// <param name="heldObject"></param>
         /// <param name="objectsToGrab"></param>
         /// <returns></returns>
-        public static bool IsInside(SG_Interactable heldObject, List<SG_Interactable> objectsToGrab)
+        public static bool IsInside ( SG_Interactable heldObject , List<SG_Interactable> objectsToGrab )
         {
-            for (int i = 0; i < objectsToGrab.Count; i++)
+            for ( int i = 0 ; i < objectsToGrab. Count ; i++ )
             {
-                if (GameObject.ReferenceEquals(objectsToGrab[i].gameObject, heldObject.gameObject))
+                if ( GameObject. ReferenceEquals ( objectsToGrab [ i ]. gameObject , heldObject. gameObject ) )
                 {
                     return true;
                 }
@@ -160,9 +160,9 @@ namespace SG
         /// <param name="finger1"></param>
         /// <param name="finger2"></param>
         /// <returns></returns>
-        public SG_Interactable[] GetMatching(int finger1, int finger2)
+        public SG_Interactable [ ] GetMatching ( int finger1 , int finger2 )
         {
-            return GetMatching(finger1, fingerScripts[finger2]);
+            return GetMatching ( finger1 , fingerScripts [ finger2 ] );
         }
 
 
@@ -170,45 +170,64 @@ namespace SG
         /// <param name="finger1"></param>
         /// <param name="finger2"></param>
         /// <returns></returns>
-        public SG_Interactable[] GetMatching(int finger1, SG_HoverCollider touch)
+        public SG_Interactable [ ] GetMatching ( int finger1 , SG_HoverCollider touch )
         {
-            if (fingerScripts[finger1] != null && touch != null)
+            if ( fingerScripts [ finger1 ] != null && touch != null )
             {
-                return fingerScripts[finger1].GetMatchingObjects(touch);
+                return fingerScripts [ finger1 ]. GetMatchingObjects ( touch );
             }
-            return new SG_Interactable[] { };
+            return new SG_Interactable [ ] { };
         }
         #endregion
 
         /// <summary> Returns true if a specific fingers wants to grab on (when not grabbing). </summary>
         /// <param name="finger"></param>
         /// <returns></returns>
-        protected bool WantsGrab(int finger)
+        protected bool WantsGrab ( int finger )
         {
-            return lastNormalized[finger] >= openHandThresholds[finger] && lastNormalized[finger] <= closedHandThresholds[finger];
+            return lastNormalized [ finger ] >= openHandThresholds [ finger ] && lastNormalized [ finger ] <= closedHandThresholds [ finger ];
         }
 
 
         /// <summary> Returns a list of all objects that are grabable at this moment. </summary>
         /// <returns></returns>
-        public List<SG_Interactable> ObjectsGrabableNow()
+        public List<SG_Interactable> ObjectsGrabableNow ( )
         {
-            List<SG_Interactable> res = new List<SG_Interactable>();
+            List<SG_Interactable> res = new List<SG_Interactable> ( );
+
+            // 매개변수에 해당하는 finger  부분이 닿았는지 확인하는 구문
+            bool CheckHoveredCount ( SG_HoverCollider finger )
+            {
+                if ( finger. HoveredCount ( ) > 0 )
+                {
+                    return true;
+                }
+                else 
+                    return false;
+            }
+
+            // a손가락과 b손가락이 같은 물체를 접촉했는지 확인하고 그 값을 반환하는 구문
+            void matchingFinger ( int a , int b )
+            {
+                SG_Interactable [ ] matching = fingerScripts [ a ]. GetMatchingObjects ( fingerScripts [ b ] );
+
+                for ( int i = 0 ; i < matching. Length ; i++ )
+                {
+                    SG. Util. SG_Util. SafelyAdd ( matching [ i ] , res );
+                }
+            }
+
             // Thumb - Finger only for now.
             // 조건 && wantsGrab [ 0 ] 들어간 이유 : 엄지를 펴고 다른 손가락끼리 그랩하려고 할 때 강제로 인식되서 넣어둠 
 
-            if ( thumbTouch. HoveredCount ( ) > 0 && wantsGrab [ 0 ])  
+
+            if ( CheckHoveredCount(thumbTouch) && wantsGrab [ 0 ] )
             {
-                for ( int f = 1 ; f <5 ; f++ ) 
+                for ( int f = 1 ; f < 5 ; f++ )
                 {
                     if ( wantsGrab [ f ] )
                     {
-                        SG_Interactable [ ] matching = fingerScripts [ 0 ]. GetMatchingObjects ( fingerScripts [ f ] );
-                        // Debug.Log("Found " + matching.Length + " matching objects between " + fingerScripts[0].name + " and " + fingerScripts[f].name);
-                        for ( int i = 0 ; i < matching. Length ; i++ )
-                        {
-                            SG. Util. SG_Util. SafelyAdd ( matching [ i ] , res );
-                        }
+                        matchingFinger ( 0, f );
                     }
                 }
             }
@@ -217,62 +236,46 @@ namespace SG
             // 추후 젓가락 그랩은 손톱주변에 콜라이더 따로 만들어서 그랩법 만들어야할듯함 >> 지문쪽만 콜라이더 작게바꿔야 할거임
             // 손가락 사이드, 손톱부분 그랩법 따로 필요할듯
 
-            else if (indexTouch.HoveredCount() > 0)
+            else if ( CheckHoveredCount ( indexTouch ) )
             {
-                for (int f = 1; f < 5; f++)
+                for ( int f = 1 ; f < 5 ; f++ )
                 // 기존 f값은 2였음
                 // (자신 제외하고 wantsGrab 및 matching 확인)
                 // 수정 후 자신도 확인 ( 손바닥과 단일 손가락 그랩용 )
                 {
-                    if (wantsGrab[f] && palmTouch.HoveredCount() > 0)
+                    if ( wantsGrab [ f ] && isPalmTouch )
                     {
-                        SG_Interactable[] matching = fingerScripts[1].GetMatchingObjects(fingerScripts[f]);
-                        for (int i = 0; i < matching.Length; i++)
-                        {
-                            SG.Util.SG_Util.SafelyAdd(matching[i], res);
-                        }
+                        matchingFinger ( 1 , f );
                     }
                 }
             }
-            else if (middleTouch.HoveredCount() > 0)
+            else if ( CheckHoveredCount ( middleTouch ) )
             {
-                for (int f = 2; f < 5 ; f++)
+                for ( int f = 2 ; f < 5 ; f++ )
                 {
-                    if (wantsGrab[f] && palmTouch.HoveredCount() > 0)
+                    if ( wantsGrab [ f ] && isPalmTouch )
                     {
-                        SG_Interactable[] matching = fingerScripts[2].GetMatchingObjects(fingerScripts[f]);
-                        for (int i = 0; i < matching.Length; i++)
-                        {
-                            SG.Util.SG_Util.SafelyAdd(matching[i], res);
-                        }
+                        matchingFinger ( 2 , f );
                     }
                 }
             }
-            else if (ringTouch.HoveredCount() > 0)
+            else if ( CheckHoveredCount ( ringTouch ) )
             {
-                for (int f = 3; f < 5 ; f++)
+                for ( int f = 3 ; f < 5 ; f++ )
                 {
-                    if (wantsGrab[f] && palmTouch.HoveredCount() > 0)
+                    if ( wantsGrab [ f ] && isPalmTouch )
                     {
-                        SG_Interactable[] matching = fingerScripts[3].GetMatchingObjects(fingerScripts[f]);
-                        for (int i = 0; i < matching.Length; i++)
-                        {
-                            SG.Util.SG_Util.SafelyAdd(matching[i], res);
-                        }
+                        matchingFinger ( 3 , f );
                     }
                 }
             }
-            else if (pinkyTouch.HoveredCount() > 0)
+            else if ( CheckHoveredCount ( pinkyTouch ) )
             {
-                for (int f = 4; f < 5; f++)
+                for ( int f = 4 ; f < 5 ; f++ )
                 {
-                    if (wantsGrab[f] && palmTouch.HoveredCount() > 0) 
+                    if ( wantsGrab [ f ] && isPalmTouch )
                     {
-                        SG_Interactable[] matching = fingerScripts[4].GetMatchingObjects(fingerScripts[f]);
-                        for (int i = 0; i < matching.Length; i++)
-                        {
-                            SG.Util.SG_Util.SafelyAdd(matching[i], res);
-                        }
+                        matchingFinger ( 4 , f );
                     }
                 }
             }
@@ -305,9 +308,9 @@ namespace SG
 
             #region 손가락 옆면
 
-            else if(CheckHoveredCount(indexTouchSideL))
+            else if ( CheckHoveredCount ( indexTouchSideL ) )
             {
-                Debug.Log("indexTouchSideL 감지");
+                Debug. Log ( "indexTouchSideL 감지" );
                 /*
                  
                 for (int f = 1; f < 5; f++)
@@ -326,40 +329,41 @@ namespace SG
                 */
 
             }
-            else if (CheckHoveredCount(indexTouchSideR))
+            else if ( CheckHoveredCount ( indexTouchSideR ) )
             {
-                if (CheckHoveredCount(middleTouchSideL))
+                Debug. Log ( "indexTouchSideR 감지" );
+                if ( CheckHoveredCount ( middleTouchSideL ) )
                 {
-                    SG_Interactable[] matching = fingerScripts[6].GetMatchingObjects(fingerScripts[7]);
-                    Debug. Log ( matching[0].name);
-
-                    for ( int i = 0; i < matching.Length; i++)
-                    {
-                        SG.Util.SG_Util.SafelyAdd(matching[i], res);
-                        Debug. Log ( "123" );
-
-                    }
+                    matchingFinger ( 6 , 7 );
                 }
-                else if (CheckHoveredCount(ringTouchSideL))
+                else if ( CheckHoveredCount ( ringTouchSideL ) )
                 {
-                    SG_Interactable[] matching = fingerScripts[6].GetMatchingObjects(fingerScripts[9]);
+                    matchingFinger ( 6 , 9 );
                 }
-                else if (CheckHoveredCount(pinkyTouchSideL))
+                else if ( CheckHoveredCount ( pinkyTouchSideL ) )
                 {
-                    SG_Interactable[] matching = fingerScripts[6].GetMatchingObjects(fingerScripts[11]);
+                    matchingFinger ( 6 , 11 );
                 }
 
-                Debug.Log("indexTouchSideR 감지");
+            }
+            else if ( CheckHoveredCount ( middleTouchSideR ) )
+            {
+                Debug. Log ( "middleTouchSideR 감지" );
+                if ( CheckHoveredCount ( ringTouchSideL ) )
+                {
+                    matchingFinger ( 8 , 9 );
+
+                }
+                else if ( CheckHoveredCount ( pinkyTouchSideL ) )
+                {
+                    matchingFinger ( 8 ,11 );
+
+                }
+
+
             }
 
-            bool CheckHoveredCount(SG_HoverCollider finger)
-            {
-                if (finger.HoveredCount() > 0)
-                {
-                    return true;
-                }
-                else return false;
-            }
+            
             #endregion
             return res;
         }
@@ -367,86 +371,111 @@ namespace SG
         /// <summary> Returns a list of fingers that are currently touching a particular interactable </summary>
         /// <returns></returns>
         /// 기존 반복문 없앰. 손가락마다 케이스 정의별도로 함 / 세분화 정밀 / 코드 동작 원리 명확히
-        public bool[] FingersTouching(SG_Interactable obj)
+        public bool [ ] FingersTouching ( SG_Interactable obj )
         {
-            bool[] res = new bool[5];
-            res[0] = this.fingerScripts[0].IsTouching(obj);
-            res[1] = this.fingerScripts[1].IsTouching(obj) || this.fingerScripts[5].IsTouching(obj) || this.fingerScripts[6].IsTouching(obj);
-            res[2] = this.fingerScripts[2].IsTouching(obj) || this.fingerScripts[7].IsTouching(obj) || this.fingerScripts[8].IsTouching(obj);
-            res[3] = this.fingerScripts[3].IsTouching(obj) || this.fingerScripts[9].IsTouching(obj) || this.fingerScripts[10].IsTouching(obj);
-            res[4] = this.fingerScripts[4].IsTouching(obj) || this.fingerScripts[11].IsTouching(obj) || this.fingerScripts[12].IsTouching(obj);
+            bool [ ] res = new bool [ 5 ];
+            res [ 0 ] = this. fingerScripts [ 0 ]. IsTouching ( obj );
+            res [ 1 ] = this. fingerScripts [ 1 ]. IsTouching ( obj ) || this. fingerScripts [ 5 ]. IsTouching ( obj ) || this. fingerScripts [ 6 ]. IsTouching ( obj );
+            res [ 2 ] = this. fingerScripts [ 2 ]. IsTouching ( obj ) || this. fingerScripts [ 7 ]. IsTouching ( obj ) || this. fingerScripts [ 8 ]. IsTouching ( obj );
+            res [ 3 ] = this. fingerScripts [ 3 ]. IsTouching ( obj ) || this. fingerScripts [ 9 ]. IsTouching ( obj ) || this. fingerScripts [ 10 ]. IsTouching ( obj );
+            res [ 4 ] = this. fingerScripts [ 4 ]. IsTouching ( obj ) || this. fingerScripts [ 11 ]. IsTouching ( obj ) || this. fingerScripts [ 12 ]. IsTouching ( obj );
 
             return res;
         }
-       
-
-
-
-
-        public static bool[] GetGrabIntent(float[] normalizedFlex)
+        public bool PalmTouching ( SG_Interactable obj )
         {
-            bool[] res = new bool[5];
-            for (int f = 0; f < normalizedFlex.Length; f++) //go through each finger -but- the thumb.?
+            bool res;
+            //res = this. hoverScripts [ 3 ]. IsTouching ( obj );
+            if ( palmTouch. HoveredCount ( ) > 0 )
             {
-                res[f] = normalizedFlex[f] >= openHandThresholds[f] && normalizedFlex[f] <= closedHandThresholds[f];
+                 res = true;
+            }
+            else
+            {
+                 res= false;
+            }
+            return res;
+        }
+        public bool [ ] FingersSideTouching ( SG_Interactable obj )
+        {
+            bool [ ] res = new bool [ 4 ];
+            // 0 검지 1 중지 2 약지 3 새끼
+            res [ 0 ] = this. fingerScripts [ 5]. IsTouching ( obj ) || this. fingerScripts [ 6]. IsTouching ( obj );
+            res [ 1 ] = this. fingerScripts [ 7 ]. IsTouching ( obj ) || this. fingerScripts [ 8 ]. IsTouching ( obj );
+            res [ 2 ] = this. fingerScripts [ 9 ]. IsTouching ( obj ) || this. fingerScripts [ 10 ]. IsTouching ( obj );
+            res [ 3 ] = this. fingerScripts [ 11 ]. IsTouching ( obj ) || this. fingerScripts [ 12 ]. IsTouching ( obj );
+
+
+            return res;
+        }
+
+
+
+        public static bool [ ] GetGrabIntent ( float [ ] normalizedFlex )
+        {
+            bool [ ] res = new bool [ 5 ];
+            for ( int f = 0 ; f < normalizedFlex. Length ; f++ ) //go through each finger -but- the thumb.?
+            {
+                res [ f ] = normalizedFlex [ f ] >= openHandThresholds [ f ] && normalizedFlex [ f ] <= closedHandThresholds [ f ];
             }
             return res;
         }
 
 
-        public override void UpdateDebugger()
+        public override void UpdateDebugger ( )
         {
             //Doesn't do anything
         }
 
 
-        protected void EvaluateGrab()
+        protected void EvaluateGrab ( )
         {
             // Collect objects that we're allowed to grab.
-            List<SG_Interactable> objToGrab = this.ObjectsGrabableNow();
+            List<SG_Interactable> objToGrab = this. ObjectsGrabableNow ( );
 
             //TODO; Check for a littlest bit of intent. Some for of flexion. Because now you can still slam your hand into something.
-            if (objToGrab.Count > 0)
+            if ( objToGrab. Count > 0 )
             {
-                SG_Interactable[] sortedGrabables = SG.Util.SG_Util.SortByProximity(this.ProximitySource.position, objToGrab.ToArray());
+                SG_Interactable [ ] sortedGrabables = SG. Util. SG_Util. SortByProximity ( this. ProximitySource. position , objToGrab. ToArray ( ) );
                 //attempt to grab each object I can, starting with the closest
-                for (int i = 0; i < sortedGrabables.Length; i++)
+                for ( int i = 0 ; i < sortedGrabables. Length ; i++ )
                 {
-                    TryGrab(sortedGrabables[i]);
-                    if ( !CanGrabNewObjects) { break; } //stop going through the objects if we can no longer grab one
+                    TryGrab ( sortedGrabables [ i ] );
+                    if ( !CanGrabNewObjects ) { break; } //stop going through the objects if we can no longer grab one
                 }
             }
-            else if (this.handPoseProvider != null && this.handPoseProvider.OverrideGrab() > overrideGrabThreshold)
+            else if ( this. handPoseProvider != null && this. handPoseProvider. OverrideGrab ( ) > overrideGrabThreshold )
             {
-                SG_Interactable[] grabablesInHover = this.virtualHoverCollider.GetTouchedObjects(this.ProximitySource);
+                SG_Interactable [ ] grabablesInHover = this. virtualHoverCollider. GetTouchedObjects ( this. ProximitySource );
                 //attempt to grab each object I can, starting with the first
-                for (int i = 0; i < grabablesInHover.Length; i++)
+                for ( int i = 0 ; i < grabablesInHover. Length ; i++ )
                 {
-                    TryGrab(grabablesInHover[i]);
-                    if ( !CanGrabNewObjects) { break; } //stop going through the objects if we can no longer grab one
+                    TryGrab ( grabablesInHover [ i ] );
+                    if ( !CanGrabNewObjects ) { break; } //stop going through the objects if we can no longer grab one
                 }
             }
-            if (this.IsGrabbing) //we managed to grab something.
+            if ( this. IsGrabbing ) //we managed to grab something.
             {
-                Debug.Log(" 여기도 실행되는지 테스트해보자");
-                this.grabRelevance = new bool[0]; //clear this so we re-register it the first frame
+                Debug. Log ( " 여기도 실행되는지 테스트해보자" );
+                this. grabRelevance = new bool [ 0 ]; //clear this so we re-register it the first frame
                 snapFrame = false; //we don't check for collision the first frame after grabbing.
                 //Debug.Log(Time.timeSinceLevelLoad + ": " + (this.handPoseProvider.TracksRightHand() ? "Right Hand" : "Left Hand") + " Grabbed Object(s)");
             }
         }
 
 
-        protected void EvaluateRelease()
+        protected void EvaluateRelease ( )
         {
-            SG_Interactable heldObj = this.heldObjects[0];
+            SG_Interactable heldObj = this. heldObjects [ 0 ];
 
             // currentTouched 현재 fingerscripts0~4가 터치 중인지 확인함
             // 물체에 닿고 있는 손가락의 상태.. 사이드도 포괄해서 뭔가 되나 ?
-            bool[] currentTouched = this.FingersTouching(heldObj); //the fingers that are currently touching the (first) object
+            bool [ ] currentTouched = this. FingersTouching ( heldObj ); //the fingers that are currently touching the (first) object
+            bool currentPalmTouched = this. PalmTouching ( heldObj );
+            bool [] currentSideTouched = this. FingersSideTouching ( heldObj ); //the fingers that are currently touching the (first) object
 
-               
+ 
 
-           
 
             //Step 1 : Evaluate Intent - If ever there was any
 
@@ -454,22 +483,22 @@ namespace SG
             // 손가락이 하나라도 오브젝트에 닿고 있는지 판별한다.
             // 닿고있다? grabRelevance 배열에 currentTouched배열을 넣는다
             // normalizedOnGrab에 lastNormalized배열을 넣는다
-            if (this.grabRelevance.Length == 0)
+            if ( this. grabRelevance. Length == 0 )
             {
                 //first time after snapping. HoverColliders should have had a frame to catch up.
                 bool oneGrabRelevance = false;
-                for (int f = 1; f < currentTouched.Length; f++) //Because of the bullshit snapping, I don't want to evaluate releasing until at least a finger (no thumb) touches the object
+                for ( int f = 1 ; f < currentTouched. Length ; f++ ) //Because of the bullshit snapping, I don't want to evaluate releasing until at least a finger (no thumb) touches the object
                 {                                           //this should always be true unless we're snapping.
-                    if (currentTouched[f])
+                    if ( currentTouched [ f ] )
                     {
                         oneGrabRelevance = true;
-                        break;                      
+                        break;
                     }
                 }
-                if (oneGrabRelevance) //there is a t least one relevant finger now touching.
+                if ( oneGrabRelevance ) //there is a t least one relevant finger now touching.
                 {
-                    this.grabRelevance = currentTouched;
-                    this.normalizedOnGrab = Util.SG_Util.ArrayCopy(this.lastNormalized);
+                    this. grabRelevance = currentTouched;
+                    this. normalizedOnGrab = Util. SG_Util. ArrayCopy ( this. lastNormalized );
                 }
             }
 
@@ -477,37 +506,37 @@ namespace SG
             // 물건을 잡았기 때문에 grabRelevance배열이 들어있음. 이전에 grabRelevance가 false였는데 currentTouched가 true인지 확인해서
             // true면 grabRelevance을 true로 바꿈. <즉 전엔 터치 안했던 손가락이 현재는 터치 중이면 값 최신화 하는 것>
             // 역시 normalizedOnGrab배열에 lastNormalized배열을 넣는다 ( 위와 구조는 비슷함 )
-            else 
+            else
             {
-                for (int f = 1; f <5; f++)
+                for ( int f = 1 ; f < 5 ; f++ )
                 {
-                    if (!grabRelevance[f] && currentTouched[f]) 
+                    if ( !grabRelevance [ f ] && currentTouched [ f ] )
                     {
-                        normalizedOnGrab[f] = lastNormalized[f];
-                        grabRelevance[f] = true;
+                        normalizedOnGrab [ f ] = lastNormalized [ f ];
+                        grabRelevance [ f ] = true;
                     }
                 }
             }
 
             // Step 2 - Evaluate finger angles
-            if (lastNormalized.Length > 0) //we successfully got some grab parameters.
+            if ( lastNormalized. Length > 0 ) //we successfully got some grab parameters.
             {
                 //We will release if all relevant fingers are either above the "open threshold" OR have relevant fingers, and these have extended above / below
                 //float[] grabDiff = new float[5]; //DEBUG
-                int[] grabCodes = new int[5]; // 0 and up means grab, < zero means release.
-                for (int f = 0; f < 5; f++)
+                int [ ] grabCodes = new int [ 5 ]; // 0 and up means grab, < zero means release.
+                for ( int f = 0 ; f < 5 ; f++ )
                 {
-                    if (lastNormalized[f] < openHandThresholds[f]) // This finger is above the max extension
+                    if ( lastNormalized [ f ] < openHandThresholds [ f ] ) // This finger is above the max extension
                     {
-                        grabCodes[f] = -1;
+                        grabCodes [ f ] = -1;
                     }
-                    else if (lastNormalized[f] > closedHandThresholds[f]) // This finger is below max flexion
+                    else if ( lastNormalized [ f ] > closedHandThresholds [ f ] ) // This finger is below max flexion
                     {
-                        grabCodes[f] = -2;
+                        grabCodes [ f ] = -2;
                     }
-                    else if (grabRelevance.Length > f && grabRelevance[f]) // we're within the right threshold(s)
-                    { 
-                        grabDiff[f] = this.normalizedOnGrab[f] - this.lastNormalized[f];
+                    else if ( grabRelevance. Length > f && grabRelevance [ f ] ) // we're within the right threshold(s)
+                    {
+                        grabDiff [ f ] = this. normalizedOnGrab [ f ] - this. lastNormalized [ f ];
                         // lastNormalized값이 현재 그랩된 각도보다 작을 때 즉 손을 펼 때 해당된다.
                         // 물건을 쥐었을 때 각도보다 0.05f만큼 손을 벌리면 물건을 놓는다
                         // normalizedOnGrab = 물건 쥐었을 때 저장된 각도
@@ -517,15 +546,15 @@ namespace SG
                         // 임계값이 안벗어났더라도, 임계값이 아닌 즉 이 물건의 크기를 고려한 ( normalizedOnGrab에 저장된 각도 값)
                         // 쥐었을 때보다 0.05f만큼 더 펼쳤는지 확인하고 release할 조건의 grabCodes -3을 부여
 
-                        if (grabDiff[f] > releaseThreshold) 
+                        if ( grabDiff [ f ] > releaseThreshold )
                         {
-                            grabCodes[f] = -3; 
+                            grabCodes [ f ] = -3;
                         }
                     }
                     //Reset relevance if the gesture thinks we've released, and we're not currently touching.
-                    if (grabCodes[f] < 0 && grabRelevance.Length > f && grabRelevance[f] && !currentTouched[f])
+                    if ( grabCodes [ f ] < 0 && grabRelevance. Length > f && grabRelevance [ f ] && !currentTouched [ f ] )
                     {
-                        grabRelevance[f] = false;
+                        grabRelevance [ f ] = false;
                         // 버그 발생시 디버깅에 용이할 때 사용할 확률 높음
                         // 이 단계에서 grabRelevance가 false가 된다고 Release에 영향을 주는 것은 아님
                         // 스텝3~4에서 보는건 결국 grabCodes임 > grabDesired bool값으로 이어짐
@@ -534,104 +563,139 @@ namespace SG
                 }
 
                 //Step 3 - After evaluating finger states, determine grab intent.
-                //This is a separate step so later down the line, we can make a difference between finger-thumb, finger-palm, and thumb-palm grabbing
+                //This is a separate step so later down the line, we can make a difference
+                //between finger-thumb, finger-palm, and thumb-palm grabbing
+                // 여기서 grabDesired 값 안 흘리고 잘 넘겨야함
                 bool grabDesired = false;
 
                 // 엄지가 닿아있으면.. 검지~새끼중 하나라도 있으면 그랩 유지 ! 
-                if (currentTouched[0])
-                {                   
-                        for (int f = 1; f <5; f++) // 
+                if ( currentTouched [ 0 ] )
+                {
+                    // Debug. Log ( "엄지 닿는 중임 " );
+                    // 여기 최소 두 손가락은 닿아있어야 한다고 수정 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                    // 문제가 엄지가 안닿아있으면 바로 밑에 else문으로 내려감
+
+                    int count = 0;  
+
+                    for ( int f = 0 ; f < 5 ; f++ )
+                    {
+                        if ( grabCodes [ f ] > -1 )
                         {
-                            if (grabCodes[f] > -1) // 한 마디로 <검지~새끼 손가락 중 최소 하나가 그랩 중>이다
+                            count++;  
+                            if ( count >= 2 )
                             {
+                                //Debug. Log ( "if 작동  " );
                                 grabDesired = true;
+                                break;
                             }
-                        }                                       
+                        }
+
+                    }
                 }
                 else // 엄지가 안닿아 있는데 +
                 {
-                    if (palmTouch.HoveredCount() > 0) // 엄지가 안닿아 있지만 손바닥이 관여하고, 검지~새끼 중 하나라도 그랩 중이다
+                    if ( isPalmTouch ) // 엄지가 안닿아 있지만 손바닥이 관여하고, 검지~새끼 중 하나라도 그랩 중이다
                     {
-                        for (int f = 1; f < 5; f++) // 
+                        Debug. Log ( "엄지 없이 손바닥 닿음. 손가락 검사 예정 " ); 
+                        for ( int f = 1 ; f < 5 ; f++ ) // 엄지가 안 닿아있어서 엄지 검사할 필요 없음
                         {
-                            if (grabCodes[f] > -1) // 한 마디로 <검지~새끼 손가락 중 최소 하나가 그랩 중>이다
+                            if ( grabCodes [ f ] > -1 ) // 한 마디로 <검지~새끼 손가락 중 최소 하나가 그랩 중>이다
                             {
                                 grabDesired = true;
+                                break;
                             }
                         }
                     }
-                    else // 엄지도 없고 손바닥도 없다. 네손가락으로 물건을 집는건 불가능하다.
+                    else // 엄지도 없고 손바닥도 없다. 네손가락으로 물건을 집는건 불가능하다. 추후 조건을 currentSideTouched 추가해야할듯 지금은  두손가락 ㄱ자 그랩해도 남아있을듯함
                     {
-                        if(currentTouched.Length>1)
+                        Debug. Log ( "엄지와 손바닥 안 닿는 중임 " );
+                        // 엄지도 없고 손바닥도 없는 조건임.
+                        // 즉 검지~새끼만 판별하는 과정인데 두손가락 이상이 있으면 grabDesired =true
+                        // 사이드 부분만 탐색해서 손가라 사이드가 2개 이상이면 true
+                        if ( currentSideTouched. Count ( touch => touch ) > 1 )
                         {
+                            Debug. Log ( "손가락 옆면이 2개 이상 버텨서 유지 중" );
                             grabDesired = true;
                         }
-                        grabDesired = false;
-                    }                   
+                        else
+                        {
+                            Debug. Log ( "엄지도, 손바닥도, 손가락 옆면도 안 붙어있음. 모든 그랩법 불가능" );
+                            grabDesired = false;
+                        }
+                    }
                 }
 
 
 
                 //Step 4 - Compare with override to make a final judgement. Can be optimized by placing this before Step 2 and skipping it entirely while GrabOverride is true.
 
-                bool nothingInHover = this.snapFrame && this.heldObjects.Count > 0 && this.virtualHoverCollider.HoveredCount() == 0 && !this.heldObjects[0].KinematicChanged; //no objects within the hover collider.
-                if (!snapFrame) { snapFrame = true; } //set after nothinInHover is assigned so it stays false the first time.
-                if (nothingInHover)
+                bool nothingInHover = this. snapFrame && this. heldObjects. Count > 0 && this. virtualHoverCollider. HoveredCount ( ) == 0 && !this. heldObjects [ 0 ]. KinematicChanged; //no objects within the hover collider.
+                if ( !snapFrame ) { snapFrame = true; } //set after nothinInHover is assigned so it stays false the first time.
+                if ( nothingInHover )
                 {
                     //Debug.Log(Time.timeSinceLevelLoad + ": There's nothing in the hover collider and that's not because the kinematics had changed!");
                     //TODO: Add a timing component? If not hovering for x frames / s?
                 }
 
                 //Step 4 - Compare with override to make a final judgement. Can be optimized by placing this before Step 2 and skipping it entirely while GrabOverride is true.
-                bool overrideGrab = this.handPoseProvider != null && this.handPoseProvider.OverrideGrab() > overrideGrabThreshold; //we start with wanting to release based on overriding.
-                bool shouldRelease = !(grabDesired || overrideGrab);
-                if (shouldRelease) //We can no longer grab anything
+                bool overrideGrab = this. handPoseProvider != null && this. handPoseProvider. OverrideGrab ( ) > overrideGrabThreshold; //we start with wanting to release based on overriding.
+                bool shouldRelease = !( grabDesired || overrideGrab );
+                if ( shouldRelease ) //We can no longer grab anything
                 {
-                    this.ReleaseAll(false);
+                    this. ReleaseAll ( false );
 
+                    // 릴리즈 할 때 혹시 모를 변수초기화 단계  필요없을 확률 높은데 그냥 하는거임
+                    for ( int f = 0 ; f < currentTouched. Length ; f++ )
+                    {
+                        currentTouched [ f ] = false;
+                    }
+                    currentPalmTouched = false;
+                    for (int f =0 ;f<currentSideTouched.Length ;f++ )
+                    {
+                        currentSideTouched [ f ] = false;
+                    }
                 }
             }
         }
 
-        
 
 
 
 
 
-        public override void UpdateGrabLogic(float dT)
+
+        public override void UpdateGrabLogic ( float dT )
         {
-            base.UpdateGrabLogic(dT);  //updates reference location(s).
+            base. UpdateGrabLogic ( dT );  //updates reference location(s).
 
             // Update Physics Colliders
-            for (int i = 0; i < this.hoverScripts.Length; i++)
+            for ( int i = 0 ; i < this. hoverScripts. Length ; i++ )
             {
-                this.hoverScripts[i].UpdateLocation();
+                this. hoverScripts [ i ]. UpdateLocation ( );
             }
 
             // Re-collect Normalized Flexion
             //We'l try our best to retrieve the last flexions. If it fails, we use the one before it as backup.
-            if (this.handPoseProvider != null && this.handPoseProvider.IsConnected())
+            if ( this. handPoseProvider != null && this. handPoseProvider. IsConnected ( ) )
             {
-                float[] currFlex;
-                if (this.handPoseProvider.GetNormalizedFlexion(out currFlex)) //can fail because of a parsing error, in which case we must not assign it.
+                float [ ] currFlex;
+                if ( this. handPoseProvider. GetNormalizedFlexion ( out currFlex ) ) //can fail because of a parsing error, in which case we must not assign it.
                 {
-                    this.lastNormalized = currFlex;
+                    this. lastNormalized = currFlex;
                 }
             }
-            this.wantsGrab = GetGrabIntent(this.lastNormalized); //doing this here so I can evaluate from inspector
+            this. wantsGrab = GetGrabIntent ( this. lastNormalized ); //doing this here so I can evaluate from inspector
 
             // Evaluate Grabbing / Releasing
-            if (this.IsGrabbing) //Check for release - Gesture Based
+            if ( this. IsGrabbing ) //Check for release - Gesture Based
             {
-                EvaluateRelease();
+                EvaluateRelease ( );
             }
             else //Check for Grab (collision based)
             {
-                EvaluateGrab();
+                EvaluateGrab ( );
             }
-            
 
         }
     }
-}
+    }

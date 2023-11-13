@@ -1402,6 +1402,7 @@ namespace SG.Util
                 if ((!myChildColliders[i].isTrigger || !ignoreTrigger) && !listToAdd.Contains(myChildColliders[i]))
                 {
                     listToAdd.Add(myChildColliders[i]);
+
                 }
             }
             return listToAdd.Count - initialCount;

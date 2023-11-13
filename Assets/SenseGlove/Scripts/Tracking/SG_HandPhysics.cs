@@ -325,7 +325,7 @@ namespace SG
         public void TempDisableCollisions(float enableAfter)
         {
             this.reEnableAfter = enableAfter;
-            this.CollisionsEnabled = false;
+            this.CollisionsEnabled = true;
             this.timer_enablePhysics = 0;
             //S Debug.Log("Disabling Collision for " + reEnableAfter + "s.");
             //TODO: Make this disabled until the hand reaches the target position?

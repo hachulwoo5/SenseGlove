@@ -286,7 +286,7 @@ namespace SG
                     else
                     {
                        // Debug.Log("No PhysicsBody: Ignore Collision with Grabable");
-                        handPhysics.SetIgnoreCollision(this.GetPhysicsColliders(), true); // Just ignore the collision between this object's colliders and that of the hand.
+                        handPhysics.SetIgnoreCollision(this.GetPhysicsColliders(), false); // Just ignore the collision between this object's colliders and that of the hand.
                     }
                 }
 
@@ -323,7 +323,18 @@ namespace SG
                         //    Debug.Log("Returning fingers back to physicsCollider");
                         //}
                         //  Debug.Log("Returning fingers back to physicsCollider");
-                        handPhysics.SetIgnoreCollision(this.GetPhysicsColliders(), true); //ignore collision until the colliders are no longer near the object - prevent tossing.
+
+                        float objThorwSpeed = 0.5f;
+                        if ( this.physicsBody.velocity.magnitude>= objThorwSpeed )
+                        {
+                            handPhysics. SetIgnoreCollision ( this. GetPhysicsColliders ( ) , true ); //ignore collision until the colliders are no longer near the object - prevent tossing.
+                            Debug. Log ( " 물리 무시 " );
+                        }
+                        else
+                        {
+                            handPhysics. SetIgnoreCollision ( this. GetPhysicsColliders ( ) , false ); 
+
+                        }
                         handPhysics.MarkForUncollision(this.physicsBody, this.GetPhysicsColliders());
                         handPhysics.ReturnColliders();
                     }
