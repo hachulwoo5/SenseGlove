@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Linq;
 namespace SG
 {
 
@@ -331,9 +331,13 @@ namespace SG
                 if (CheckHoveredCount(middleTouchSideL))
                 {
                     SG_Interactable[] matching = fingerScripts[6].GetMatchingObjects(fingerScripts[7]);
-                    for (int i = 0; i < matching.Length; i++)
+                    Debug. Log ( matching[0].name);
+
+                    for ( int i = 0; i < matching.Length; i++)
                     {
                         SG.Util.SG_Util.SafelyAdd(matching[i], res);
+                        Debug. Log ( "123" );
+
                     }
                 }
                 else if (CheckHoveredCount(ringTouchSideL))
@@ -530,7 +534,9 @@ namespace SG
                 }
 
                 //Step 3 - After evaluating finger states, determine grab intent.
-                //This is a separate step so later down the line, we can make a difference between finger-thumb, finger-palm, and thumb-palm grabbing
+                //This is a separate step so later down the line, we can make a difference
+                //between finger-thumb, finger-palm, and thumb-palm grabbing
+                // 여기서 grabDesired 값 안 흘리고 잘 넘겨야함
                 bool grabDesired = false;
 
                 // 엄지가 닿아있으면.. 검지~새끼중 하나라도 있으면 그랩 유지 ! 
@@ -541,6 +547,7 @@ namespace SG
                             if (grabCodes[f] > -1) // 한 마디로 <검지~새끼 손가락 중 최소 하나가 그랩 중>이다
                             {
                                 grabDesired = true;
+                                break;
                             }
                         }                                       
                 }
@@ -553,16 +560,24 @@ namespace SG
                             if (grabCodes[f] > -1) // 한 마디로 <검지~새끼 손가락 중 최소 하나가 그랩 중>이다
                             {
                                 grabDesired = true;
+                                break;
                             }
                         }
                     }
                     else // 엄지도 없고 손바닥도 없다. 네손가락으로 물건을 집는건 불가능하다.
                     {
-                        if(currentTouched.Length>1)
+                        // 엄지도 없고 손바닥도 없는 조건임.
+                        // 즉 검지~새끼만 판별하는 과정인데 두손가락 이상이 있으면 grabDesired =true
+                        if (currentTouched.Count(touch => touch) > 1)
                         {
                             grabDesired = true;
+                            Debug.Log("두 손가락이 버텨서 유지해요");
                         }
-                        grabDesired = false;
+                        else
+                        {
+                            grabDesired = false;
+                            Debug.Log("두 손가락이 못 버텨서 릴리즈해요");
+                        }
                     }                   
                 }
 
