@@ -3151,6 +3151,10 @@ PrefabInstance:
       propertyPath: grabScript
       value: 
       objectReference: {fileID: 877786808}
+    - target: {fileID: 352915294484205701, guid: ae1b59de5c41973448707b3b84a94488, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114613197288951028, guid: ae1b59de5c41973448707b3b84a94488, type: 3}
     m_RemovedGameObjects: []
@@ -4353,6 +4357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resetKey: 114
+  SceneChangeKey: 285
   quitKey: 27
 --- !u!4 &1483256061
 Transform:

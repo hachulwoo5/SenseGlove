@@ -324,7 +324,7 @@ namespace SG
                         //}
                         //  Debug.Log("Returning fingers back to physicsCollider");
 
-                        float objThorwSpeed = 0.5f;
+                        float objThorwSpeed = 0.25f;
                         if ( this.physicsBody.velocity.magnitude>= objThorwSpeed )
                         {
                             handPhysics. SetIgnoreCollision ( this. GetPhysicsColliders ( ) , true ); //ignore collision until the colliders are no longer near the object - prevent tossing.
@@ -359,7 +359,7 @@ namespace SG
                     if (!this.physicsBody.isKinematic) //and add my last velocity if I'm not kinemtaics.
                     {
                         //Add veloctiy of either this object or of the hand...
-                        this.physicsBody.angularVelocity = this.SmoothedAngularVelocity * correctionAngularValue;
+                        this.physicsBody.angularVelocity = this.SmoothedAngularVelocity * correctionAngularValue / this.physicsBody.mass;
                         this.physicsBody.velocity = this.SmoothedVelocity * correctionSpeedValue / this.physicsBody.mass;
                     }
                 }

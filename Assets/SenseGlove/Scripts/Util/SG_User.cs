@@ -257,7 +257,7 @@ namespace SG
             if (leftHand != null)
             {
                 this.leftHand.User = this;
-                leftHand.Setup();
+               // leftHand.Setup();
             }
             this.leftGlove = CheckHapticGlove(this.leftHand);
             if (leftGlove != null) { leftGlove.connectsTo = HandSide.LeftHand; }
