@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using UnityEngine.SceneManagement;
 namespace SG.Util
 {
 	/// <summary> Utility class to reset or quit Unity Scenes. Can be called from anywhere trhough static functions, or be placed in a scene to access via buttons / hotkeys. </summary>
@@ -10,6 +10,8 @@ namespace SG.Util
 
 		/// <summary> Hotkey to reset the current scene </summary>
 		public KeyCode resetKey = KeyCode.R;
+		public KeyCode SceneChangeKey = KeyCode.F4;
+
 		/// <summary> Hotkey to shut down the application </summary>
 		public KeyCode quitKey = KeyCode.Escape;
 
@@ -27,6 +29,24 @@ namespace SG.Util
 			}
 		}
 
+
+		public static void CompareScene()
+		{
+			if (Application.isPlaying)
+			{
+				string currentSceneName = SceneManager.GetActiveScene().name;
+				Debug.Log(currentSceneName);
+				if (currentSceneName == "13_VR_Tryout Origin")
+                {
+					SceneManager.LoadScene("13_VR_Tryout");
+				}
+				else if (currentSceneName == "13_VR_Tryout")
+                {					
+					SceneManager.LoadScene("13_VR_Tryout Origin");					
+				}
+				
+			}
+		}
 
 		/// <summary> Resets the current scene </summary>
 		/// <remarks> nonstatic function to call via Buttons / UI. </remarks>
@@ -76,6 +96,10 @@ namespace SG.Util
 			if (Input.GetKeyDown(resetKey))
 			{
 				ResetScene();
+			}
+			if(Input.GetKeyDown(SceneChangeKey))
+			{
+				CompareScene();
 			}
 			else if (Input.GetKeyDown(quitKey))
 			{
