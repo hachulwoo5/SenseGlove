@@ -195,6 +195,7 @@ namespace SG
         {
             List<SG_Interactable> res = new List<SG_Interactable> ( );
 
+            #region Custom 함수
             // 매개변수에 해당하는 finger  부분이 닿았는지 확인하는 구문
             bool CheckHoveredCount ( SG_HoverCollider finger )
             {
@@ -202,7 +203,7 @@ namespace SG
                 {
                     return true;
                 }
-                else 
+                else
                     return false;
             }
 
@@ -216,11 +217,10 @@ namespace SG
                     SG. Util. SG_Util. SafelyAdd ( matching [ i ] , res );
                 }
             }
+            #endregion
 
-            // Thumb - Finger only for now.
+
             // 조건 && wantsGrab [ 0 ] 들어간 이유 : 엄지를 펴고 다른 손가락끼리 그랩하려고 할 때 강제로 인식되서 넣어둠 
-
-
             if ( CheckHoveredCount(thumbTouch) && wantsGrab [ 0 ] )
             {
                 for ( int f = 1 ; f < 5 ; f++ )
@@ -231,6 +231,7 @@ namespace SG
                     }
                 }
             }
+
             #region 검지~새끼 주체 그랩 
             // 하위 구문들은 엄지 없이 물건 집는다는 소리고 손바닥을 필요로 함. 
             // 추후 젓가락 그랩은 손톱주변에 콜라이더 따로 만들어서 그랩법 만들어야할듯함 >> 지문쪽만 콜라이더 작게바꿔야 할거임
@@ -280,64 +281,27 @@ namespace SG
                 }
             }
 
-            /*
-            // 추후 최적화 로직
-            // 여러 콜라이더 들이면 복잡해질 수도 있음.
-            else if (pinkyTouch.HoveredCount() > 0)
-            {
-                    CheckFinger(4);                                 
-            }
-
-            void CheckFinger(int fingernumber)
-            {
-                for (int f = fingernumber; f < fingerScripts.Length; f++)
-                {
-                    if (wantsGrab[f] && palmTouch.HoveredCount() > 0)
-                    {
-                        SG_Interactable[] matching = fingerScripts[fingernumber].GetMatchingObjects(fingerScripts[f]);
-                        for (int i = 0; i < matching.Length; i++)
-                        {
-                            SG.Util.SG_Util.SafelyAdd(matching[i], res);
-                        }
-                    }
-                }
-            }
-            */
-
+            
             #endregion
 
             #region 손가락 옆면
 
             else if ( CheckHoveredCount ( indexTouchSideL ) )
             {
-                Debug. Log ( "indexTouchSideL 감지" );
-                /*
-                 
-                for (int f = 1; f < 5; f++)
-                {
-                    if (wantsGrab[f])
-                    {
-                        SG_Interactable[] matching = fingerScripts[0].GetMatchingObjects(fingerScripts[f]);
-                        // Debug.Log("Found " + matching.Length + " matching objects between " + fingerScripts[0].name + " and " + fingerScripts[f].name);
-                        for (int i = 0; i < matching.Length; i++)
-                        {
-                            SG.Util.SG_Util.SafelyAdd(matching[i], res);
-                        }
-                    }
-                } 
-
-                */
-
+               
             }
+
             else if ( CheckHoveredCount ( indexTouchSideR ) )
             {
-                Debug. Log ( "indexTouchSideR 감지" );
                 if ( CheckHoveredCount ( middleTouchSideL ) )
                 {
+                    Debug. Log ( "검지와 중지 사이드 그랩" );
                     matchingFinger ( 6 , 7 );
                 }
                 else if ( CheckHoveredCount ( ringTouchSideL ) )
                 {
+                    Debug. Log ( "검지와 약지 사이드 그랩" );
+
                     matchingFinger ( 6 , 9 );
                 }
                 else if ( CheckHoveredCount ( pinkyTouchSideL ) )
@@ -348,9 +312,9 @@ namespace SG
             }
             else if ( CheckHoveredCount ( middleTouchSideR ) )
             {
-                Debug. Log ( "middleTouchSideR 감지" );
                 if ( CheckHoveredCount ( ringTouchSideL ) )
                 {
+                    Debug. Log ( "중지와 약지 사이드 그랩" );
                     matchingFinger ( 8 , 9 );
 
                 }
@@ -371,9 +335,12 @@ namespace SG
         /// <summary> Returns a list of fingers that are currently touching a particular interactable </summary>
         /// <returns></returns>
         /// 기존 반복문 없앰. 손가락마다 케이스 정의별도로 함 / 세분화 정밀 / 코드 동작 원리 명확히
+        /// 릴리즈 안정성을 위해 FingersTouching에 사이드도 포함시킴
         public bool [ ] FingersTouching ( SG_Interactable obj )
         {
             bool [ ] res = new bool [ 5 ];
+
+            // 0 엄지 1 검지 2 중지 3 약지 4 새끼
             res [ 0 ] = this. fingerScripts [ 0 ]. IsTouching ( obj );
             res [ 1 ] = this. fingerScripts [ 1 ]. IsTouching ( obj ) || this. fingerScripts [ 5 ]. IsTouching ( obj ) || this. fingerScripts [ 6 ]. IsTouching ( obj );
             res [ 2 ] = this. fingerScripts [ 2 ]. IsTouching ( obj ) || this. fingerScripts [ 7 ]. IsTouching ( obj ) || this. fingerScripts [ 8 ]. IsTouching ( obj );
@@ -382,29 +349,16 @@ namespace SG
 
             return res;
         }
-        public bool PalmTouching ( SG_Interactable obj )
-        {
-            bool res;
-            //res = this. hoverScripts [ 3 ]. IsTouching ( obj );
-            if ( palmTouch. HoveredCount ( ) > 0 )
-            {
-                 res = true;
-            }
-            else
-            {
-                 res= false;
-            }
-            return res;
-        }
+        
         public bool [ ] FingersSideTouching ( SG_Interactable obj )
         {
             bool [ ] res = new bool [ 4 ];
+
             // 0 검지 1 중지 2 약지 3 새끼
             res [ 0 ] = this. fingerScripts [ 5]. IsTouching ( obj ) || this. fingerScripts [ 6]. IsTouching ( obj );
             res [ 1 ] = this. fingerScripts [ 7 ]. IsTouching ( obj ) || this. fingerScripts [ 8 ]. IsTouching ( obj );
             res [ 2 ] = this. fingerScripts [ 9 ]. IsTouching ( obj ) || this. fingerScripts [ 10 ]. IsTouching ( obj );
             res [ 3 ] = this. fingerScripts [ 11 ]. IsTouching ( obj ) || this. fingerScripts [ 12 ]. IsTouching ( obj );
-
 
             return res;
         }
@@ -456,7 +410,6 @@ namespace SG
             }
             if ( this. IsGrabbing ) //we managed to grab something.
             {
-                Debug. Log ( " 여기도 실행되는지 테스트해보자" );
                 this. grabRelevance = new bool [ 0 ]; //clear this so we re-register it the first frame
                 snapFrame = false; //we don't check for collision the first frame after grabbing.
                 //Debug.Log(Time.timeSinceLevelLoad + ": " + (this.handPoseProvider.TracksRightHand() ? "Right Hand" : "Left Hand") + " Grabbed Object(s)");
@@ -468,24 +421,14 @@ namespace SG
         {
             SG_Interactable heldObj = this. heldObjects [ 0 ];
 
-            // currentTouched 현재 fingerscripts0~4가 터치 중인지 확인함
-            // 물체에 닿고 있는 손가락의 상태.. 사이드도 포괄해서 뭔가 되나 ?
-            bool [ ] currentTouched = this. FingersTouching ( heldObj ); //the fingers that are currently touching the (first) object
-            bool currentPalmTouched = this. PalmTouching ( heldObj );
-            bool [] currentSideTouched = this. FingersSideTouching ( heldObj ); //the fingers that are currently touching the (first) object
-
- 
-
+            // 물체에 닿고 있는 손가락 및 손가락 사이드
+            bool [ ] currentTouched = this. FingersTouching ( heldObj ); 
+            bool [] currentSideTouched = this. FingersSideTouching ( heldObj ); 
 
             //Step 1 : Evaluate Intent - If ever there was any
 
-            // grabRelevance가 비었다 = 오브젝트를 처음으로 잡는다
-            // 손가락이 하나라도 오브젝트에 닿고 있는지 판별한다.
-            // 닿고있다? grabRelevance 배열에 currentTouched배열을 넣는다
-            // normalizedOnGrab에 lastNormalized배열을 넣는다
             if ( this. grabRelevance. Length == 0 )
             {
-                //first time after snapping. HoverColliders should have had a frame to catch up.
                 bool oneGrabRelevance = false;
                 for ( int f = 1 ; f < currentTouched. Length ; f++ ) //Because of the bullshit snapping, I don't want to evaluate releasing until at least a finger (no thumb) touches the object
                 {                                           //this should always be true unless we're snapping.
@@ -536,16 +479,7 @@ namespace SG
                     }
                     else if ( grabRelevance. Length > f && grabRelevance [ f ] ) // we're within the right threshold(s)
                     {
-                        grabDiff [ f ] = this. normalizedOnGrab [ f ] - this. lastNormalized [ f ];
-                        // lastNormalized값이 현재 그랩된 각도보다 작을 때 즉 손을 펼 때 해당된다.
-                        // 물건을 쥐었을 때 각도보다 0.05f만큼 손을 벌리면 물건을 놓는다
-                        // normalizedOnGrab = 물건 쥐었을 때 저장된 각도
-                        // lastNormalized = 실시간 손 각도
-                        // this.normalizedOnGrab[f] - this.lastNormalized[f] == 물건 쥐고 얼마나 손을 폈는지 검사함
-                        // 특정 물건을 쥐었을 때 그 크기에 맞게 쥐기 성공했다 ( normalizedOnGrab에 각도 값이 저장됐을 것 )
-                        // 임계값이 안벗어났더라도, 임계값이 아닌 즉 이 물건의 크기를 고려한 ( normalizedOnGrab에 저장된 각도 값)
-                        // 쥐었을 때보다 0.05f만큼 더 펼쳤는지 확인하고 release할 조건의 grabCodes -3을 부여
-
+                        grabDiff [ f ] = this. normalizedOnGrab [ f ] - this. lastNormalized [ f ];                      
                         if ( grabDiff [ f ] > releaseThreshold )
                         {
                             grabCodes [ f ] = -3;
@@ -563,44 +497,33 @@ namespace SG
                 }
 
                 //Step 3 - After evaluating finger states, determine grab intent.
-                //This is a separate step so later down the line, we can make a difference
-                //between finger-thumb, finger-palm, and thumb-palm grabbing
                 // 여기서 grabDesired 값 안 흘리고 잘 넘겨야함
                 bool grabDesired = false;
 
                 // 엄지가 닿아있으면.. 검지~새끼중 하나라도 있으면 그랩 유지 ! 
                 if ( currentTouched [ 0 ] )
-                {
-                    // Debug. Log ( "엄지 닿는 중임 " );
-                    // 여기 최소 두 손가락은 닿아있어야 한다고 수정 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                    // 문제가 엄지가 안닿아있으면 바로 밑에 else문으로 내려감
-
-                    int count = 0;  
-
-                    for ( int f = 0 ; f < 5 ; f++ )
+                {                   
+                    for ( int f = 1 ; f < 5 ; f++ )
                     {
                         if ( grabCodes [ f ] > -1 )
                         {
-                            count++;  
-                            if ( count >= 2 )
-                            {
-                                //Debug. Log ( "if 작동  " );
-                                grabDesired = true;
-                                break;
-                            }
-                        }
+                            Debug. Log ( "엄지와 손가락 1 유지 중" );
 
+                            grabDesired = true;
+                              break;
+                        }
                     }
                 }
                 else // 엄지가 안닿아 있는데 +
                 {
                     if ( isPalmTouch ) // 엄지가 안닿아 있지만 손바닥이 관여하고, 검지~새끼 중 하나라도 그랩 중이다
                     {
-                        Debug. Log ( "엄지 없이 손바닥 닿음. 손가락 검사 예정 " ); 
                         for ( int f = 1 ; f < 5 ; f++ ) // 엄지가 안 닿아있어서 엄지 검사할 필요 없음
                         {
                             if ( grabCodes [ f ] > -1 ) // 한 마디로 <검지~새끼 손가락 중 최소 하나가 그랩 중>이다
                             {
+                                Debug. Log ( "손바닥 유지 중" );
+
                                 grabDesired = true;
                                 break;
                             }
@@ -608,18 +531,17 @@ namespace SG
                     }
                     else // 엄지도 없고 손바닥도 없다. 네손가락으로 물건을 집는건 불가능하다. 추후 조건을 currentSideTouched 추가해야할듯 지금은  두손가락 ㄱ자 그랩해도 남아있을듯함
                     {
-                        Debug. Log ( "엄지와 손바닥 안 닿는 중임 " );
                         // 엄지도 없고 손바닥도 없는 조건임.
                         // 즉 검지~새끼만 판별하는 과정인데 두손가락 이상이 있으면 grabDesired =true
-                        // 사이드 부분만 탐색해서 손가라 사이드가 2개 이상이면 true
+                        // 사이드 부분만 탐색해서 손가락 사이드가 2개 이상이면 true
                         if ( currentSideTouched. Count ( touch => touch ) > 1 )
                         {
-                            Debug. Log ( "손가락 옆면이 2개 이상 버텨서 유지 중" );
+                            Debug. Log ( "젓가락 그랩 유지 중" );
                             grabDesired = true;
                         }
                         else
                         {
-                            Debug. Log ( "엄지도, 손바닥도, 손가락 옆면도 안 붙어있음. 모든 그랩법 불가능" );
+                            Debug. Log ( "엄지와 손바닥 없고 손가락 옆면도 없어서 릴리즈 " );
                             grabDesired = false;
                         }
                     }
@@ -649,7 +571,6 @@ namespace SG
                     {
                         currentTouched [ f ] = false;
                     }
-                    currentPalmTouched = false;
                     for (int f =0 ;f<currentSideTouched.Length ;f++ )
                     {
                         currentSideTouched [ f ] = false;
