@@ -228,8 +228,7 @@ namespace SG
 
             #region 검지~새끼 주체 그랩 
             else if ( CheckTouchedFinger ( indexTouch ) )
-            {
-                
+            {              
                 for ( int f = 1 ; f < 5 ; f++) // [1.검지] [2.중지] [3.약지] [4.새끼]
                 {
                     if ( wantsGrab [ f ] && isPalmTouch )
