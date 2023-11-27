@@ -784,7 +784,7 @@ namespace SG
                 //For now, the target is either the grabbed obj or the real world location.
                 SG_HandPose physicsTarget = wristAssigned ? SG_HandPose.Combine(wristPosition, wristRotation, fingerTracking, false) : SG_HandPose.Combine(l_realHandPose, fingerTracking, false);
 
-                this.handPhysics.UpdateRigidbody(physicsTarget, deltaTime, true); //might as well update colliders in the same function (true)
+               this.handPhysics.UpdateRigidbody(physicsTarget, deltaTime, true); //might as well update colliders in the same function (true)
                 //if (!wristAssigned)
                 //{
                 //    wristPosition = handPhysics.WristPosition;
