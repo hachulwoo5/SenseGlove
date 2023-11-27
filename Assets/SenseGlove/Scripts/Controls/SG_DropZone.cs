@@ -90,6 +90,8 @@ namespace SG
 
         /// <summary> Fires when an object is detected by this zone (it's in there for at least the detectionTime). This also indicates when snapping Starts </summary>
         public DropZoneEvent ObjectDetected = new DropZoneEvent();
+        public DropZoneEvent ExmapleTest = new DropZoneEvent();
+
         /// <summary> Fires when an object is removed from this zone. </summary>
         public DropZoneEvent ObjectRemoved = new DropZoneEvent();
 
@@ -303,7 +305,14 @@ namespace SG
             //Debug.Log("FIRING DETECT EVENT for " + args.grabable);
             ObjectDetected.Invoke(args.grabable);
         }
-
+        protected virtual void Exmapletest(DropZoneArgs args)
+        {
+            //Fire the event
+            args.eventFired = true; //let it know the event should fire.
+            //Debug.Log("FIRING DETECT EVENT for " + args.grabable);
+            ExmapleTest.Invoke(args.grabable);
+            // 추후 이런 이벤트 생성자 학습법
+        }
 
         /// <summary> Fires when an object is removed from this zone </summary>
         /// <param name="args"></param>
