@@ -9,7 +9,7 @@ namespace SG
 	{
 		/// <summary> Flexible detector list that will handle most of the detection work. We're only interested in the Interactable scripts it provides. </summary>
 		public SG_ScriptDetector<SG_Interactable> interactablesTouched = new SG_ScriptDetector<SG_Interactable>();
-
+        public ParentObject parentObject;
 
 		/// <summary> Optional Component to display all objects touched by this collider. </summary>
 		public TextMesh debugTxt;
