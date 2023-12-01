@@ -73,6 +73,7 @@
     <Compile Include="Assets\SenseGlove\CalibrationVoid\SG_XR_ControllerButton.cs" />
     <Compile Include="Assets\SenseGlove\Models\DK1CAD\SG_DK1Finger.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Calibration\SG_CalibrationSequence.cs" />
+    <Compile Include="Assets\#Custom\Scripts\ColliderTest.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Interaction\SG_Custom_PalmColiider.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\VR\SG_XR_Setup.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Util\SGEx_TestWaveform.cs" />
@@ -135,6 +136,7 @@
     <Compile Include="Assets\SenseGlove\Scripts\Controls\SG_PrecisePlaceZone.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Feedback\SG_MaterialDetector.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Tracking\SG_PassThroughCollider.cs" />
+    <Compile Include="Assets\#Custom\Scripts\ParentObject.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Controls\SG_HandDetector.cs" />
     <Compile Include="Assets\SenseGlove\CalibrationVoid\SG_CalibrationVoid.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Util\SG_ResetFloor.cs" />
@@ -148,6 +150,7 @@
     <Compile Include="Assets\SenseGlove\Scripts\Devices\SG_HapticGlove.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Tracking\SG_HandProjection.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Interaction\SG_HoverCollider.cs" />
+    <Compile Include="Assets\#Custom\Scripts\ChildObject.cs" />
     <Compile Include="Assets\FastScriptReload\Samples\Basic\Scripts\FunctionLibrary.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Tracking\SG_HandPhysics.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\VR\SG_XR_ControllerTracking.cs" />
