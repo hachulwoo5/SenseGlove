@@ -42,7 +42,7 @@ public class ParentObject : MonoBehaviour
             beingTouched--;
         }
 
-
+        touchPercentage = beingTouched / childScripts. Length;
     }
 
 

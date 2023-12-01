@@ -9,13 +9,13 @@ public class ChildObject : MonoBehaviour
     public event ColorChangedHandler OnColorChanged;
 
     // 자식 오브젝트의 색상 변경 함수
-    public void ChangeColor(Color newColor)
+    public void ChangeColor(Color newColor )
     {
         // 색상 변경 로직...
         Renderer sphereRenderer = GetComponent<Renderer>();
         if (sphereRenderer != null)
         {
-            sphereRenderer.material.color = newColor;
+            sphereRenderer. material.color = newColor;
         }
         // 이벤트 호출
         if (OnColorChanged != null)
@@ -28,7 +28,7 @@ public class ChildObject : MonoBehaviour
     {
         if (other.gameObject.tag == "Obj")
         {
-            ChangeColor(Color.green);
+            ChangeColor(new Color(0f,1f,0f,1f));
         }
     }
 
@@ -36,7 +36,9 @@ public class ChildObject : MonoBehaviour
     {
         if (other.gameObject.tag == "Obj")
         {
-            ChangeColor(Color.red);
+            ChangeColor(new Color(1f, 0f, 0f, 1f));
+
+           // ChangeColor ( new Color ( 1f , 0f , 0f , 0f ) );
         }
     }
 
