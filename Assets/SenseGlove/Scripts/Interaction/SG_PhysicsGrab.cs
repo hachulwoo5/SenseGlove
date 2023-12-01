@@ -199,13 +199,27 @@ namespace SG
             // 매개변수에 해당하는 finger 부분이 닿았는지 확인하고 bool 값을 반환하는 구문
             bool CheckTouchedFinger ( SG_HoverCollider finger )
             {
-                if ( finger. HoveredCount ( ) > 0 && finger.parentObject.touchPercentage>0.3f)
+                if(finger.parentObject!=null)
                 {
-                    return true;
+                    if (finger.HoveredCount() > 0 && finger.parentObject.touchPercentage > 0.3f)
+                    {
+                        return true;
+                    }
+                    else
+                        return false;
+                }
+                else
+                {
+                    if(finger.HoveredCount() > 0)
+                    {
+                        return true;
+                    }
+                    else
+                        return false;
                 }
 
-                else
-                    return false;
+
+              
             }
 
             // 현재손가락과 비교할 손가락이 같은 물체를 접촉했는지 확인하고 그 값을 반환하는 구문

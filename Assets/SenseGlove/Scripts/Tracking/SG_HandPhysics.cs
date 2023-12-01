@@ -520,7 +520,7 @@ namespace SG
         /// <summary>  </summary>
         protected void Update()
         {
-            this.wristColliders[0].gameObject.GetComponent<Collider>().enabled = false;
+           // this.wristColliders[0].gameObject.GetComponent<Collider>().enabled = false;
             if (timer_enablePhysics <= reEnableAfter)
             {
                 timer_enablePhysics += Time.deltaTime;
