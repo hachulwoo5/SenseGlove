@@ -20,13 +20,13 @@ public class ParentObject : MonoBehaviour
             childScript.OnColorChanged += HandleColorChanged;
         }
 
-        InvokeRepeating("LogBeingTouchedRatio", 0f, 0.7f);
+        InvokeRepeating("LogBeingTouchedRatio", 0f, 1.2f);
 
     }
     private void LogBeingTouchedRatio()
     {
         // 로그 출력
-        Debug.Log("터치 중인 비율 = " + (beingTouched / childScripts.Length) * 100f + " % ");
+        Debug.Log(this.transform.name +"터치 중인 비율 = " + (beingTouched / childScripts.Length) * 100f + " % ");
     }
 
     private void HandleColorChanged(Color newColor)
