@@ -179,7 +179,15 @@ namespace SG
                     }
                 }
             }*/
-            if (Checklist.Length > 2)
+            int index =0;
+            for ( int i = 0 ; i < Checklist. Length ; i++ )
+            {
+                if ( Checklist [ i ] == true )
+                {
+                    index++;
+                }
+            }
+            if (index> 2)
             {
                 for (int i = 0; i < Checklist.Length; i++)
                 {
@@ -243,6 +251,7 @@ namespace SG
 
         protected void EvaluateGrab()
         {
+            CheckSection ( );
             // Collect objects that we're allowed to grab.
             List<SG_Interactable> objToGrab = this.ObjectsGrabableNow();
 
