@@ -90,6 +90,7 @@
     <Compile Include="Assets\SenseGlove\Scripts\Util\SG_User.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Interaction\SG_Breakable.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Feedback\SG_Haptics.cs" />
+    <Compile Include="Assets\#Custom\Scripts\SG_PhysicsGrab_Custom.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Devices\SG_Connections.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Tracking\SG_BasicGesture.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Interaction\SG_SimpleDrawer.cs" />

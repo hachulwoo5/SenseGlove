@@ -377,6 +377,7 @@
 "Assets/#Custom/Scripts/ChildObject.cs"
 "Assets/#Custom/Scripts/ColliderTest.cs"
 "Assets/#Custom/Scripts/ParentObject.cs"
+"Assets/#Custom/Scripts/SG_PhysicsGrab_Custom.cs"
 "Assets/#Custom/Scripts/TrackingTest.cs"
 "Assets/FastScriptReload/Samples/Basic/Scripts/FunctionLibrary.cs"
 "Assets/FastScriptReload/Samples/Basic/Scripts/Graph.cs"

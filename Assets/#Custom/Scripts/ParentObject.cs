@@ -6,6 +6,7 @@ public class ParentObject : MonoBehaviour
 {
     public float beingTouched = 0;
     public float touchPercentage;
+    public bool isReadyGrab;
     ChildObject[] childScripts;
 
     private void Start()
@@ -43,6 +44,14 @@ public class ParentObject : MonoBehaviour
         }
 
         touchPercentage = beingTouched / childScripts. Length;
+        if(beingTouched>1)
+        {
+            isReadyGrab = true;
+        }
+        else
+        {
+            isReadyGrab = false;
+        }
     }
 
 
