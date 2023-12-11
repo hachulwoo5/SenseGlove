@@ -40,7 +40,7 @@ namespace SG
         protected float[] normalizedOnGrab = new float[5];
 
         public bool[] Checklist = new bool[6];
-
+        public int colIndex = 0;
         protected override void Start()
         {
             base.Start();
@@ -179,15 +179,15 @@ namespace SG
                     }
                 }
             }*/
-            int index =0;
+            colIndex =0;
             for ( int i = 0 ; i < Checklist. Length ; i++ )
             {
                 if ( Checklist [ i ] == true )
                 {
-                    index++;
+                    colIndex++;
                 }
             }
-            if (index> 2)
+            if (colIndex> 2)
             {
                 for (int i = 0; i < Checklist.Length; i++)
                 {
