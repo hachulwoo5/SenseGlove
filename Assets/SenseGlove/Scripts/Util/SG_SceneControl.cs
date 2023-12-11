@@ -36,13 +36,13 @@ namespace SG.Util
 			{
 				string currentSceneName = SceneManager.GetActiveScene().name;
 				Debug.Log(currentSceneName);
-				if (currentSceneName == "13_VR_Tryout Origin")
+				if (currentSceneName == "13_VR_Tryout OriginTest")
                 {
-					SceneManager.LoadScene("13_VR_Tryout");
+					SceneManager.LoadScene("13_VR_Tryout Origin");
 				}
-				else if (currentSceneName == "13_VR_Tryout")
+				else if (currentSceneName == "13_VR_Tryout Origin")
                 {					
-					SceneManager.LoadScene("13_VR_Tryout Origin");					
+					SceneManager.LoadScene("13_VR_Tryout OriginTest");					
 				}
 				
 			}
