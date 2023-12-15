@@ -17,8 +17,11 @@ public class ParentObject : MonoBehaviour
         // 각 자식 오브젝트에 대해 이벤트 핸들러 등록
         foreach (ChildObject childScript in childScripts)
         {
-            // 각 자식 오브젝트의 이벤트 핸들러 등록
-            childScript.OnColorChanged += HandleColorChanged;
+            // 각 자식 오브젝트가 활성화되어 있는 경우에만 이벤트 핸들러 등록
+            if (childScript.gameObject.activeSelf)
+            {
+                childScript.OnColorChanged += HandleColorChanged;
+            }
         }
 
         InvokeRepeating("LogBeingTouchedRatio", 0f, 1.2f);
