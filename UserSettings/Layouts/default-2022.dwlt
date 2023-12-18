@@ -74,7 +74,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 148
+  controlID: 138
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -460,7 +460,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 0
+    m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -530,7 +530,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 08f7ffff
+      m_ExpandedIDs: 2afbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -923,9 +923,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -0.10921185, y: 1.7000046, z: -0.05578026}
+    m_Target: {x: 0.38148916, y: 1.7078658, z: 0.86081576}
     speed: 2
-    m_Value: {x: -0.10921185, y: 1.7000046, z: -0.05578026}
+    m_Value: {x: 0.38148916, y: 1.7078658, z: 0.86081576}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -971,13 +971,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.18338482, y: -0.06277164, z: 0.011732822, w: -0.980968}
+    m_Target: {x: -0.25976753, y: -0.013907578, z: 0.003741633, w: -0.9655635}
     speed: 2
-    m_Value: {x: -0.18338425, y: -0.06277145, z: 0.011732786, w: -0.98096496}
+    m_Value: {x: -0.25976762, y: -0.013907582, z: 0.003741634, w: -0.9655638}
   m_Size:
-    m_Target: 0.086023465
+    m_Target: 1.0189216
     speed: 2
-    m_Value: 0.086023465
+    m_Value: 1.0189216
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1081,7 +1081,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/SenseGlove/Examples
+    - Assets/#Custom/Scripts
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -1089,16 +1089,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/SenseGlove/Examples
+  - Assets/#Custom/Scripts
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\hcw\SenseGlove
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 94.19995}
-    m_SelectedIDs: 3e680000
-    m_LastClickedID: 26686
-    m_ExpandedIDs: 00000000d85e00002e68000030680000
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 04670000
+    m_LastClickedID: 26372
+    m_ExpandedIDs: 00000000f4660000f6660000f8660000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1126,7 +1126,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000d85e00002e68000030680000
+    m_ExpandedIDs: 00000000f4660000f6660000f8660000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
