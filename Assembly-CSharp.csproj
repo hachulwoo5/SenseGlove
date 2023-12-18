@@ -83,12 +83,14 @@
     <Compile Include="Assets\SenseGlove\Scripts\VR\SG_XR_Devices.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Feedback\SG_ObjectVibration.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Interaction\SG_PhysicsGrab_Origin.cs" />
+    <Compile Include="Assets\#Custom\Scripts\ObjectGrabable.cs" />
     <Compile Include="Assets\SenseGlove\Examples\Resources\SGEx_SelectHandModel.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Interaction\SG_SnapOptions.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Tracking\SG_SimpleTracking.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Util\SG_IAndroid.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Util\SG_User.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Interaction\SG_Breakable.cs" />
+    <Compile Include="Assets\#Custom\Scripts\ParentObject_Custom.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Feedback\SG_Haptics.cs" />
     <Compile Include="Assets\#Custom\Scripts\SG_PhysicsGrab_Custom.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Devices\SG_Connections.cs" />
@@ -109,6 +111,7 @@
     <Compile Include="Assets\SenseGlove\Scripts\Util\SG_SceneControl.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Calibration\SG_HandProfiles.cs" />
     <Compile Include="Assets\SenseGlove\CalibrationVoid\SG_XR_StablePanel.cs" />
+    <Compile Include="Assets\#Custom\Scripts\SG_PhysicsGrab_Custom_Test.cs" />
     <Compile Include="Assets\SenseGlove\Examples\Resources\SGEx_RotateSimple.cs" />
     <Compile Include="Assets\SenseGlove\Examples\Resources\SGEx_ShowGloveAngles.cs" />
     <Compile Include="Assets\SenseGlove\Examples\Resources\SGEx_GloveDiagnostics.cs" />
@@ -145,6 +148,7 @@
     <Compile Include="Assets\SenseGlove\Scripts\Controls\SG_DropZone.cs" />
     <Compile Include="Assets\#Custom\Scripts\ColText.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Tracking\SG_FingerProjector1DoF.cs" />
+    <Compile Include="Assets\#Custom\Scripts\ChildObject_Custom.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Util\SG_PhysicsHelper.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Controls\SG_ConfirmZone.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Tracking\SG_HandComponent.cs" />
