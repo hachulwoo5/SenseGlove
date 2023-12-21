@@ -47,7 +47,7 @@ public class ParentObject : MonoBehaviour
         }
 
         touchPercentage = beingTouched / childScripts. Length;
-        if(beingTouched>1)
+        if(beingTouched>=1)
         {
             isReadyGrab = true;
         }

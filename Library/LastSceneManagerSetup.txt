@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/#Custom/13_VR_Tryout Origin_Custom_Test.unity
+- path: Assets/#Custom/13_VR_Tryout OriginTest.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
