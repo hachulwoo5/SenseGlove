@@ -16,6 +16,19 @@ namespace SG
         public SG_HoverCollider middleTouch;
         public SG_HoverCollider ringTouch;
         public SG_HoverCollider pinkyTouch;
+        public SG_HoverCollider thumbTouch_2;
+        public SG_HoverCollider indexTouch_2;
+        public SG_HoverCollider indexTouch_3;
+        public SG_HoverCollider middleTouch_2;
+        public SG_HoverCollider middleTouch_3;
+        public SG_HoverCollider ringTouch_2;
+        public SG_HoverCollider ringTouch_3;
+        public SG_HoverCollider pinkyTouch_2;
+        public SG_HoverCollider pinkyTouch_3;
+
+
+
+
 
 
         /// <summary> Keeps track of the 'grabbing' pose of fingers </summary>
@@ -48,21 +61,43 @@ namespace SG
         protected override void CreateComponents()
         {
             base.CreateComponents();
-            fingerScripts = new SG_HoverCollider[5];
+            fingerScripts = new SG_HoverCollider[14];
             fingerScripts[0] = thumbTouch;
             fingerScripts[1] = indexTouch;
             fingerScripts[2] = middleTouch;
-            fingerScripts[3] = middleTouch;
-            fingerScripts[4] = middleTouch;
+            fingerScripts[3] = ringTouch;
+            fingerScripts[4] = pinkyTouch;
+
+            fingerScripts[5] = thumbTouch_2;
+            fingerScripts[6] = indexTouch_2;
+            fingerScripts[7] = indexTouch_3;
+            fingerScripts[8] = middleTouch_2;
+            fingerScripts[9] = middleTouch_3;
+            fingerScripts[10] = ringTouch_2;
+            fingerScripts[11] = ringTouch_3;
+            fingerScripts[12] = pinkyTouch_2;
+            fingerScripts[13] = pinkyTouch_3;
 
 
-            hoverScripts = new SG_HoverCollider[6];
+
+
+            hoverScripts = new SG_HoverCollider[15];
             hoverScripts[0] = palmTouch;
             hoverScripts[1] = thumbTouch;
             hoverScripts[2] = indexTouch;
             hoverScripts[3] = middleTouch;
             hoverScripts[4] = ringTouch;
             hoverScripts[5] = pinkyTouch;
+
+            hoverScripts[6] = thumbTouch_2;
+            hoverScripts[7] = indexTouch_2;
+            hoverScripts[8] = indexTouch_3;
+            hoverScripts[9] = middleTouch_2;
+            hoverScripts[10] = middleTouch_3;
+            hoverScripts[11] = ringTouch_2;
+            hoverScripts[12] = ringTouch_3;
+            hoverScripts[13] = pinkyTouch_2;
+            hoverScripts[14] = pinkyTouch_3;
 
         }
 
@@ -221,7 +256,7 @@ namespace SG
         public bool[] FingersTouching(SG_Interactable obj)
         {
             bool[] res = new bool[5];
-            for (int f = 0; f < this.fingerScripts.Length; f++)
+            for (int f = 0; f < 5; f++)
             {
                 res[f] = this.fingerScripts[f].IsTouching(obj);
             }
@@ -327,7 +362,7 @@ namespace SG
                 //We will release if all relevant fingers are either above the "open threshold" OR have relevant fingers, and these have extended above / below
                 float[] grabDiff = new float[5]; //DEBUG
                 int[] grabCodes = new int[5]; // 0 and up means grab, < zero means release.
-                for (int f = 0; f < fingerScripts.Length; f++)
+                for (int f = 0; f < 5; f++)
                 {
                     if (lastNormalized[f] < openHandThresholds[f]) // This finger is above the max extension
                     {
@@ -355,7 +390,7 @@ namespace SG
                 //Step 3 - After evaluating finger states, determine grab intent.
                 //This is a separate step so later down the line, we can make a difference between finger-thumb, finger-palm, and thumb-palm grabbing
                 bool grabDesired = false;
-                for (int f = 1; f < this.fingerScripts.Length; f++) //Assuming only thumb-finger and finger-palm (NOT thumb-palm) grasps. So skipping 0 (thumb)
+                for (int f = 1; f < 5; f++) //Assuming only thumb-finger and finger-palm (NOT thumb-palm) grasps. So skipping 0 (thumb)
                 {
                     if (grabCodes[f] > -1) //there's one finger that wants to hold on (and is allowed to hold on).
                     {
@@ -435,11 +470,28 @@ namespace SG
         /// </summary>
         void CheckSection()
         {
-            Checklist[0] = thumbTouch.parentObject.isReadyGrab;
-            Checklist[1] = indexTouch.parentObject.isReadyGrab;
-            Checklist[2] = middleTouch.parentObject.isReadyGrab;
-            Checklist[3] = ringTouch.parentObject.isReadyGrab;
-            Checklist[4] = pinkyTouch.parentObject.isReadyGrab;
+
+
+            if (thumbTouch.parentObject.isReadyGrab || thumbTouch_2.parentObject.isReadyGrab)
+            {
+                Checklist[1] = true;
+            }
+            if (indexTouch.parentObject.isReadyGrab || indexTouch_2.parentObject.isReadyGrab || indexTouch_3.parentObject.isReadyGrab)
+            {
+                Checklist[1] = true;
+            }
+            if (middleTouch.parentObject.isReadyGrab || middleTouch_2.parentObject.isReadyGrab || middleTouch_3.parentObject.isReadyGrab)
+            {
+                Checklist[2] = true;
+            }
+            if (ringTouch.parentObject.isReadyGrab || ringTouch_2.parentObject.isReadyGrab || ringTouch_3.parentObject.isReadyGrab)
+            {
+                Checklist[3] = true;
+            }
+            if (pinkyTouch.parentObject.isReadyGrab || pinkyTouch_2.parentObject.isReadyGrab || pinkyTouch_3.parentObject.isReadyGrab)
+            {
+                Checklist[4] = true;
+            }
             Checklist[5] = palmTouch.parentObject.isReadyGrab;
         }
     }
