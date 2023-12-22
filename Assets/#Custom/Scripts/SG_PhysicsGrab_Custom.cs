@@ -61,7 +61,7 @@ namespace SG
         protected override void CreateComponents()
         {
             base.CreateComponents();
-            fingerScripts = new SG_HoverCollider[14];
+            fingerScripts = new SG_HoverCollider[15];
             fingerScripts[0] = thumbTouch;
             fingerScripts[1] = indexTouch;
             fingerScripts[2] = middleTouch;
@@ -77,27 +77,31 @@ namespace SG
             fingerScripts[11] = ringTouch_3;
             fingerScripts[12] = pinkyTouch_2;
             fingerScripts[13] = pinkyTouch_3;
+            fingerScripts[14] = palmTouch;
+
 
 
 
 
             hoverScripts = new SG_HoverCollider[15];
-            hoverScripts[0] = palmTouch;
-            hoverScripts[1] = thumbTouch;
-            hoverScripts[2] = indexTouch;
-            hoverScripts[3] = middleTouch;
-            hoverScripts[4] = ringTouch;
-            hoverScripts[5] = pinkyTouch;
+            hoverScripts[0] = thumbTouch;
+            hoverScripts[1] = indexTouch;
+            hoverScripts[2] = middleTouch;
+            hoverScripts[3] = ringTouch;
+            hoverScripts[4] = pinkyTouch;
 
-            hoverScripts[6] = thumbTouch_2;
-            hoverScripts[7] = indexTouch_2;
-            hoverScripts[8] = indexTouch_3;
-            hoverScripts[9] = middleTouch_2;
-            hoverScripts[10] = middleTouch_3;
-            hoverScripts[11] = ringTouch_2;
-            hoverScripts[12] = ringTouch_3;
-            hoverScripts[13] = pinkyTouch_2;
-            hoverScripts[14] = pinkyTouch_3;
+            hoverScripts[5] = thumbTouch_2;
+            hoverScripts[6] = indexTouch_2;
+            hoverScripts[7] = indexTouch_3;
+            hoverScripts[8] = middleTouch_2;
+            hoverScripts[9] = middleTouch_3;
+            hoverScripts[10] = ringTouch_2;
+            hoverScripts[11] = ringTouch_3;
+            hoverScripts[12] = pinkyTouch_2;
+            hoverScripts[13] = pinkyTouch_3;
+
+            hoverScripts[14] = palmTouch;
+
 
         }
 
@@ -222,30 +226,68 @@ namespace SG
                     colIndex++;
                 }
             }
+            // 이 하위 구간을 크게 수정할 것
+            // 주요 쟁점 : 엄지손가락과 손바닥 그리고 각도
+            // 엄지손가락은 Checklist[1] / 손바닥은 Checklist[0]
+            // 감지 구역이 3개 이상이고, 엄지나 손바닥이 닿앗는지 확인한다.
             if (colIndex> 2)
             {
-                for (int i = 0; i < Checklist.Length; i++)
+                if(Checklist[1])
                 {
-                    // 현재 감지된 손가락인 경우에만 진행
-                    if (Checklist[i])
+                    for (int i = 1; i < Checklist.Length; i++)
                     {
-                        // 현재 감지된 손가락과 다른 손가락 간의 매칭 확인
-                        for (int j = 0; j < Checklist.Length; j++)
+                        // 현재 감지된 손가락인 경우에만 진행
+                        if (Checklist[i])
                         {
-                            // 자기 자신과의 매칭은 제외
-                            if (i != j && Checklist[j])
+                            // 현재 감지된 손가락과 다른 손가락 간의 매칭 확인
+                            for (int j = 0; j < Checklist.Length; j++)
                             {
-                                SG_Interactable[] matching = fingerScripts[i].GetMatchingObjects(fingerScripts[j]);
-
-                                // 여기에서 작업 수행
-                                for (int k = 0; k < matching.Length; k++)
+                                // 자기 자신과의 매칭은 제외
+                                if (i != j && Checklist[j])
                                 {
-                                    SG.Util.SG_Util.SafelyAdd(matching[k], res);
+                                    SG_Interactable[] matching = fingerScripts[i].GetMatchingObjects(fingerScripts[j]);
+
+                                    // 여기에서 작업 수행
+                                    // 이 작업의 세분화 문제 Index 의 2부분이 닿았으면 어떡할 것인가?
+                                    // 그러나 어차피 윗 조건에서 감지구역이 3개이상 됏기 때문에
+                                    // 자기 자신 구역이 합쳐진다고 해도 상관없다. 다른 구역을 찾아낼 것이기 때문
+                                    // 한 손가락 내에서 같은 물체인지 확인하는 과정이 오히려 좋은건가?
+                                    // 추후에 이부분 한번 검사해보자 현재 문제는 없을 것
+                                    for (int k = 0; k < matching.Length; k++)
+                                    {
+                                        SG.Util.SG_Util.SafelyAdd(matching[k], res);
+                                    }
                                 }
                             }
                         }
                     }
                 }
+                else if (Checklist[0])
+                {
+                    for (int i = 0; i < Checklist.Length; i++)
+                    {
+                        // 현재 감지된 손가락인 경우에만 진행
+                        if (Checklist[i])
+                        {
+                            // 현재 감지된 손가락과 다른 손가락 간의 매칭 확인
+                            for (int j = 1; j < Checklist.Length; j++)
+                            {
+                                // 자기 자신과의 매칭은 제외
+                                if (i != j && Checklist[j])
+                                {
+                                    SG_Interactable[] matching = fingerScripts[i].GetMatchingObjects(fingerScripts[j]);
+
+                                    // 여기에서 작업 수행
+                                    for (int k = 0; k < matching.Length; k++)
+                                    {
+                                        SG.Util.SG_Util.SafelyAdd(matching[k], res);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
                 // Debug.Log("Found " + matching.Length + " matching objects within detected fingers");
             }
             return res;
@@ -470,29 +512,14 @@ namespace SG
         /// </summary>
         void CheckSection()
         {
+            Checklist[0] = palmTouch.parentObject.isReadyGrab;
 
 
-            if (thumbTouch.parentObject.isReadyGrab || thumbTouch_2.parentObject.isReadyGrab)
-            {
-                Checklist[1] = true;
-            }
-            if (indexTouch.parentObject.isReadyGrab || indexTouch_2.parentObject.isReadyGrab || indexTouch_3.parentObject.isReadyGrab)
-            {
-                Checklist[1] = true;
-            }
-            if (middleTouch.parentObject.isReadyGrab || middleTouch_2.parentObject.isReadyGrab || middleTouch_3.parentObject.isReadyGrab)
-            {
-                Checklist[2] = true;
-            }
-            if (ringTouch.parentObject.isReadyGrab || ringTouch_2.parentObject.isReadyGrab || ringTouch_3.parentObject.isReadyGrab)
-            {
-                Checklist[3] = true;
-            }
-            if (pinkyTouch.parentObject.isReadyGrab || pinkyTouch_2.parentObject.isReadyGrab || pinkyTouch_3.parentObject.isReadyGrab)
-            {
-                Checklist[4] = true;
-            }
-            Checklist[5] = palmTouch.parentObject.isReadyGrab;
+            Checklist[1] = thumbTouch.parentObject.isReadyGrab || thumbTouch_2.parentObject.isReadyGrab;
+            Checklist[2] = indexTouch.parentObject.isReadyGrab || indexTouch_2.parentObject.isReadyGrab || indexTouch_3.parentObject.isReadyGrab;
+            Checklist[3] = middleTouch.parentObject.isReadyGrab || middleTouch_2.parentObject.isReadyGrab || middleTouch_3.parentObject.isReadyGrab;
+            Checklist[4] = ringTouch.parentObject.isReadyGrab || ringTouch_2.parentObject.isReadyGrab || ringTouch_3.parentObject.isReadyGrab;
+            Checklist[5] = pinkyTouch.parentObject.isReadyGrab || pinkyTouch_2.parentObject.isReadyGrab || pinkyTouch_3.parentObject.isReadyGrab;
         }
     }
 
