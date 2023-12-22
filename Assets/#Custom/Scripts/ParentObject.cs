@@ -30,7 +30,7 @@ public class ParentObject : MonoBehaviour
     private void LogBeingTouchedRatio()
     {
         // 로그 출력
-        Debug.Log(this.transform.name +"터치 중인 비율 = " + (beingTouched / childScripts.Length) * 100f + " % ");
+       // Debug.Log(this.transform.name +"터치 중인 비율 = " + (beingTouched / childScripts.Length) * 100f + " % ");
     }
 
     private void HandleColorChanged(Color newColor)
