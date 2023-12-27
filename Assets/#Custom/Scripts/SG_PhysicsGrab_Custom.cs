@@ -226,33 +226,25 @@ namespace SG
                     colIndex++;
                 }
             }
-            // 이 하위 구간을 크게 수정할 것
-            // 주요 쟁점 : 엄지손가락과 손바닥 그리고 각도
+            // 주요 : 엄지손가락과 손바닥 그리고 각도
             // 엄지손가락은 Checklist[1] / 손바닥은 Checklist[0]
             // 감지 구역이 3개 이상이고, 엄지나 손바닥이 닿앗는지 확인한다.
             if (colIndex> 2)
             {
-                if(Checklist[1])
+                if( fingerScripts [0] .parentObject.isReadyGrab || fingerScripts [ 5 ]. parentObject. isReadyGrab ) // 엄지 체크
                 {
-                    for (int i = 1; i < Checklist.Length; i++)
+                    for (int i = 0; i < fingerScripts. Length; i++)
                     {
                         // 현재 감지된 손가락인 경우에만 진행
-                        if (Checklist[i])
+                        if ( fingerScripts [ i]. parentObject. isReadyGrab )
                         {
                             // 현재 감지된 손가락과 다른 손가락 간의 매칭 확인
-                            for (int j = 0; j < Checklist.Length; j++)
+                            for (int j = 0; j < fingerScripts. Length; j++)
                             {
                                 // 자기 자신과의 매칭은 제외
-                                if (i != j && Checklist[j])
+                                if (i != j && fingerScripts [ j]. parentObject. isReadyGrab )
                                 {
-                                    SG_Interactable[] matching = fingerScripts[i].GetMatchingObjects(fingerScripts[j]);
-
-                                    // 여기에서 작업 수행
-                                    // 이 작업의 세분화 문제 Index 의 2부분이 닿았으면 어떡할 것인가?
-                                    // 그러나 어차피 윗 조건에서 감지구역이 3개이상 됏기 때문에
-                                    // 자기 자신 구역이 합쳐진다고 해도 상관없다. 다른 구역을 찾아낼 것이기 때문
-                                    // 한 손가락 내에서 같은 물체인지 확인하는 과정이 오히려 좋은건가?
-                                    // 추후에 이부분 한번 검사해보자 현재 문제는 없을 것
+                                    SG_Interactable[] matching = fingerScripts[i].GetMatchingObjects(fingerScripts[j]);                                  
                                     for (int k = 0; k < matching.Length; k++)
                                     {
                                         SG.Util.SG_Util.SafelyAdd(matching[k], res);
@@ -262,22 +254,17 @@ namespace SG
                         }
                     }
                 }
-                else if (Checklist[0])
+                else if (Checklist[0]) // 엄지 확인 후 없으면 손바닥 체크
                 {
-                    for (int i = 0; i < Checklist.Length; i++)
+                    for (int i = 0; i < fingerScripts.Length; i++)
                     {
-                        // 현재 감지된 손가락인 경우에만 진행
-                        if (Checklist[i])
+                        if (fingerScripts[i].parentObject.isReadyGrab)
                         {
-                            // 현재 감지된 손가락과 다른 손가락 간의 매칭 확인
-                            for (int j = 1; j < Checklist.Length; j++)
+                            for (int j = 0; j < fingerScripts.Length; j++)
                             {
-                                // 자기 자신과의 매칭은 제외
-                                if (i != j && Checklist[j])
+                                if (i != j && fingerScripts[j].parentObject.isReadyGrab)
                                 {
                                     SG_Interactable[] matching = fingerScripts[i].GetMatchingObjects(fingerScripts[j]);
-
-                                    // 여기에서 작업 수행
                                     for (int k = 0; k < matching.Length; k++)
                                     {
                                         SG.Util.SG_Util.SafelyAdd(matching[k], res);
@@ -287,6 +274,7 @@ namespace SG
                         }
                     }
                 }
+                
 
                 // Debug.Log("Found " + matching.Length + " matching objects within detected fingers");
             }
@@ -298,7 +286,7 @@ namespace SG
         public bool[] FingersTouching(SG_Interactable obj)
         {
             bool[] res = new bool[5];
-            for (int f = 0; f < this.fingerScripts.Length; f++)
+            for (int f = 0; f < 5; f++)
             {
                 res[f] = this.fingerScripts[f].IsTouching(obj);
             }
@@ -388,7 +376,7 @@ namespace SG
             }
             else //check for any changes in grabrelevance
             {
-                for (int f = 1; f < fingerScripts.Length; f++)
+                for (int f = 1; f <5; f++)
                 {
                     if (!grabRelevance[f] && currentTouched[f]) //first time this finger touches the object after grasping. Log its flexion.
                     {
