@@ -123,6 +123,7 @@
     <Compile Include="Assets\SenseGlove\Scripts\Interaction\SG_PhysicsGrab.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Util\SG_PrecisionPoser.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Interaction\SG_BreakableContainer.cs" />
+    <Compile Include="Assets\#Custom\Scripts\ObjectSky.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Tracking\SG_HandPoser3D.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Interaction\SG_GrabPoint.cs" />
     <Compile Include="Assets\SenseGlove\Examples\Resources\SGEx_DebugGesture.cs" />

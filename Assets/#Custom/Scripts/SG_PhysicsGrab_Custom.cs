@@ -53,7 +53,12 @@ namespace SG
         protected float[] normalizedOnGrab = new float[5];
 
         public bool[] Checklist = new bool[6];
+        public bool[] SideChecklist = new bool[5];
+
         public int colIndex = 0;
+        public int sidePointIndex = 0;
+        public bool isNormalGrabbing = false;
+        public bool isSideGrabbing =false;
         protected override void Start()
         {
             base.Start();
@@ -218,20 +223,47 @@ namespace SG
                     }
                 }
             }*/
-            colIndex =0;
-            for ( int i = 0 ; i < Checklist. Length ; i++ )
+           
+
+            // 주요 : 사이드 그랩을 위한 정보임
+            // 감지구역은 6개 구역 중 Sphere가 하나라도 감지된걸 뜻한다.
+            // 감지 구역이 2개 이상이면 밑을 실행한다.
+            // 주의 완성된 거아님. 테스트 요망. ex 담배그랩을 위한 로직
+            if (colIndex ==2)
             {
-                if ( Checklist [ i ] == true )
+                // 두개 이상의 사이드 포인트, 즉 두손가락의 옆면이 닿아야 실행한다. 중복된 물체인지 확인을 한다.
+               if(sidePointIndex>1)
                 {
-                    colIndex++;
+                    isSideGrabbing = true;
+                    for (int i = 0; i < fingerScripts.Length; i++)
+                    {
+                        // 현재 감지된 손가락인 경우에만 진행
+                        if (fingerScripts[i].parentObject.isReadyGrab)
+                        {
+                            // 현재 감지된 손가락과 다른 손가락 간의 매칭 확인
+                            for (int j = 0; j < fingerScripts.Length; j++)
+                            {
+                                // 자기 자신과의 매칭은 제외
+                                if (i != j && fingerScripts[j].parentObject.isReadyGrab)
+                                {
+                                    SG_Interactable[] matching = fingerScripts[i].GetMatchingObjects(fingerScripts[j]);
+                                    for (int k = 0; k < matching.Length; k++)
+                                    {
+                                        SG.Util.SG_Util.SafelyAdd(matching[k], res);
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
-            // 주요 : 엄지손가락과 손바닥 그리고 각도
-            // 엄지손가락은 Checklist[1] / 손바닥은 Checklist[0]
-            // 감지 구역이 3개 이상이고, 엄지나 손바닥이 닿앗는지 확인한다.
+            // 주요 : 이것은 그랩 로직임.
+            // 감지구역이 3개이상인 조건이다. 감지구역은 총 6개다
+            // 감지 구역이 3개 이상이고, 엄지나 손바닥이 닿앗는지 확인한다. 일반 그랩 확인 절차
             if (colIndex> 2)
             {
-                if( fingerScripts [0] .parentObject.isReadyGrab || fingerScripts [ 5 ]. parentObject. isReadyGrab ) // 엄지 체크
+                isNormalGrabbing = true;
+                if ( fingerScripts [0] .parentObject.isReadyGrab || fingerScripts [ 5 ]. parentObject. isReadyGrab ) // 엄지 체크
                 {
                     for (int i = 0; i < fingerScripts. Length; i++)
                     {
@@ -278,6 +310,7 @@ namespace SG
 
                 // Debug.Log("Found " + matching.Length + " matching objects within detected fingers");
             }
+
             return res;
         }
 
@@ -354,7 +387,7 @@ namespace SG
         {
             SG_Interactable heldObj = this.heldObjects[0];
             bool[] currentTouched = this.FingersTouching(heldObj); //the fingers that are currently touching the (first) object
-
+            
             //Step 1 : Evaluate Intent - If ever there was any
             if (this.grabRelevance.Length == 0)
             {
@@ -388,7 +421,7 @@ namespace SG
 
             // Step 2 - Evaluate finger angles
             if (lastNormalized.Length > 0) //we successfully got some grab parameters.
-            {
+            {/*
                 //We will release if all relevant fingers are either above the "open threshold" OR have relevant fingers, and these have extended above / below
                 float[] grabDiff = new float[5]; //DEBUG
                 int[] grabCodes = new int[5]; // 0 and up means grab, < zero means release.
@@ -427,7 +460,35 @@ namespace SG
                         grabDesired = true;
                         break; //can break here because evaluation is done in a separate loop
                     }
+                }*/
+                bool grabDesired;
+                if(isNormalGrabbing)
+                {
+                    if (colIndex > 2)
+                    {
+                        grabDesired = true;
+                    }
+                    else
+                    {
+                        grabDesired = false;
+                    }
                 }
+                else if (isSideGrabbing)
+                {
+                    if (sidePointIndex > 1)
+                    {
+                        grabDesired = true;
+                    }
+                    else
+                    {
+                        grabDesired = false;
+                    }
+                }
+                else
+                {
+                    grabDesired = false;
+                }
+
 
                 //Step 4 - Compare with override to make a final judgement. Can be optimized by placing this before Step 2 and skipping it entirely while GrabOverride is true.
 
@@ -445,6 +506,14 @@ namespace SG
                 {
                     //Debug.Log("Detected no grab intent anymore: Override = " + (overrideGrab ? "True" : "False") + ", GrabCodes: " + SG.Util.SG_Util.ToString(grabCodes));
                     //Debug.Log(Time.timeSinceLevelLoad + ": Released Objects");
+                    if (isNormalGrabbing)
+                    {
+                        isNormalGrabbing = false;
+                    }
+                    if (isSideGrabbing)
+                    {
+                        isSideGrabbing = false;
+                    }
                     this.ReleaseAll(false);
                 }
             }
@@ -490,7 +559,7 @@ namespace SG
                 EvaluateGrab();
             }
 
-            
+           
 
         }
 
@@ -508,6 +577,17 @@ namespace SG
             Checklist[3] = middleTouch.parentObject.isReadyGrab || middleTouch_2.parentObject.isReadyGrab || middleTouch_3.parentObject.isReadyGrab;
             Checklist[4] = ringTouch.parentObject.isReadyGrab || ringTouch_2.parentObject.isReadyGrab || ringTouch_3.parentObject.isReadyGrab;
             Checklist[5] = pinkyTouch.parentObject.isReadyGrab || pinkyTouch_2.parentObject.isReadyGrab || pinkyTouch_3.parentObject.isReadyGrab;
+
+            SideChecklist[0] = thumbTouch.parentObject.isSideGrab || thumbTouch_2.parentObject.isSideGrab || indexTouch_3.parentObject.isSideGrab;
+            SideChecklist[1] = indexTouch.parentObject.isSideGrab || indexTouch_2.parentObject.isSideGrab || indexTouch_3.parentObject.isSideGrab;
+            SideChecklist[2] = middleTouch.parentObject.isSideGrab || middleTouch_2.parentObject.isSideGrab || middleTouch_3.parentObject.isSideGrab;
+            SideChecklist[3] = ringTouch.parentObject.isSideGrab || ringTouch_2.parentObject.isSideGrab || ringTouch_3.parentObject.isSideGrab;
+            SideChecklist[4] = pinkyTouch.parentObject.isSideGrab || pinkyTouch_2.parentObject.isSideGrab || pinkyTouch_3.parentObject.isSideGrab;
+
+            colIndex = Checklist.Count(value => value);
+            sidePointIndex = SideChecklist.Count(value => value);
+
+
         }
     }
 

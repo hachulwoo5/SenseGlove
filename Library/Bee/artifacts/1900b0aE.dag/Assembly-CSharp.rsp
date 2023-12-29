@@ -379,6 +379,7 @@
 "Assets/#Custom/Scripts/ColliderTest.cs"
 "Assets/#Custom/Scripts/ColText.cs"
 "Assets/#Custom/Scripts/ObjectGrabable.cs"
+"Assets/#Custom/Scripts/ObjectSky.cs"
 "Assets/#Custom/Scripts/ParentObject.cs"
 "Assets/#Custom/Scripts/ParentObject_Custom.cs"
 "Assets/#Custom/Scripts/SG_PhysicsGrab_Custom.cs"
