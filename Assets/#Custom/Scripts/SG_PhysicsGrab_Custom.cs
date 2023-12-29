@@ -349,7 +349,6 @@ namespace SG
 
         protected void EvaluateGrab()
         {
-            CheckSection ( );
             // Collect objects that we're allowed to grab.
             List<SG_Interactable> objToGrab = this.ObjectsGrabableNow();
 
@@ -420,8 +419,8 @@ namespace SG
             }
 
             // Step 2 - Evaluate finger angles
-            if (lastNormalized.Length > 0) //we successfully got some grab parameters.
-            {/*
+            //if (lastNormalized.Length > 0) //we successfully got some grab parameters.
+            /*
                 //We will release if all relevant fingers are either above the "open threshold" OR have relevant fingers, and these have extended above / below
                 float[] grabDiff = new float[5]; //DEBUG
                 int[] grabCodes = new int[5]; // 0 and up means grab, < zero means release.
@@ -516,7 +515,7 @@ namespace SG
                     }
                     this.ReleaseAll(false);
                 }
-            }
+            
         }
 
         
@@ -549,8 +548,10 @@ namespace SG
             }
             this.wantsGrab = GetGrabIntent(this.lastNormalized); //doing this here so I can evaluate from inspector
 
+            CheckSection ( );
+
             // Evaluate Grabbing / Releasing
-            if (this.IsGrabbing) //Check for release - Gesture Based
+            if ( this.IsGrabbing) //Check for release - Gesture Based
             {
                 EvaluateRelease();
             }
