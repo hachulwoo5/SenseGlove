@@ -319,6 +319,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SideSphere
       objectReference: {fileID: 0}
+    - target: {fileID: 4519108757005330212, guid: 4fd231625f9acf54da67c59362c0c0d1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7455983499806095224, guid: 4fd231625f9acf54da67c59362c0c0d1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1535,6 +1539,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SideSphere
       objectReference: {fileID: 0}
+    - target: {fileID: 4519108757005330212, guid: 4fd231625f9acf54da67c59362c0c0d1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7455983499806095224, guid: 4fd231625f9acf54da67c59362c0c0d1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2675,7 +2683,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7455983499806095224, guid: 4fd231625f9acf54da67c59362c0c0d1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.23099998
+      value: -0.262
       objectReference: {fileID: 0}
     - target: {fileID: 7455983499806095224, guid: 4fd231625f9acf54da67c59362c0c0d1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3221,6 +3229,10 @@ PrefabInstance:
     - target: {fileID: 4519108757005330212, guid: 4fd231625f9acf54da67c59362c0c0d1, type: 3}
       propertyPath: m_Name
       value: SideSphere (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4519108757005330212, guid: 4fd231625f9acf54da67c59362c0c0d1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7455983499806095224, guid: 4fd231625f9acf54da67c59362c0c0d1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3818,6 +3830,7 @@ GameObject:
   - component: {fileID: 668839182}
   - component: {fileID: 668839181}
   - component: {fileID: 668839180}
+  - component: {fileID: 668839184}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Obj
@@ -3938,6 +3951,35 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 668839178}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &668839184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 668839178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aeddf9e1ae3cd74e9a853213bd6c691, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseTransform: {fileID: 0}
+  physicsBody: {fileID: 0}
+  allowedHands: 0
+  debugTxt: {fileID: 0}
+  ObjectGrabbed:
+    m_PersistentCalls:
+      m_Calls: []
+  ObjectReleased:
+    m_PersistentCalls:
+      m_Calls: []
+  moveSpeed: 100
+  rotateSpeed: 900
+  correctionSpeedValue: 0
+  correctionAngularValue: 0
+  NotReset: 0
+  snapOptions: {fileID: 0}
+  alwaysTrackVelocity: 0
 --- !u!1001 &687958029
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4743,6 +4785,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SideSphere
       objectReference: {fileID: 0}
+    - target: {fileID: 4519108757005330212, guid: 4fd231625f9acf54da67c59362c0c0d1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7455983499806095224, guid: 4fd231625f9acf54da67c59362c0c0d1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5257,6 +5303,10 @@ PrefabInstance:
     - target: {fileID: 4519108757005330212, guid: 4fd231625f9acf54da67c59362c0c0d1, type: 3}
       propertyPath: m_Name
       value: SideSphere (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4519108757005330212, guid: 4fd231625f9acf54da67c59362c0c0d1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7455983499806095224, guid: 4fd231625f9acf54da67c59362c0c0d1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6712,7 +6762,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7455983499806095224, guid: 89824a748277d5a46a7f94cf7d5a1f10, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.156
+      value: 0.124
       objectReference: {fileID: 0}
     - target: {fileID: 7455983499806095224, guid: 89824a748277d5a46a7f94cf7d5a1f10, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7081,7 +7131,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7455983499806095224, guid: 4fd231625f9acf54da67c59362c0c0d1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.192
+      value: 0.21
       objectReference: {fileID: 0}
     - target: {fileID: 7455983499806095224, guid: 4fd231625f9acf54da67c59362c0c0d1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7607,6 +7657,10 @@ PrefabInstance:
     - target: {fileID: 4519108757005330212, guid: 4fd231625f9acf54da67c59362c0c0d1, type: 3}
       propertyPath: m_Name
       value: SideSphere (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4519108757005330212, guid: 4fd231625f9acf54da67c59362c0c0d1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7455983499806095224, guid: 4fd231625f9acf54da67c59362c0c0d1, type: 3}
       propertyPath: m_LocalScale.x
@@ -9573,7 +9627,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7455983499806095224, guid: 89824a748277d5a46a7f94cf7d5a1f10, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.22500017
+      value: -0.274
       objectReference: {fileID: 0}
     - target: {fileID: 7455983499806095224, guid: 89824a748277d5a46a7f94cf7d5a1f10, type: 3}
       propertyPath: m_LocalRotation.w
@@ -16531,6 +16585,7 @@ GameObject:
   - component: {fileID: 1945966129}
   - component: {fileID: 1945966128}
   - component: {fileID: 1945966127}
+  - component: {fileID: 1945966131}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Obj
@@ -16651,6 +16706,35 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1945966125}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1945966131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1945966125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aeddf9e1ae3cd74e9a853213bd6c691, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseTransform: {fileID: 0}
+  physicsBody: {fileID: 0}
+  allowedHands: 0
+  debugTxt: {fileID: 0}
+  ObjectGrabbed:
+    m_PersistentCalls:
+      m_Calls: []
+  ObjectReleased:
+    m_PersistentCalls:
+      m_Calls: []
+  moveSpeed: 100
+  rotateSpeed: 900
+  correctionSpeedValue: 0
+  correctionAngularValue: 0
+  NotReset: 0
+  snapOptions: {fileID: 0}
+  alwaysTrackVelocity: 0
 --- !u!1 &1949982993
 GameObject:
   m_ObjectHideFlags: 0
@@ -17442,6 +17526,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SideSphere (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4519108757005330212, guid: 4fd231625f9acf54da67c59362c0c0d1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7455983499806095224, guid: 4fd231625f9acf54da67c59362c0c0d1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -17572,6 +17660,10 @@ PrefabInstance:
     - target: {fileID: 4519108757005330212, guid: 4fd231625f9acf54da67c59362c0c0d1, type: 3}
       propertyPath: m_Name
       value: SideSphere
+      objectReference: {fileID: 0}
+    - target: {fileID: 4519108757005330212, guid: 4fd231625f9acf54da67c59362c0c0d1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7455983499806095224, guid: 4fd231625f9acf54da67c59362c0c0d1, type: 3}
       propertyPath: m_LocalScale.x
@@ -19654,7 +19746,7 @@ Transform:
   m_GameObject: {fileID: 1969408574647616}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.1394, y: -0.0107, z: 0.0329}
+  m_LocalPosition: {x: 0.1394, y: -0.00635, z: 0.0329}
   m_LocalScale: {x: 0.022357216, y: 0.014430771, z: 0.02235721}
   m_ConstrainProportionsScale: 0
   m_Children: []

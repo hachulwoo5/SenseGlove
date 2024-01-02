@@ -465,11 +465,11 @@ namespace SG
                 {
                     if (colIndex > 2)
                     {
-                        grabDesired = true;
+                    grabDesired = true;
                     }
                     else
                     {
-                        grabDesired = false;
+                    grabDesired = false;
                     }
                 }
                 else if (isSideGrabbing)
@@ -502,17 +502,10 @@ namespace SG
                 bool overrideGrab = this.handPoseProvider != null && this.handPoseProvider.OverrideGrab() > overrideGrabThreshold; //we start with wanting to release based on overriding.
                 bool shouldRelease = !(grabDesired || overrideGrab);
                 if (shouldRelease) //We can no longer grab anything
-                {
-                    //Debug.Log("Detected no grab intent anymore: Override = " + (overrideGrab ? "True" : "False") + ", GrabCodes: " + SG.Util.SG_Util.ToString(grabCodes));
-                    //Debug.Log(Time.timeSinceLevelLoad + ": Released Objects");
-                    if (isNormalGrabbing)
-                    {
-                        isNormalGrabbing = false;
-                    }
-                    if (isSideGrabbing)
-                    {
+                {                
+                        isNormalGrabbing = false;                
                         isSideGrabbing = false;
-                    }
+                    
                     this.ReleaseAll(false);
                 }
             
