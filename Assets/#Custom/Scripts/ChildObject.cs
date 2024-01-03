@@ -9,7 +9,7 @@ public class ChildObject : MonoBehaviour
     public event ColorChangedHandler OnColorChanged;
     public delegate void SideChangedHandler(bool isSideGrab);
     public event SideChangedHandler sideChangedHandler;
-
+    Renderer sphereRenderer;
     private Color originalColor; // 원래 색상을 저장하는 변수
     public bool isSidePointGrab;
 
@@ -33,13 +33,23 @@ public class ChildObject : MonoBehaviour
     void Start()
     {
         // 초기에 원래 색상 저장
-        Renderer sphereRenderer = GetComponent<Renderer>();
+        sphereRenderer = GetComponent<Renderer>();
         if (sphereRenderer != null)
         {
             originalColor = sphereRenderer.material.color;
         }
     }
-
+    void Update()
+    {
+        // Toggle MeshRenderer on and off when the "u" key is pressed
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            if (sphereRenderer != null)
+            {
+                sphereRenderer.enabled = !sphereRenderer.enabled;
+            }
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Obj")

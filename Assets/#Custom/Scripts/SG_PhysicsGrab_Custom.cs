@@ -27,10 +27,6 @@ namespace SG
         public SG_HoverCollider pinkyTouch_3;
 
 
-
-
-
-
         /// <summary> Keeps track of the 'grabbing' pose of fingers </summary>
         protected bool[] wantsGrab = new bool[3];
         /// <summary> Above these flexions, the hand is considered 'open' </summary>
@@ -55,10 +51,11 @@ namespace SG
         public bool[] Checklist = new bool[6];
         public bool[] SideChecklist = new bool[5];
 
-        public int colIndex = 0;
+        public int pointIndex = 0;
         public int sidePointIndex = 0;
         public bool isNormalGrabbing = false;
         public bool isSideGrabbing =false;
+
         protected override void Start()
         {
             base.Start();
@@ -83,10 +80,6 @@ namespace SG
             fingerScripts[12] = pinkyTouch_2;
             fingerScripts[13] = pinkyTouch_3;
             fingerScripts[14] = palmTouch;
-
-
-
-
 
             hoverScripts = new SG_HoverCollider[15];
             hoverScripts[0] = thumbTouch;
@@ -206,30 +199,8 @@ namespace SG
         public List<SG_Interactable> ObjectsGrabableNow()
         {
             List<SG_Interactable> res = new List<SG_Interactable>();
-            // Thumb - Finger only for now.
-            /*
-            if (thumbTouch.HoveredCount() > 0)
-            {
-                for (int f = 1; f < fingerScripts.Length; f++) //go through each finger -but- the thumb.
-                {
-                    if (wantsGrab[f]) //this finger wants to grab on to objects
-                    {
-                        SG_Interactable[] matching = fingerScripts[0].GetMatchingObjects(fingerScripts[f]);
-                        // Debug.Log("Found " + matching.Length + " matching objects between " + fingerScripts[0].name + " and " + fingerScripts[f].name);
-                        for (int i = 0; i < matching.Length; i++)
-                        {
-                            SG.Util.SG_Util.SafelyAdd(matching[i], res);
-                        }
-                    }
-                }
-            }*/
-           
-
-            // 주요 : 사이드 그랩을 위한 정보임
-            // 감지구역은 6개 구역 중 Sphere가 하나라도 감지된걸 뜻한다.
-            // 감지 구역이 2개 이상이면 밑을 실행한다.
-            // 주의 완성된 거아님. 테스트 요망. ex 담배그랩을 위한 로직
-            if (colIndex ==2)
+                   
+            if (pointIndex ==2)
             {
                 // 두개 이상의 사이드 포인트, 즉 두손가락의 옆면이 닿아야 실행한다. 중복된 물체인지 확인을 한다.
                if(sidePointIndex>1)
@@ -237,13 +208,10 @@ namespace SG
                     isSideGrabbing = true;
                     for (int i = 0; i < fingerScripts.Length; i++)
                     {
-                        // 현재 감지된 손가락인 경우에만 진행
                         if (fingerScripts[i].parentObject.isReadyGrab)
                         {
-                            // 현재 감지된 손가락과 다른 손가락 간의 매칭 확인
                             for (int j = 0; j < fingerScripts.Length; j++)
                             {
-                                // 자기 자신과의 매칭은 제외
                                 if (i != j && fingerScripts[j].parentObject.isReadyGrab)
                                 {
                                     SG_Interactable[] matching = fingerScripts[i].GetMatchingObjects(fingerScripts[j]);
@@ -257,20 +225,16 @@ namespace SG
                     }
                 }
             }
-            // 주요 : 이것은 그랩 로직임.
-            // 감지구역이 3개이상인 조건이다. 감지구역은 총 6개다
             // 감지 구역이 3개 이상이고, 엄지나 손바닥이 닿앗는지 확인한다. 일반 그랩 확인 절차
-            if (colIndex> 2)
+            if (pointIndex> 2)
             {
                 isNormalGrabbing = true;
                 if ( fingerScripts [0] .parentObject.isReadyGrab || fingerScripts [ 5 ]. parentObject. isReadyGrab ) // 엄지 체크
                 {
                     for (int i = 0; i < fingerScripts. Length; i++)
                     {
-                        // 현재 감지된 손가락인 경우에만 진행
                         if ( fingerScripts [ i]. parentObject. isReadyGrab )
                         {
-                            // 현재 감지된 손가락과 다른 손가락 간의 매칭 확인
                             for (int j = 0; j < fingerScripts. Length; j++)
                             {
                                 // 자기 자신과의 매칭은 제외
@@ -418,58 +382,16 @@ namespace SG
                 }
             }
 
-            // Step 2 - Evaluate finger angles
-            //if (lastNormalized.Length > 0) //we successfully got some grab parameters.
-            /*
-                //We will release if all relevant fingers are either above the "open threshold" OR have relevant fingers, and these have extended above / below
-                float[] grabDiff = new float[5]; //DEBUG
-                int[] grabCodes = new int[5]; // 0 and up means grab, < zero means release.
-                for (int f = 0; f < 5; f++)
-                {
-                    if (lastNormalized[f] < openHandThresholds[f]) // This finger is above the max extension
-                    {
-                        grabCodes[f] = -1;
-                    }
-                    else if (lastNormalized[f] > closedHandThresholds[f]) // This finger is below max flexion
-                    {
-                        grabCodes[f] = -2;
-                    }
-                    else if (grabRelevance.Length > f && grabRelevance[f]) // we're within the right threshold(s)
-                    {   //check or undo grabrelevance
-                        grabDiff[f] = this.normalizedOnGrab[f] - this.lastNormalized[f];//i'd normally use latest - ongrab, but then extension is negative and I'd have to invert releaseThreshold. So we subract it the other way around. very tiny optimizations make me happy,
-                        if (grabDiff[f] > releaseThreshold) //the finger is now above the threshold, and we think you want to release.
-                        {
-                            grabCodes[f] = -3; //want to release because we've extended a bit above when we grabbed the object
-                        }
-                    }
-                    //Reset relevance if the gesture thinks we've released, and we're not currently touching.
-                    if (grabCodes[f] < 0 && grabRelevance.Length > f && grabRelevance[f] && !currentTouched[f])
-                    {
-                        grabRelevance[f] = false;
-                    }
-                }
-
-                //Step 3 - After evaluating finger states, determine grab intent.
-                //This is a separate step so later down the line, we can make a difference between finger-thumb, finger-palm, and thumb-palm grabbing
-                bool grabDesired = false;
-                for (int f = 1; f < 5; f++) //Assuming only thumb-finger and finger-palm (NOT thumb-palm) grasps. So skipping 0 (thumb)
-                {
-                    if (grabCodes[f] > -1) //there's one finger that wants to hold on (and is allowed to hold on).
-                    {
-                        grabDesired = true;
-                        break; //can break here because evaluation is done in a separate loop
-                    }
-                }*/
                 bool grabDesired;
                 if(isNormalGrabbing)
                 {
-                    if (colIndex > 2)
+                    if (pointIndex > 2)
                     {
-                        grabDesired = true;
+                    grabDesired = true;
                     }
                     else
                     {
-                        grabDesired = false;
+                    grabDesired = false;
                     }
                 }
                 else if (isSideGrabbing)
@@ -491,28 +413,15 @@ namespace SG
 
                 //Step 4 - Compare with override to make a final judgement. Can be optimized by placing this before Step 2 and skipping it entirely while GrabOverride is true.
 
-                bool nothingInHover = this.snapFrame && this.heldObjects.Count > 0 && this.virtualHoverCollider.HoveredCount() == 0 && !this.heldObjects[0].KinematicChanged; //no objects within the hover collider.
-                if (!snapFrame) { snapFrame = true; } //set after nothinInHover is assigned so it stays false the first time.
-                if (nothingInHover)
-                {
-                    //Debug.Log(Time.timeSinceLevelLoad + ": There's nothing in the hover collider and that's not because the kinematics had changed!");
-                    //TODO: Add a timing component? If not hovering for x frames / s?
-                }
+                
 
                 bool overrideGrab = this.handPoseProvider != null && this.handPoseProvider.OverrideGrab() > overrideGrabThreshold; //we start with wanting to release based on overriding.
                 bool shouldRelease = !(grabDesired || overrideGrab);
                 if (shouldRelease) //We can no longer grab anything
-                {
-                    //Debug.Log("Detected no grab intent anymore: Override = " + (overrideGrab ? "True" : "False") + ", GrabCodes: " + SG.Util.SG_Util.ToString(grabCodes));
-                    //Debug.Log(Time.timeSinceLevelLoad + ": Released Objects");
-                    if (isNormalGrabbing)
-                    {
-                        isNormalGrabbing = false;
-                    }
-                    if (isSideGrabbing)
-                    {
+                {                
+                        isNormalGrabbing = false;                
                         isSideGrabbing = false;
-                    }
+                    
                     this.ReleaseAll(false);
                 }
             
@@ -585,7 +494,7 @@ namespace SG
             SideChecklist[3] = ringTouch.parentObject.isSideGrab || ringTouch_2.parentObject.isSideGrab || ringTouch_3.parentObject.isSideGrab;
             SideChecklist[4] = pinkyTouch.parentObject.isSideGrab || pinkyTouch_2.parentObject.isSideGrab || pinkyTouch_3.parentObject.isSideGrab;
 
-            colIndex = Checklist.Count(value => value);
+            pointIndex = Checklist.Count(value => value);
             sidePointIndex = SideChecklist.Count(value => value);
 
 

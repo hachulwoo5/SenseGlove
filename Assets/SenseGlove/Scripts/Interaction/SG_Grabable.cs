@@ -281,7 +281,7 @@ namespace SG
                         //{
                         //    Debug.Log("Incorporating fingers into my RigidBody");
                         //}
-                        handPhysics.SetCollisionParent(this.physicsBody);
+                      // handPhysics.SetCollisionParent(this.physicsBody);
                     }
                     else
                     {

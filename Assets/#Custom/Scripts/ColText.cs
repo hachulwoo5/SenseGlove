@@ -12,7 +12,7 @@ namespace SG
 
         private void Update()
         {
-            colTextnum = colTextObject.GetComponent<SG_PhysicsGrab_Custom>().colIndex;
+            colTextnum = colTextObject.GetComponent<SG_PhysicsGrab_Custom>().pointIndex;
             colText.text = "Col: " + colTextnum.ToString(); // TMP의 text 속성을 사용하여 텍스트 설정
         }
     }
