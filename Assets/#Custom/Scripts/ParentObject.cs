@@ -10,7 +10,7 @@ public class ParentObject : MonoBehaviour
     ChildObject[] childScripts;
 
     public bool isSideGrab;
-
+    public float objMass;
     private void Start()
     {
         // 부모 오브젝트 아래에 있는 모든 자식 오브젝트의 ChildObject 스크립트를 가져옴
@@ -38,11 +38,11 @@ public class ParentObject : MonoBehaviour
        // Debug.Log(this.transform.name +"터치 중인 비율 = " + (beingTouched / childScripts.Length) * 100f + " % ");
     }
 
-    private void HandleColorChanged(Color newColor)
+    private void HandleColorChanged(Color newColor,float Mass)
     {
         Color targetColor1 = Color.red;
         Color targetColor2 = new Color(0x60 / 255f, 0 / 255f, 0xFF / 255f, 1f);
-
+        objMass = Mass;
         // 색깔이 바뀐 자식 오브젝트의 갯수 증가
         if (newColor == Color.green)
         {

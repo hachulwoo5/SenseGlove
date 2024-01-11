@@ -26,6 +26,7 @@ namespace SG
         public SG_HoverCollider pinkyTouch_2;
         public SG_HoverCollider pinkyTouch_3;
 
+        public float objMass;
 
         /// <summary> Keeps track of the 'grabbing' pose of fingers </summary>
         protected bool[] wantsGrab = new bool[3];
@@ -199,80 +200,159 @@ namespace SG
         public List<SG_Interactable> ObjectsGrabableNow()
         {
             List<SG_Interactable> res = new List<SG_Interactable>();
-                   
-            if (pointIndex ==2)
+            if(objMass<1f)
             {
-                // 두개 이상의 사이드 포인트, 즉 두손가락의 옆면이 닿아야 실행한다. 중복된 물체인지 확인을 한다.
-               if(sidePointIndex>1)
+                if (pointIndex == 2)
                 {
-                    isSideGrabbing = true;
-                    for (int i = 0; i < fingerScripts.Length; i++)
+                    // 두개 이상의 사이드 포인트, 즉 두손가락의 옆면이 닿아야 실행한다. 중복된 물체인지 확인을 한다.
+                    if (sidePointIndex == 2)
                     {
-                        if (fingerScripts[i].parentObject.isReadyGrab)
+                        for (int i = 0; i < fingerScripts.Length; i++)
                         {
-                            for (int j = 0; j < fingerScripts.Length; j++)
+                            if (fingerScripts[i].parentObject.isReadyGrab)
                             {
-                                if (i != j && fingerScripts[j].parentObject.isReadyGrab)
+                                for (int j = 0; j < fingerScripts.Length; j++)
                                 {
-                                    SG_Interactable[] matching = fingerScripts[i].GetMatchingObjects(fingerScripts[j]);
-                                    for (int k = 0; k < matching.Length; k++)
+                                    if (i != j && fingerScripts[j].parentObject.isReadyGrab)
                                     {
-                                        SG.Util.SG_Util.SafelyAdd(matching[k], res);
+                                        SG_Interactable[] matching = fingerScripts[i].GetMatchingObjects(fingerScripts[j]);
+                                        for (int k = 0; k < matching.Length; k++)
+                                        {
+                                            isSideGrabbing = true;
+                                            SG.Util.SG_Util.SafelyAdd(matching[k], res);
+                                        }
                                     }
                                 }
                             }
                         }
                     }
+                }
+                // 감지 구역이 3개 이상이고, 엄지나 손바닥이 닿앗는지 확인한다. 일반 그랩 확인 절차
+                if (pointIndex > 1)
+                {
+                    isNormalGrabbing = true;
+                    if (fingerScripts[0].parentObject.isReadyGrab || fingerScripts[5].parentObject.isReadyGrab) // 엄지 체크
+                    {
+                        for (int i = 0; i < fingerScripts.Length; i++)
+                        {
+                            if (fingerScripts[i].parentObject.isReadyGrab)
+                            {
+                                for (int j = 0; j < fingerScripts.Length; j++)
+                                {
+                                    // 자기 자신과의 매칭은 제외
+                                    if (i != j && fingerScripts[j].parentObject.isReadyGrab)
+                                    {
+                                        SG_Interactable[] matching = fingerScripts[i].GetMatchingObjects(fingerScripts[j]);
+                                        for (int k = 0; k < matching.Length; k++)
+                                        {
+                                            SG.Util.SG_Util.SafelyAdd(matching[k], res);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else if (Checklist[0]) // 엄지 확인 후 없으면 손바닥 체크
+                    {
+                        for (int i = 0; i < fingerScripts.Length; i++)
+                        {
+                            if (fingerScripts[i].parentObject.isReadyGrab)
+                            {
+                                for (int j = 0; j < fingerScripts.Length; j++)
+                                {
+                                    if (i != j && fingerScripts[j].parentObject.isReadyGrab)
+                                    {
+                                        SG_Interactable[] matching = fingerScripts[i].GetMatchingObjects(fingerScripts[j]);
+                                        for (int k = 0; k < matching.Length; k++)
+                                        {
+                                            SG.Util.SG_Util.SafelyAdd(matching[k], res);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+
+                    // Debug.Log("Found " + matching.Length + " matching objects within detected fingers");
                 }
             }
-            // 감지 구역이 3개 이상이고, 엄지나 손바닥이 닿앗는지 확인한다. 일반 그랩 확인 절차
-            if (pointIndex> 2)
+            else
             {
-                isNormalGrabbing = true;
-                if ( fingerScripts [0] .parentObject.isReadyGrab || fingerScripts [ 5 ]. parentObject. isReadyGrab ) // 엄지 체크
+                if (pointIndex == 2)
                 {
-                    for (int i = 0; i < fingerScripts. Length; i++)
+                    // 두개 이상의 사이드 포인트, 즉 두손가락의 옆면이 닿아야 실행한다. 중복된 물체인지 확인을 한다.
+                    if (sidePointIndex == 2)
                     {
-                        if ( fingerScripts [ i]. parentObject. isReadyGrab )
+                        for (int i = 0; i < fingerScripts.Length; i++)
                         {
-                            for (int j = 0; j < fingerScripts. Length; j++)
+                            if (fingerScripts[i].parentObject.isReadyGrab)
                             {
-                                // 자기 자신과의 매칭은 제외
-                                if (i != j && fingerScripts [ j]. parentObject. isReadyGrab )
+                                for (int j = 0; j < fingerScripts.Length; j++)
                                 {
-                                    SG_Interactable[] matching = fingerScripts[i].GetMatchingObjects(fingerScripts[j]);                                  
-                                    for (int k = 0; k < matching.Length; k++)
+                                    if (i != j && fingerScripts[j].parentObject.isReadyGrab)
                                     {
-                                        SG.Util.SG_Util.SafelyAdd(matching[k], res);
+                                        SG_Interactable[] matching = fingerScripts[i].GetMatchingObjects(fingerScripts[j]);
+                                        for (int k = 0; k < matching.Length; k++)
+                                        {
+                                            isSideGrabbing = true;
+                                            SG.Util.SG_Util.SafelyAdd(matching[k], res);
+                                        }
                                     }
                                 }
                             }
                         }
                     }
                 }
-                else if (Checklist[0]) // 엄지 확인 후 없으면 손바닥 체크
+                // 감지 구역이 3개 이상이고, 엄지나 손바닥이 닿앗는지 확인한다. 일반 그랩 확인 절차
+                if (pointIndex > 2)
                 {
-                    for (int i = 0; i < fingerScripts.Length; i++)
+                    isNormalGrabbing = true;
+                    if (fingerScripts[0].parentObject.isReadyGrab || fingerScripts[5].parentObject.isReadyGrab) // 엄지 체크
                     {
-                        if (fingerScripts[i].parentObject.isReadyGrab)
+                        for (int i = 0; i < fingerScripts.Length; i++)
                         {
-                            for (int j = 0; j < fingerScripts.Length; j++)
+                            if (fingerScripts[i].parentObject.isReadyGrab)
                             {
-                                if (i != j && fingerScripts[j].parentObject.isReadyGrab)
+                                for (int j = 0; j < fingerScripts.Length; j++)
                                 {
-                                    SG_Interactable[] matching = fingerScripts[i].GetMatchingObjects(fingerScripts[j]);
-                                    for (int k = 0; k < matching.Length; k++)
+                                    // 자기 자신과의 매칭은 제외
+                                    if (i != j && fingerScripts[j].parentObject.isReadyGrab)
                                     {
-                                        SG.Util.SG_Util.SafelyAdd(matching[k], res);
+                                        SG_Interactable[] matching = fingerScripts[i].GetMatchingObjects(fingerScripts[j]);
+                                        for (int k = 0; k < matching.Length; k++)
+                                        {
+                                            SG.Util.SG_Util.SafelyAdd(matching[k], res);
+                                        }
                                     }
                                 }
                             }
                         }
                     }
-                }
-                
+                    else if (Checklist[0]) // 엄지 확인 후 없으면 손바닥 체크
+                    {
+                        for (int i = 0; i < fingerScripts.Length; i++)
+                        {
+                            if (fingerScripts[i].parentObject.isReadyGrab)
+                            {
+                                for (int j = 0; j < fingerScripts.Length; j++)
+                                {
+                                    if (i != j && fingerScripts[j].parentObject.isReadyGrab)
+                                    {
+                                        SG_Interactable[] matching = fingerScripts[i].GetMatchingObjects(fingerScripts[j]);
+                                        for (int k = 0; k < matching.Length; k++)
+                                        {
+                                            SG.Util.SG_Util.SafelyAdd(matching[k], res);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
 
-                // Debug.Log("Found " + matching.Length + " matching objects within detected fingers");
+
+                    // Debug.Log("Found " + matching.Length + " matching objects within detected fingers");
+                }
             }
 
             return res;
@@ -497,7 +577,34 @@ namespace SG
             pointIndex = Checklist.Count(value => value);
             sidePointIndex = SideChecklist.Count(value => value);
 
+            List<float> fingerMasses = new List<float>
+            {
+            thumbTouch.parentObject.objMass,
+            indexTouch.parentObject.objMass,
+            middleTouch.parentObject.objMass,
+            ringTouch.parentObject.objMass,
+            pinkyTouch.parentObject.objMass,
+            thumbTouch_2.parentObject.objMass,
+            indexTouch_2.parentObject.objMass,
+            middleTouch_2.parentObject.objMass,
+            ringTouch_2.parentObject.objMass,
+            pinkyTouch_2.parentObject.objMass,
+            indexTouch_3.parentObject.objMass,
+            middleTouch_3.parentObject.objMass,
+            ringTouch_3.parentObject.objMass,
+            pinkyTouch_3.parentObject.objMass
+            };
+            float FindObjectMass()
+            {
+                var nonZeroMasses = fingerMasses.Where(mass => mass != 0f);
+                var mostFrequentMass = nonZeroMasses.GroupBy(mass => mass)
+                                                    .OrderByDescending(group => group.Count())
+                                                    .Select(group => group.Key)
+                                                    .FirstOrDefault();
 
+                return mostFrequentMass;
+            }
+            objMass = FindObjectMass();
         }
     }
 
