@@ -602,20 +602,20 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: e8610000
-      m_LastClickedID: 25064
-      m_ExpandedIDs: 2afbffff0a620000
+      m_SelectedIDs: 66650000
+      m_LastClickedID: 25958
+      m_ExpandedIDs: b4e6ffffc0e6ffffc6e6ffffc6f1ffffd2f1ffffd8f1ffff2afbffff3265000066650000ac650000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: Cube 1
-        m_OriginalName: Cube 1
+        m_Name: SGHand Right
+        m_OriginalName: SGHand Right
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 25116
+        m_UserData: 26028
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
         m_OriginalEventType: 0
@@ -997,9 +997,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0.8259304, y: 1.0294598, z: 1.4505514}
+    m_Target: {x: 0.13364203, y: -0.033201903, z: 0.07838112}
     speed: 2
-    m_Value: {x: 0.8259304, y: 1.0294598, z: 1.4505514}
+    m_Value: {x: 0.13364203, y: -0.033201903, z: 0.07838112}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1045,13 +1045,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.20257726, y: -0.1731407, z: 0.036489006, w: -0.9631876}
+    m_Target: {x: 0.124521494, y: 0.6763351, z: 0.11770219, w: -0.7164425}
     speed: 2
-    m_Value: {x: -0.17504127, y: -0.17410362, z: 0.03153839, w: -0.96853185}
+    m_Value: {x: 0.124516614, y: 0.6763086, z: 0.117697574, w: -0.71641445}
   m_Size:
-    m_Target: 0.8964747
+    m_Target: 0.04403205
     speed: 2
-    m_Value: 0.938717
+    m_Value: 0.04403205
   m_Ortho:
     m_Target: 0
     speed: 2
