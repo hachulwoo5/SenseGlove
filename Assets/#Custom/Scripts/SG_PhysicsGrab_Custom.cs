@@ -470,7 +470,7 @@ namespace SG
                 bool grabDesired;
                 if(isNormalGrabbing)
                 {
-                    if (pointIndex > 2)
+                    if (pointIndex > 1)
                     {
                     grabDesired = true;
                     }
