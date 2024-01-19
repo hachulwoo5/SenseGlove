@@ -467,21 +467,56 @@ namespace SG
                 }
             }
 
-                bool grabDesired;
-                if(isNormalGrabbing)
+            if ( lastNormalized. Length > 0 ) //we successfully got some grab parameters.
+            {
+                //We will release if all relevant fingers are either above the "open threshold" OR have relevant fingers, and these have extended above / below
+                float [ ] grabDiff = new float [ 5 ]; //DEBUG
+                int [ ] grabCodes = new int [ 5 ]; // 0 and up means grab, < zero means release.
+                for ( int f = 0 ; f < 5; f++ )
                 {
-                    if (pointIndex > 1)
+                    if ( lastNormalized [ f ] < openHandThresholds [ f ] ) // This finger is above the max extension
                     {
-                    grabDesired = true;
+                        grabCodes [ f ] = -1;
+                    }
+                    else if ( lastNormalized [ f ] > closedHandThresholds [ f ] ) // This finger is below max flexion
+                    {
+                        grabCodes [ f ] = -2;
+                    }
+                    else if ( grabRelevance. Length > f && grabRelevance [ f ] ) // we're within the right threshold(s)
+                    {   //check or undo grabrelevance
+                        grabDiff [ f ] = this. normalizedOnGrab [ f ] - this. lastNormalized [ f ];//i'd normally use latest - ongrab, but then extension is negative and I'd have to invert releaseThreshold. So we subract it the other way around. very tiny optimizations make me happy,
+                        if ( grabDiff [ f ] > releaseThreshold ) //the finger is now above the threshold, and we think you want to release.
+                        {
+                            grabCodes [ f ] = -3; //want to release because we've extended a bit above when we grabbed the object
+                        }
+                    }
+                    //Reset relevance if the gesture thinks we've released, and we're not currently touching.
+                    if ( grabCodes [ f ] < 0 && grabRelevance. Length > f && grabRelevance [ f ] && !currentTouched [ f ] )
+                    {
+                        grabRelevance [ f ] = false;
+                    }
+                }
+                Debug. Log ( grabCodes [ 1 ] );
+                bool grabDesired;
+                if ( grabCodes [ 0 ] == -1 && grabCodes [ 1 ] == -1 && grabCodes [ 2 ] == -1 && grabCodes [ 3 ] == -1 && grabCodes [ 4 ] == -1 )
+                {
+                    grabDesired = false;
+
+                }
+                else if ( isNormalGrabbing )
+                {
+                    if ( pointIndex > 1 )
+                    {
+                        grabDesired = true;
                     }
                     else
                     {
-                    grabDesired = false;
+                        grabDesired = false;
                     }
                 }
-                else if (isSideGrabbing)
+                else if ( isSideGrabbing )
                 {
-                    if (sidePointIndex > 1)
+                    if ( sidePointIndex > 1 )
                     {
                         grabDesired = true;
                     }
@@ -498,17 +533,18 @@ namespace SG
 
                 //Step 4 - Compare with override to make a final judgement. Can be optimized by placing this before Step 2 and skipping it entirely while GrabOverride is true.
 
-                
 
-                bool overrideGrab = this.handPoseProvider != null && this.handPoseProvider.OverrideGrab() > overrideGrabThreshold; //we start with wanting to release based on overriding.
-                bool shouldRelease = !(grabDesired || overrideGrab);
-                if (shouldRelease) //We can no longer grab anything
-                {                
-                        isNormalGrabbing = false;                
-                        isSideGrabbing = false;
-                    
-                    this.ReleaseAll(false);
+
+                bool overrideGrab = this. handPoseProvider != null && this. handPoseProvider. OverrideGrab ( ) > overrideGrabThreshold; //we start with wanting to release based on overriding.
+                bool shouldRelease = !( grabDesired || overrideGrab );
+                if ( shouldRelease ) //We can no longer grab anything
+                {
+                    isNormalGrabbing = false;
+                    isSideGrabbing = false;
+
+                    this. ReleaseAll ( false );
                 }
+            }
             
         }
 
