@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 500, y: 100}
   m_MaxSize: {x: 40480, y: 16192}
   vertical: 0
-  controlID: 180
+  controlID: 7955
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 72
+  controlID: 7912
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 50}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 73
+  controlID: 7825
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -276,7 +276,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 138
+  controlID: 7913
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -425,7 +425,7 @@ MonoBehaviour:
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
-  m_EnterPlayModeBehavior: 0
+  m_EnterPlayModeBehavior: 1
   m_UseMipMap: 0
   m_VSyncEnabled: 0
   m_Gizmos: 0
@@ -516,9 +516,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 62430000
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 2afbffff9c650000
+      m_ExpandedIDs: 7ac5ffff86c8ffffcac9ffff74ceffff2ed1ffff92d4ffff84d7ffff40d8ffff2afbffff0a6200007062000010720000709d0000909f0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -984,9 +984,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0.62982297, y: 0.47804797, z: 1.5500002}
+    m_Target: {x: 1.3056419, y: 0.8156464, z: 0.5837823}
     speed: 2
-    m_Value: {x: 0.62982297, y: 0.47804797, z: 1.5500002}
+    m_Value: {x: 1.3056419, y: 0.8156464, z: 0.5837823}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1032,13 +1032,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.010596867, y: 0.9511101, z: -0.30708864, w: -0.032477237}
+    m_Target: {x: -0.082856216, y: -0.84466136, z: 0.13701305, w: -0.51079553}
     speed: 2
-    m_Value: {x: -0.010596438, y: 0.9510717, z: -0.30707625, w: -0.032475926}
+    m_Value: {x: 0.08285621, y: 0.84466136, z: -0.13701305, w: 0.51079553}
   m_Size:
-    m_Target: 1.2452409
+    m_Target: 0.73889303
     speed: 2
-    m_Value: 1.2452409
+    m_Value: 0.73889303
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1108,7 +1108,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/SenseGlove/Scripts/Interaction
+    - Assets/#Custom
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -1116,16 +1116,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/SenseGlove/Scripts/Interaction
+  - Assets/#Custom
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\hcw\SenseGlove\SenseGlove
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 125.39996}
-    m_SelectedIDs: c4680000
-    m_LastClickedID: 26820
-    m_ExpandedIDs: 000000006268000064680000666800007e68000088680000
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 62680000
+    m_LastClickedID: 26722
+    m_ExpandedIDs: 00000000626800006468000066680000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1180,7 +1180,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000ac5c00000eba00001a9900008aa10000109900001c3400001ea700009c750000000000008eb00000c4680000
     m_RenameOverlay:
       m_UserAcceptedRename: 0

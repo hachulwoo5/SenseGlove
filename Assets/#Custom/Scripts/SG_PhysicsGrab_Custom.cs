@@ -200,7 +200,7 @@ namespace SG
         public List<SG_Interactable> ObjectsGrabableNow()
         {
             List<SG_Interactable> res = new List<SG_Interactable>();
-            /*
+            
              if(objMass<1f)
             {
                 if (pointIndex == 2)
@@ -278,11 +278,11 @@ namespace SG
                     // Debug.Log("Found " + matching.Length + " matching objects within detected fingers");
                 }
             }
-            */
+            
            // else
            // {
      
-            /*
+            
                 if (pointIndex == 2)
                 {
                     // 두개 이상의 사이드 포인트, 즉 두손가락의 옆면이 닿아야 실행한다. 중복된 물체인지 확인을 한다.
@@ -308,7 +308,7 @@ namespace SG
                         }
                     }
                 }
-            */
+            
                 // 감지 구역이 3개 이상이고, 엄지나 손바닥이 닿앗는지 확인한다. 일반 그랩 확인 절차
                 if (pointIndex > 1)
                 {
