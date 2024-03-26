@@ -7,7 +7,7 @@ public class ParentObject : MonoBehaviour
     public float beingTouched = 0;
     public float touchPercentage;
     public bool isReadyGrab;
-    ChildObject[] childScripts;
+    public ChildObject[] childScripts;
 
     public bool isSideGrab;
     public float objMass;
