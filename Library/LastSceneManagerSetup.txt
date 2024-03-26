@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/#Custom/#VRcon/13_VR_Tryout OriginTest Vive.unity
+- path: Assets/#Custom/13_VR_Tryout OriginTest 0111.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
