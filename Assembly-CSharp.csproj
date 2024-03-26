@@ -81,6 +81,7 @@
     <Compile Include="Assets\SenseGlove\Scripts\Tracking\IHandPoseProvider.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Util\SG_Conversions.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\VR\SG_XR_Devices.cs" />
+    <Compile Include="Assets\#Custom\#VRcon\Scripts\HandController.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Feedback\SG_ObjectVibration.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Interaction\SG_PhysicsGrab_Origin.cs" />
     <Compile Include="Assets\#Custom\Scripts\ObjectGrabable.cs" />
