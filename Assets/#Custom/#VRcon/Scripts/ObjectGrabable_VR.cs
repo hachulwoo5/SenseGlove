@@ -20,26 +20,21 @@ public class ObjectGrabable_VR : MonoBehaviour
 
     private bool releasedDebug = false; // 릴리즈 디버그를 출력한 여부를 나타내는 플래그
 
+    public Transform originTransform;
     private void Awake ( )
     {
         rigid = GetComponent<Rigidbody> ( );
+
+        originTransform = this. transform. parent;
     }
 
     void FixedUpdate ( )
     {
         if ( isGrabbed )
         {
+            
             UpdateLocation ( );
-            RecordPosition ( );
-            Vector3 smoothVelocity = SmoothVelocity;
-            rigid. velocity = smoothVelocity;
-
-            // 릴리즈된 순간에만 디버그 출력
-            if ( releasedDebug )
-            {
-                Debug. Log ( "Release Velocity: " + rigid. velocity. magnitude );
-                releasedDebug = false; // 플래그 리셋
-            }
+           
         }
         else
         {
@@ -50,19 +45,33 @@ public class ObjectGrabable_VR : MonoBehaviour
     public void UpdateLocation ( )
     {
         rigid. useGravity = false;
-        transform. position = Vector3. MoveTowards ( transform. position , grabbingHand. position - offset , 3f * 0.5f );
-        transform. rotation = grabbingHand. rotation;
+        rigid. isKinematic = true;
+        this. transform. parent = grabbingHand. transform; RecordPosition ( );
+        // 릴리즈된 순간에만 디버그 출력
+        if ( releasedDebug )
+        {
+            Debug. Log ( "Release Velocity: " + rigid. velocity. magnitude );
+            releasedDebug = false; // 플래그 리셋
+        }
+
+        // transform. position = Vector3. MoveTowards ( transform. position , grabbingHand. position - offset , 3f * 0.5f );
+        // transform. rotation = grabbingHand. rotation;
+
     }
 
     public void NoGrabbing ( )
     {
+        rigid. isKinematic = false;
         rigid. useGravity = true;
-
+        this. transform. parent = originTransform;
         // 릴리즈된 순간에 한 번만 디버그 출력
         if ( !releasedDebug )
         {
             Debug. Log ( "Released" );
+
             releasedDebug = true; // 플래그 설정
+            rigid. velocity = SmoothVelocity*100f;
+
         }
     }
 

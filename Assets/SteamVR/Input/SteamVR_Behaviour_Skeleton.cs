@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections;
+using System. Collections. Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using Valve.VR;
@@ -102,8 +103,10 @@ namespace Valve.VR
 
 
 
-
-
+        public GameObject masterVr;
+        private void Update ( )
+        {
+        }
 
 
         /// <summary>The current skeletonPoser we're getting pose data from</summary>
@@ -138,6 +141,7 @@ namespace Valve.VR
             }
         }
 
+        
         /// <summary>An 0-1 value representing how curled a finger is. 0 being straight, 1 being fully curled.</summary>
         public float thumbCurl
         {
@@ -340,7 +344,25 @@ namespace Valve.VR
 
         protected virtual void AssignBonesArray()
         {
-            bones = skeletonRoot.GetComponentsInChildren<Transform>();
+            Transform [ ] allChildren = skeletonRoot. GetComponentsInChildren<Transform> ( );
+
+            // Create a list to store bones excluding Sphere_VR object
+            List<Transform> validBones = new List<Transform> ( );
+
+            // Iterate through each child transform
+            foreach ( Transform child in allChildren )
+            {
+                // Check if the child's name is not "Sphere_VR"
+                // 내가 추가한 부분
+                if ( child. name != "Sphere_VR" )
+                {
+                    // If it is not, add the transform to the list of valid bones
+                    validBones. Add ( child );
+                }
+            }
+
+            // Convert the list to an array
+            bones = validBones. ToArray ( );
         }
 
         protected virtual void OnEnable()
@@ -799,7 +821,7 @@ namespace Valve.VR
         public Quaternion GetBoneRotation(int joint, bool local = false)
         {
             if (local)
-                return bones[joint].localRotation;
+                return bones[1].localRotation;
             else
                 return bones[joint].rotation;
         }
@@ -835,7 +857,7 @@ namespace Valve.VR
         }
 
         protected static readonly Quaternion rightFlipAngle = Quaternion.AngleAxis(180, Vector3.right);
-        protected Quaternion[] GetBoneRotations()
+       protected Quaternion[] GetBoneRotations()
         {
             if (skeletonAvailable)
             {
@@ -856,7 +878,7 @@ namespace Valve.VR
                 //fallback to getting skeleton pose from skeletonPoser
                 if (fallbackPoser != null)
                 {
-                    return fallbackPoser.GetBlendedPose(skeletonAction, inputSource).boneRotations;
+                   return fallbackPoser.GetBlendedPose(skeletonAction, inputSource).boneRotations;
                 }
                 else
                 {
@@ -896,6 +918,9 @@ namespace Valve.VR
             return rawRotation;
         }
 
+        /// <summary>
+        ///  여기는 손의 움직임과 회전값
+        /// </summary>
         protected virtual void UpdatePose()
         {
             if (skeletonAction == null)

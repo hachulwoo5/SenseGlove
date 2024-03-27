@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System. Linq;
+using Valve. VR;
 
-public class Master_VR : MonoBehaviour
+    
+    public class Master_VR : MonoBehaviour
 {
-    public bool [ ] Checklist = new bool [ 6 ];
+    public SteamVR_Behaviour_Skeleton SkeleltonInformation;
+    public bool [ ] Checklist = new bool [ 5 ];
 
-    public ParentObject_VR palmTouch;
     public ParentObject_VR thumbTouch;
     public ParentObject_VR indexTouch;
     public ParentObject_VR middleTouch;
@@ -25,6 +27,10 @@ public class Master_VR : MonoBehaviour
 
     public bool isGrabbing;
 
+    public float thumbC;
+    public float indexC;
+
+    float maxThumbC;
     private void Awake ( )
     {
         childScripts. AddRange ( GetComponentsInChildren<ParentObject_VR> ( ) );
@@ -32,18 +38,23 @@ public class Master_VR : MonoBehaviour
     }
     private void Update ( )
     {
+        thumbC = SkeleltonInformation. thumbCurl;
+        indexC = SkeleltonInformation. indexCurl;
+
         CheckSection ( );
         EvaluateGrab ( );
         EvaluateRelease ( );
+
     }
 
     public void EvaluateGrab ( )
     {
+        
 
         if ( pointIndex >= 1 )
         {
-            
-            if( grabbedObject ==null)
+          //  DisableCapsuleCollidersRecursively ( transform );
+            if ( grabbedObject == null )
             {
                 grabbedObject = thumbTouch. grabbedObj_p;
             }
@@ -64,9 +75,10 @@ public class Master_VR : MonoBehaviour
     {
         if ( grabbedObject != null )
         {
-            if ( pointIndex < 1 )
+            if ( pointIndex < 1 || SkeleltonInformation. thumbCurl < 0.2f )
             {
                 //   Debug.Log(grabbedObject.GetComponent<Rigidbody>().velocity);
+               // EnableCapsuleCollidersRecursively ( transform );
                 grabbedObject. GetComponent<ObjectGrabable_VR> ( ). isGrabbed = false;
                 grabbedObject = null;
             }
@@ -74,14 +86,13 @@ public class Master_VR : MonoBehaviour
     }
     void CheckSection ( )
     {
-        Checklist [ 0 ] = palmTouch. isReadyGrab;
-        Checklist [ 1 ] = thumbTouch. isReadyGrab ;
-        Checklist [ 2 ] = indexTouch. isReadyGrab ;
-        Checklist [ 3 ] = middleTouch. isReadyGrab;
-        Checklist [ 4 ] = ringTouch. isReadyGrab;
-        Checklist [ 5 ] = pinkyTouch. isReadyGrab;
+        Checklist [ 0 ] = thumbTouch. isReadyGrab;
+        Checklist [ 1 ] = indexTouch. isReadyGrab;
+        Checklist [ 2 ] = middleTouch. isReadyGrab;
+        Checklist [ 3 ] = ringTouch. isReadyGrab;
+        Checklist [ 4 ] = pinkyTouch. isReadyGrab;
 
-        
+
 
         pointIndex = Checklist. Count ( value => value );
 
@@ -105,4 +116,38 @@ public class Master_VR : MonoBehaviour
         }
         objMass = FindObjectMass ( );
     }
+
+        private void DisableCapsuleCollidersRecursively ( Transform parent )
+        {
+            foreach ( Transform child in parent )
+            {
+                // 캡슐 콜라이더를 가지고 있는 경우 비활성화합니다.
+                CapsuleCollider capsuleCollider = child. GetComponent<CapsuleCollider> ( );
+                if ( capsuleCollider != null )
+                {
+                    capsuleCollider. enabled = false;
+                }
+
+                // 하위 오브젝트에 대해 재귀적으로 호출합니다.
+                DisableCapsuleCollidersRecursively ( child );
+            }
+        }
+    private void EnableCapsuleCollidersRecursively ( Transform parent )
+    {
+        foreach ( Transform child in parent )
+        {
+            // 캡슐 콜라이더를 가지고 있는 경우 활성화합니다.
+            CapsuleCollider capsuleCollider = child. GetComponent<CapsuleCollider> ( );
+            if ( capsuleCollider != null )
+            {
+                capsuleCollider. enabled = true;
+            }
+
+            // 하위 오브젝트에 대해 재귀적으로 호출합니다.
+            EnableCapsuleCollidersRecursively ( child );
+        }
+    }
+
 }
+
+

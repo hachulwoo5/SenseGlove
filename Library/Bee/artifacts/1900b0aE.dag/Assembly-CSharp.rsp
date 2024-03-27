@@ -379,6 +379,7 @@
 "Assets/#Custom/#VRcon/Scripts/Master_VR.cs"
 "Assets/#Custom/#VRcon/Scripts/ObjectGrabable_VR.cs"
 "Assets/#Custom/#VRcon/Scripts/ParentObject_VR.cs"
+"Assets/#Custom/#VRcon/Scripts/TestNew.cs"
 "Assets/#Custom/Scripts/ChildObject.cs"
 "Assets/#Custom/Scripts/ChildObject_Custom.cs"
 "Assets/#Custom/Scripts/ColliderTest.cs"

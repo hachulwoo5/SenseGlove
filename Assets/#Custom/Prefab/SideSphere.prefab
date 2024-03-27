@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6009799143069009141}
   - component: {fileID: 1585531345388315540}
   - component: {fileID: 5030902202265868870}
-  - component: {fileID: 8672293564820468496}
+  - component: {fileID: 1449116041994998075}
   m_Layer: 0
   m_Name: SideSphere
   m_TagString: SideSphere
@@ -106,7 +106,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8672293564820468496
+--- !u!114 &1449116041994998075
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,7 +115,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 4519108757005330212}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdbfdffe89b03de47bb19acb111ede8e, type: 3}
+  m_Script: {fileID: 11500000, guid: 7506e314114c5b84da10bf85cc89aede, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isSidePointGrab: 0
+  objMass: 0

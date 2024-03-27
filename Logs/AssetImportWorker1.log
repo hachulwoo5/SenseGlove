@@ -15,7 +15,7 @@ C:/hcw/SenseGlove/SenseGlove/SenseGlove
 -logFile
 Logs/AssetImportWorker1.log
 -srvPort
-52890
+53138
 Successfully changed project path to: C:/hcw/SenseGlove/SenseGlove/SenseGlove
 C:/hcw/SenseGlove/SenseGlove/SenseGlove
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -49,12 +49,12 @@ C:/hcw/SenseGlove/SenseGlove/SenseGlove
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [4688] Host "[IP] 10.100.104.112 [Port] 0 [Flags] 2 [Guid] 1444881324 [EditorId] 1444881324 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-8AUS2OB) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+Player connection [11048] Host "[IP] 10.100.104.112 [Port] 0 [Flags] 2 [Guid] 398621746 [EditorId] 398621746 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-8AUS2OB) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
-Player connection [4688] Host "[IP] 10.100.104.112 [Port] 0 [Flags] 2 [Guid] 1444881324 [EditorId] 1444881324 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-8AUS2OB) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [11048] Host "[IP] 10.100.104.112 [Port] 0 [Flags] 2 [Guid] 398621746 [EditorId] 398621746 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-8AUS2OB) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
 [Physics::Module] Initialized MultithreadedJobDispatcher with 15 workers.
-Refreshing native plugins compatible for Editor in 33.33 ms, found 10 plugins.
+Refreshing native plugins compatible for Editor in 34.70 ms, found 10 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2022.3.10f1 (ff3792e53c62)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.3.10f1/Editor/Data/Resources/UnitySubsystems
@@ -70,47 +70,47 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.3.10f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.3.10f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.3.10f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56360
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56420
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.10f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.10f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.017025 seconds.
-- Loaded All Assemblies, in  0.414 seconds
+Registered in 0.018117 seconds.
+- Loaded All Assemblies, in  0.394 seconds
 Native extension for WindowsStandalone target not found
 Native extension for Android target not found
-Android Extension - Scanning For ADB Devices 3556 ms
+Android Extension - Scanning For ADB Devices 3580 ms
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  3.885 seconds
-Domain Reload Profiling: 4296ms
-	BeginReloadAssembly (128ms)
+- Finished resetting the current domain, in  3.871 seconds
+Domain Reload Profiling: 4262ms
+	BeginReloadAssembly (117ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
 		CreateAndSetChildDomain (1ms)
-	RebuildCommonClasses (37ms)
+	RebuildCommonClasses (35ms)
 	RebuildNativeTypeToScriptingClass (10ms)
-	initialDomainReloadingComplete (71ms)
-	LoadAllAssembliesAndSetupDomain (164ms)
-		LoadAssemblies (126ms)
+	initialDomainReloadingComplete (72ms)
+	LoadAllAssembliesAndSetupDomain (157ms)
+		LoadAssemblies (115ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (161ms)
-			TypeCache.Refresh (160ms)
-				TypeCache.ScanAssembly (145ms)
-			ScanForSourceGeneratedMonoScriptInfo (0ms)
-			ResolveRequiredComponents (0ms)
-	FinalizeReload (3886ms)
+		AnalyzeDomain (153ms)
+			TypeCache.Refresh (151ms)
+				TypeCache.ScanAssembly (136ms)
+			ScanForSourceGeneratedMonoScriptInfo (1ms)
+			ResolveRequiredComponents (1ms)
+	FinalizeReload (3872ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (3831ms)
+		SetupLoadedEditorAssemblies (3821ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (3667ms)
+			InitializePlatformSupportModulesInManaged (3683ms)
 			SetLoadedEditorAssemblies (3ms)
 			RefreshPlugins (0ms)
 			BeforeProcessingInitializeOnLoad (2ms)
-			ProcessInitializeOnLoadAttributes (106ms)
-			ProcessInitializeOnLoadMethodAttributes (53ms)
+			ProcessInitializeOnLoadAttributes (89ms)
+			ProcessInitializeOnLoadMethodAttributes (44ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -118,8 +118,8 @@ Domain Reload Profiling: 4296ms
 ========================================================================
 Worker process is ready to serve import requests
 Begin MonoManager ReloadAssembly
-Duplicate assembly 'System.Collections.Immutable.FSR.dll' with different versions detected, using 'Assets/FastScriptReload/Plugins/Roslyn/2021+/System.Collections.Immutable.FSR.dll, AssemblyName=System.Collections.Immutable, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a' and ignoring 'Assets/FastScriptReload/Plugins/Roslyn/2021+/System.Collections.Immutable.dll, AssemblyName=System.Collections.Immutable, Version=1.2.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a'.- Loaded All Assemblies, in  1.003 seconds
-Refreshing native plugins compatible for Editor in 18.11 ms, found 10 plugins.
+Duplicate assembly 'System.Collections.Immutable.FSR.dll' with different versions detected, using 'Assets/FastScriptReload/Plugins/Roslyn/2021+/System.Collections.Immutable.FSR.dll, AssemblyName=System.Collections.Immutable, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a' and ignoring 'Assets/FastScriptReload/Plugins/Roslyn/2021+/System.Collections.Immutable.dll, AssemblyName=System.Collections.Immutable, Version=1.2.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a'.- Loaded All Assemblies, in  1.060 seconds
+Refreshing native plugins compatible for Editor in 18.03 ms, found 10 plugins.
 Native extension for WindowsStandalone target not found
 Native extension for Android target not found
 FSR: Fast Script Reload - asset auto refresh enabled - full reload will be triggered unless editor preference adjusted - see documentation for more details.
@@ -128,13 +128,13 @@ UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,st
 UnityEngine.Logger:Log (UnityEngine.LogType,object)
 ImmersiveVrToolsCommon.Runtime.Logging.LoggerScoped:LogInternal (UnityEngine.LogType,object)
 ImmersiveVrToolsCommon.Runtime.Logging.LoggerScoped:LogWarning (object)
-FastScriptReload.Editor.FastScriptReloadWelcomeScreenInitializer:EnsureUserAwareOfAutoRefresh () (at Assets/FastScriptReload/Scripts/Editor/FastScriptReloadWelcomeScreen.cs:947)
-FastScriptReload.Editor.FastScriptReloadWelcomeScreenInitializer:InitCommon () (at Assets/FastScriptReload/Scripts/Editor/FastScriptReloadWelcomeScreen.cs:923)
-FastScriptReload.Editor.FastScriptReloadWelcomeScreenInitializer:.cctor () (at Assets/FastScriptReload/Scripts/Editor/FastScriptReloadWelcomeScreen.cs:916)
+FastScriptReload.Editor.FastScriptReloadWelcomeScreenInitializer:EnsureUserAwareOfAutoRefresh () (at C:/hcw/SenseGlove/SenseGlove/Assets/FastScriptReload/Scripts/Editor/FastScriptReloadWelcomeScreen.cs:947)
+FastScriptReload.Editor.FastScriptReloadWelcomeScreenInitializer:InitCommon () (at C:/hcw/SenseGlove/SenseGlove/Assets/FastScriptReload/Scripts/Editor/FastScriptReloadWelcomeScreen.cs:923)
+FastScriptReload.Editor.FastScriptReloadWelcomeScreenInitializer:.cctor () (at C:/hcw/SenseGlove/SenseGlove/Assets/FastScriptReload/Scripts/Editor/FastScriptReloadWelcomeScreen.cs:916)
 System.Runtime.CompilerServices.RuntimeHelpers:RunClassConstructor (System.RuntimeTypeHandle)
 UnityEditor.EditorAssemblies:ProcessInitializeOnLoadAttributes (System.Type[])
 
-(Filename: Assets/FastScriptReload/Scripts/Editor/FastScriptReloadWelcomeScreen.cs Line: 947)
+(Filename: C:/hcw/SenseGlove/SenseGlove/Assets/FastScriptReload/Scripts/Editor/FastScriptReloadWelcomeScreen.cs Line: 947)
 
 Package Manager log level set to [2]
 [Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
@@ -150,47 +150,47 @@ Mono: successfully reloaded assembly
 [Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
 [Package Manager] Cannot connect to Unity Package Manager local server
-- Finished resetting the current domain, in  1.920 seconds
-Domain Reload Profiling: 2916ms
-	BeginReloadAssembly (168ms)
+- Finished resetting the current domain, in  2.018 seconds
+Domain Reload Profiling: 3071ms
+	BeginReloadAssembly (166ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (5ms)
+		DisableScriptedObjects (6ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (20ms)
-	RebuildCommonClasses (34ms)
-	RebuildNativeTypeToScriptingClass (10ms)
-	initialDomainReloadingComplete (89ms)
-	LoadAllAssembliesAndSetupDomain (695ms)
-		LoadAssemblies (471ms)
+		CreateAndSetChildDomain (19ms)
+	RebuildCommonClasses (38ms)
+	RebuildNativeTypeToScriptingClass (12ms)
+	initialDomainReloadingComplete (100ms)
+	LoadAllAssembliesAndSetupDomain (736ms)
+		LoadAssemblies (473ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (331ms)
-			TypeCache.Refresh (304ms)
-				TypeCache.ScanAssembly (283ms)
-			ScanForSourceGeneratedMonoScriptInfo (17ms)
-			ResolveRequiredComponents (8ms)
-	FinalizeReload (1921ms)
+		AnalyzeDomain (372ms)
+			TypeCache.Refresh (340ms)
+				TypeCache.ScanAssembly (314ms)
+			ScanForSourceGeneratedMonoScriptInfo (21ms)
+			ResolveRequiredComponents (9ms)
+	FinalizeReload (2019ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (1768ms)
+		SetupLoadedEditorAssemblies (1849ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (25ms)
+			InitializePlatformSupportModulesInManaged (26ms)
 			SetLoadedEditorAssemblies (3ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (78ms)
-			ProcessInitializeOnLoadAttributes (1632ms)
+			BeforeProcessingInitializeOnLoad (85ms)
+			ProcessInitializeOnLoadAttributes (1706ms)
 			ProcessInitializeOnLoadMethodAttributes (17ms)
 			AfterProcessingInitializeOnLoad (12ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
 		AwakeInstancesAfterBackupRestoration (6ms)
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
-Refreshing native plugins compatible for Editor in 15.50 ms, found 10 plugins.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
+Refreshing native plugins compatible for Editor in 16.81 ms, found 10 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3757 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 63 unused Assets / (72.2 KB). Loaded Objects now: 4248.
+Unloading 3758 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 63 unused Assets / (72.1 KB). Loaded Objects now: 4249.
 Memory consumption went from 150.5 MB to 150.5 MB.
-Total: 3.000100 ms (FindLiveObjects: 0.271900 ms CreateObjectMapping: 0.210100 ms MarkObjects: 2.412300 ms  DeleteObjects: 0.105300 ms)
+Total: 3.804800 ms (FindLiveObjects: 0.314400 ms CreateObjectMapping: 0.277100 ms MarkObjects: 3.086800 ms  DeleteObjects: 0.125600 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
