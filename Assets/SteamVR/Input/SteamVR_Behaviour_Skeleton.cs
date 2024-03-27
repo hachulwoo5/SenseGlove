@@ -353,7 +353,7 @@ namespace Valve.VR
             foreach ( Transform child in allChildren )
             {
                 // Check if the child's name is not "Sphere_VR"
-                // 내가 추가한 부분
+                // 여기 추가한 부분
                 if ( child. name != "Sphere_VR" )
                 {
                     // If it is not, add the transform to the list of valid bones
