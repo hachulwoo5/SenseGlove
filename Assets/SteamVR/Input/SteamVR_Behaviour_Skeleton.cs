@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections;
+using System. Collections. Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using Valve.VR;
@@ -102,8 +103,10 @@ namespace Valve.VR
 
 
 
-
-
+        public GameObject masterVr;
+        private void Update ( )
+        {
+        }
 
 
         /// <summary>The current skeletonPoser we're getting pose data from</summary>
@@ -340,7 +343,24 @@ namespace Valve.VR
 
         protected virtual void AssignBonesArray()
         {
-            bones = skeletonRoot.GetComponentsInChildren<Transform>();
+            Transform [ ] allChildren = skeletonRoot. GetComponentsInChildren<Transform> ( );
+
+            // Create a list to store bones excluding Sphere_VR object
+            List<Transform> validBones = new List<Transform> ( );
+
+            // Iterate through each child transform
+            foreach ( Transform child in allChildren )
+            {
+                // Check if the child's name is not "Sphere_VR"
+                if ( child. name != "Sphere_VR" )
+                {
+                    // If it is not, add the transform to the list of valid bones
+                    validBones. Add ( child );
+                }
+            }
+
+            // Convert the list to an array
+            bones = validBones. ToArray ( );
         }
 
         protected virtual void OnEnable()

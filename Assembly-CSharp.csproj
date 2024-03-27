@@ -65,6 +65,7 @@
     <Compile Include="Assets\SenseGlove\Examples\Resources\SGEx_ForceFeedbackObjects.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Util\SG_Debugger.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Feedback\SG_Waveform.cs" />
+    <Compile Include="Assets\#Custom\#VRcon\Scripts\ChildObject_VR.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Interaction\SG_Interactable.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Util\SG_WireFrame.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Util\SG_Util.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Assets\#Custom\#VRcon\Scripts\HandController.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Feedback\SG_ObjectVibration.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Interaction\SG_PhysicsGrab_Origin.cs" />
+    <Compile Include="Assets\#Custom\#VRcon\Scripts\Master_VR.cs" />
     <Compile Include="Assets\#Custom\Scripts\ObjectGrabable.cs" />
     <Compile Include="Assets\SenseGlove\Examples\Resources\SGEx_SelectHandModel.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Interaction\SG_SnapOptions.cs" />
@@ -118,6 +120,7 @@
     <Compile Include="Assets\SenseGlove\Examples\Resources\SGEx_GloveDiagnostics.cs" />
     <Compile Include="Assets\SenseGlove\Examples\Resources\SGEx_HandLayerUI.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Feedback\SG_MaterialProperties.cs" />
+    <Compile Include="Assets\#Custom\#VRcon\Scripts\ParentObject_VR.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Feedback\SG_ImpactFeedback.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Feedback\SG_MeshDeform.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Util\SG_HandStateIndicator.cs" />
@@ -154,6 +157,7 @@
     <Compile Include="Assets\#Custom\Scripts\ChildObject_Custom.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Util\SG_PhysicsHelper.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Controls\SG_ConfirmZone.cs" />
+    <Compile Include="Assets\#Custom\#VRcon\Scripts\ObjectGrabable_VR.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Tracking\SG_HandComponent.cs" />
     <Compile Include="Assets\SenseGlove\CalibrationVoid\SG_DoubleControlButton.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Devices\SG_HapticGlove.cs" />
