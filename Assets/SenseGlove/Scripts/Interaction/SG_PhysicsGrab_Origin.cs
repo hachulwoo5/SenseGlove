@@ -35,8 +35,8 @@ namespace SG
 
         protected static float overrideGrabThreshold = 0.01f;
 
-        protected float[] lastNormalized = new float[5];
-        protected float[] normalizedOnGrab = new float[5];
+        public float[] lastNormalized = new float[5];
+        public  float[] normalizedOnGrab = new float[5];
 
         protected override void CreateComponents()
         {
@@ -292,7 +292,8 @@ namespace SG
                         grabDiff[f] = this.normalizedOnGrab[f] - this.lastNormalized[f];//i'd normally use latest - ongrab, but then extension is negative and I'd have to invert releaseThreshold. So we subract it the other way around. very tiny optimizations make me happy,
                         if (grabDiff[f] > releaseThreshold) //the finger is now above the threshold, and we think you want to release.
                         {
-                            grabCodes[f] = -3; //want to release because we've extended a bit above when we grabbed the object
+                            Debug. Log ( grabDiff [ f ] );
+                            grabCodes [f] = -3; //want to release because we've extended a bit above when we grabbed the object
                         }
                     }
                     //Reset relevance if the gesture thinks we've released, and we're not currently touching.
@@ -307,6 +308,10 @@ namespace SG
                 bool grabDesired = false;
                 for (int f = 1; f < this.fingerScripts.Length; f++) //Assuming only thumb-finger and finger-palm (NOT thumb-palm) grasps. So skipping 0 (thumb)
                 {
+                    if ( grabCodes [ f ] ==-3 ) //there's one finger that wants to hold on (and is allowed to hold on).
+                    {
+                        Debug. Log ( "asdads" );
+                    }
                     if (grabCodes[f] > -1) //there's one finger that wants to hold on (and is allowed to hold on).
                     {
                         grabDesired = true;

@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-namespace SG
+using SGCore. Haptics;
+
+namespace SG.Examples
 {
 
     public class SG_PhysicsGrab_Custom : SG_GrabScript
@@ -26,6 +28,8 @@ namespace SG
         public SG_HoverCollider pinkyTouch_2;
         public SG_HoverCollider pinkyTouch_3;
 
+        
+
         public float objMass;
 
         /// <summary> Keeps track of the 'grabbing' pose of fingers </summary>
@@ -46,21 +50,33 @@ namespace SG
 
         protected static float overrideGrabThreshold = 0.01f;
 
-        protected float[] lastNormalized = new float[5];
-        protected float[] normalizedOnGrab = new float[5];
+        [HideInInspector]
+        public float [ ] lastNormalized = new float[5];
+        [HideInInspector]
+        public float [ ] normalizedOnGrab = new float[5];
 
-        public bool[] Checklist = new bool[6];
-        public bool[] SideChecklist = new bool[5];
+        [HideInInspector]
+        public bool [ ] Checklist = new bool[6];
+        [HideInInspector]
+        public bool [ ] SideChecklist = new bool[5];
 
         public int pointIndex = 0;
         public int sidePointIndex = 0;
         public bool isNormalGrabbing = false;
         public bool isSideGrabbing =false;
 
+        public SGEx_SendWaveform SendVib;
+        public float [ ] grabDiff = new float [ 5 ]; //DEBUG
+
+        public bool [ ] fingerAngleDev = new bool [ 5 ];
+        public bool [ ] fingerAngleVib = new bool [ 5 ];
+
         protected override void Start()
         {
             base.Start();
         }
+
+        
         protected override void CreateComponents()
         {
             base.CreateComponents();
@@ -103,7 +119,7 @@ namespace SG
 
 
         }
-
+       
         protected override void CollectDebugComponents(out List<GameObject> objects, out List<MeshRenderer> renderers)
         {
             base.CollectDebugComponents(out objects, out renderers);
@@ -201,8 +217,9 @@ namespace SG
         {
             List<SG_Interactable> res = new List<SG_Interactable>();
             
-             if(objMass<1f)
+             if(objMass<2f)
             {
+                /*
                 if (pointIndex == 2)
                 {
                     // 두개 이상의 사이드 포인트, 즉 두손가락의 옆면이 닿아야 실행한다. 중복된 물체인지 확인을 한다.
@@ -227,12 +244,14 @@ namespace SG
                             }
                         }
                     }
-                }
+                
+                }*/
                 // 감지 구역이 3개 이상이고, 엄지나 손바닥이 닿앗는지 확인한다. 일반 그랩 확인 절차
                 if (pointIndex > 1)
                 {
                     isNormalGrabbing = true;
-                    if (fingerScripts[0].parentObject.isReadyGrab || fingerScripts[5].parentObject.isReadyGrab) // 엄지 체크
+
+                    if ( fingerScripts[0].parentObject.isReadyGrab || fingerScripts[5].parentObject.isReadyGrab) // 엄지 체크
                     {
                         for (int i = 0; i < fingerScripts.Length; i++)
                         {
@@ -246,7 +265,7 @@ namespace SG
                                         SG_Interactable[] matching = fingerScripts[i].GetMatchingObjects(fingerScripts[j]);
                                         for (int k = 0; k < matching.Length; k++)
                                         {
-                                            SG.Util.SG_Util.SafelyAdd(matching[k], res);
+                                            SG. Util.SG_Util.SafelyAdd(matching[k], res);                                           
                                         }
                                     }
                                 }
@@ -255,6 +274,7 @@ namespace SG
                     }
                     else if (Checklist[0]) // 엄지 확인 후 없으면 손바닥 체크
                     {
+                        /*
                         for (int i = 0; i < fingerScripts.Length; i++)
                         {
                             if (fingerScripts[i].parentObject.isReadyGrab)
@@ -266,12 +286,12 @@ namespace SG
                                         SG_Interactable[] matching = fingerScripts[i].GetMatchingObjects(fingerScripts[j]);
                                         for (int k = 0; k < matching.Length; k++)
                                         {
-                                            SG.Util.SG_Util.SafelyAdd(matching[k], res);
+                                            SG. Util.SG_Util.SafelyAdd(matching[k], res);
                                         }
                                     }
                                 }
                             }
-                        }
+                        }*/
                     }
 
 
@@ -282,7 +302,7 @@ namespace SG
            // else
            // {
      
-            
+            /*
                 if (pointIndex == 2)
                 {
                     // 두개 이상의 사이드 포인트, 즉 두손가락의 옆면이 닿아야 실행한다. 중복된 물체인지 확인을 한다.
@@ -299,6 +319,7 @@ namespace SG
                                         SG_Interactable[] matching = fingerScripts[i].GetMatchingObjects(fingerScripts[j]);
                                         for (int k = 0; k < matching.Length; k++)
                                         {
+                                        Debug. Log ( "사이드그랩성공" );
                                             isSideGrabbing = true;
                                             SG.Util.SG_Util.SafelyAdd(matching[k], res);
                                         }
@@ -308,7 +329,8 @@ namespace SG
                         }
                     }
                 }
-            
+            */
+                /*
                 // 감지 구역이 3개 이상이고, 엄지나 손바닥이 닿앗는지 확인한다. 일반 그랩 확인 절차
                 if (pointIndex > 1)
                 {
@@ -358,6 +380,7 @@ namespace SG
 
                     // Debug.Log("Found " + matching.Length + " matching objects within detected fingers");
                 }
+                              */
           //  }
 
             return res;
@@ -409,7 +432,7 @@ namespace SG
                 for (int i = 0; i < sortedGrabables.Length; i++)
                 {
                     TryGrab(sortedGrabables[i]);
-                    if (!CanGrabNewObjects) { break; } //stop going through the objects if we can no longer grab one
+                    if ( !CanGrabNewObjects) { break; } //stop going through the objects if we can no longer grab one
                 }
             }
             else if (this.handPoseProvider != null && this.handPoseProvider.OverrideGrab() > overrideGrabThreshold)
@@ -419,7 +442,7 @@ namespace SG
                 for (int i = 0; i < grabablesInHover.Length; i++)
                 {
                     TryGrab(grabablesInHover[i]);
-                    if (!CanGrabNewObjects) { break; } //stop going through the objects if we can no longer grab one
+                    if ( !CanGrabNewObjects) { break; } //stop going through the objects if we can no longer grab one
                 }
             }
             if (this.IsGrabbing) //we managed to grab something.
@@ -433,6 +456,8 @@ namespace SG
 
         protected void EvaluateRelease()
         {
+
+
             SG_Interactable heldObj = this.heldObjects[0];
             bool[] currentTouched = this.FingersTouching(heldObj); //the fingers that are currently touching the (first) object
             
@@ -470,7 +495,7 @@ namespace SG
             if ( lastNormalized. Length > 0 ) //we successfully got some grab parameters.
             {
                 //We will release if all relevant fingers are either above the "open threshold" OR have relevant fingers, and these have extended above / below
-                float [ ] grabDiff = new float [ 5 ]; //DEBUG
+                //float [ ] grabDiff = new float [ 5 ]; //DEBUG
                 int [ ] grabCodes = new int [ 5 ]; // 0 and up means grab, < zero means release.
                 for ( int f = 0 ; f < 5; f++ )
                 {
@@ -484,10 +509,21 @@ namespace SG
                     }
                     else if ( grabRelevance. Length > f && grabRelevance [ f ] ) // we're within the right threshold(s)
                     {   //check or undo grabrelevance
+                        // 1이 굽어짐 0이 폄
                         grabDiff [ f ] = this. normalizedOnGrab [ f ] - this. lastNormalized [ f ];//i'd normally use latest - ongrab, but then extension is negative and I'd have to invert releaseThreshold. So we subract it the other way around. very tiny optimizations make me happy,
-                        if ( grabDiff [ f ] > releaseThreshold ) //the finger is now above the threshold, and we think you want to release.
+                        if ( grabDiff [ f ] > 0.025f ) //the finger is now above the threshold, and we think you want to release.
                         {
+                            fingerAngleDev [ f ] = true;
                             grabCodes [ f ] = -3; //want to release because we've extended a bit above when we grabbed the object
+                        }
+                        else if ( grabDiff [ f ] < -0.025f ) //the finger is now above the threshold, and we think you want to release.
+                        {
+                            fingerAngleVib [ f ] = true;
+                        }
+                        else
+                        {
+                            fingerAngleDev [ f ] = false;
+                            fingerAngleVib [ f ] = false;
                         }
                     }
                     //Reset relevance if the gesture thinks we've released, and we're not currently touching.
@@ -496,18 +532,57 @@ namespace SG
                         grabRelevance [ f ] = false;
                     }
                 }
-                Debug. Log ( grabCodes [ 1 ] );
+
                 bool grabDesired;
                 if ( grabCodes [ 0 ] == -1 && grabCodes [ 1 ] == -1 && grabCodes [ 2 ] == -1 && grabCodes [ 3 ] == -1 && grabCodes [ 4 ] == -1 )
                 {
                     grabDesired = false;
-
                 }
+                else
+                {
+                    if ( pointIndex > 1 )
+                    {
+                        if ( fingerAngleDev [ 0 ] == true ) // 엄지가 이탈했단 소리
+                        {
+                            grabDesired = false;
+                        }
+                        else // fingerAngleDev[0] ==false 란소리 // 엄지가 닿아있단 소리
+                        {
+                            if ( fingerAngleDev [ 1 ] == true && fingerAngleDev [ 2 ] == true && fingerAngleDev [ 3 ] == true && fingerAngleDev [ 4 ] == true ) // 엄지만 닿아있단 소리 나머지 다 떨어짐
+                            {
+                                grabDesired = false;
+                            }
+                            else
+                            {
+                                grabDesired = true;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        grabDesired = false;
+                    }
+                }
+                /*
                 else if ( isNormalGrabbing )
                 {
                     if ( pointIndex > 1 )
                     {
-                        grabDesired = true;
+                        if ( fingerAngleDev [ 0 ] == true ) // 엄지가 이탈했단 소리
+                        {
+                            grabDesired = false;
+                        }
+                        else // fingerAngleDev[0] ==false 란소리 // 엄지가 닿아있단 소리
+                        {
+                            if ( fingerAngleDev [ 1 ] == true && fingerAngleDev [ 2 ] == true && fingerAngleDev [ 3 ] == true && fingerAngleDev [ 4 ] == true ) // 엄지만 닿아있단 소리 나머지 다 떨어짐
+                            {
+                                grabDesired = false;
+                            }
+                            else
+                            {
+                                grabDesired = true;
+                            }
+                        }
                     }
                     else
                     {
@@ -529,6 +604,7 @@ namespace SG
                 {
                     grabDesired = false;
                 }
+                */
 
 
                 //Step 4 - Compare with override to make a final judgement. Can be optimized by placing this before Step 2 and skipping it entirely while GrabOverride is true.
@@ -540,12 +616,22 @@ namespace SG
                 if ( shouldRelease ) //We can no longer grab anything
                 {
                     isNormalGrabbing = false;
-                    isSideGrabbing = false;
 
+                    isSideGrabbing = false;
+                    for ( int f = 0 ; f < 5 ; f++ )
+                    {
+                        fingerAngleDev [ f ] = false;
+                    }
+                    for ( int f = 0 ; f < 5 ; f++ )
+                    {
+                        fingerAngleVib [ f ] = false;
+                    }
                     this. ReleaseAll ( false );
+
                 }
+
             }
-            
+
         }
 
         
@@ -557,8 +643,6 @@ namespace SG
         public override void UpdateGrabLogic(float dT)
         {
             base.UpdateGrabLogic(dT);  //updates reference location(s).
-
-
 
             // Update Physics Colliders
             for (int i = 0; i < this.hoverScripts.Length; i++)
@@ -583,14 +667,22 @@ namespace SG
             // Evaluate Grabbing / Releasing
             if ( this.IsGrabbing) //Check for release - Gesture Based
             {
-                EvaluateRelease();
+                for ( int f = 0 ; f < 5 ; f++ )
+                {
+                    if ( fingerAngleVib [ f ] )
+                    {
+                        SendVib. SendWaveForm ( f );
+                    }
+                }
+                EvaluateRelease ();
             }
             else //Check for Grab (collision based)
             {
                 EvaluateGrab();
+
             }
 
-           
+
 
         }
 

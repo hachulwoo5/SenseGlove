@@ -468,6 +468,7 @@ namespace SG
                         //Debug.Log(this.name + " Grabbed " + grabable.name);
                         this.GrabbedObject.Invoke(grabable, this);
 						UpdateDebugger();
+                        
 						return true;
 					}
 					//else

@@ -279,13 +279,13 @@ namespace SG
                     {
                         //if (this.name.Contains("Coil"))
                         //{
-                        //    Debug.Log("Incorporating fingers into my RigidBody");
+                            Debug.Log("Incorporating fingers into my RigidBody");
                         //}
-                      // handPhysics.SetCollisionParent(this.physicsBody);
+                       //  handPhysics.SetCollisionParent(this.physicsBody);
                     }
                     else
                     {
-                       // Debug.Log("No PhysicsBody: Ignore Collision with Grabable");
+                        Debug.Log("No PhysicsBody: Ignore Collision with Grabable");
                         handPhysics.SetIgnoreCollision(this.GetPhysicsColliders(), false); // Just ignore the collision between this object's colliders and that of the hand.
                     }
                 }
@@ -298,7 +298,7 @@ namespace SG
                 {
                     //must freeze rotation, but keep thine origianl constraints...
                     //disable gravity (for now) so that it actually gets off the floor. Also freeze rotation because it gives the best behaviour from MoveRotation.
-                    this.SetPhysicsbody(false, false, RigidbodyConstraints.FreezeRotation | rbDefaults.rbConstraints);
+                  this.SetPhysicsbody(false, false, RigidbodyConstraints.FreezeRotation | rbDefaults.rbConstraints);
                 }
             }
             return true;
@@ -359,8 +359,8 @@ namespace SG
                     if (!this.physicsBody.isKinematic) //and add my last velocity if I'm not kinemtaics.
                     {
                         //Add veloctiy of either this object or of the hand...
-                        this.physicsBody.angularVelocity = this.SmoothedAngularVelocity * correctionAngularValue / this.physicsBody.mass;
-                        this.physicsBody.velocity = this.SmoothedVelocity * correctionSpeedValue / this.physicsBody.mass;
+                        this.physicsBody.angularVelocity = (this.SmoothedAngularVelocity  / this.physicsBody.mass)*1.2f;
+                        this.physicsBody.velocity = (this.SmoothedVelocity / this.physicsBody.mass)*1.2f;
                     }
                 }
             }

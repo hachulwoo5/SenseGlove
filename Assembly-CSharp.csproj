@@ -158,7 +158,6 @@
     <Compile Include="Assets\#Custom\Scripts\ChildObject_Custom.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Util\SG_PhysicsHelper.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Controls\SG_ConfirmZone.cs" />
-    <Compile Include="Assets\#Custom\#VRcon\Scripts\ObjectGrabable_VR.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Tracking\SG_HandComponent.cs" />
     <Compile Include="Assets\SenseGlove\CalibrationVoid\SG_DoubleControlButton.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Devices\SG_HapticGlove.cs" />

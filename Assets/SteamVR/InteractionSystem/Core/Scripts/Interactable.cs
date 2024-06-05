@@ -283,7 +283,7 @@ namespace Valve.VR.InteractionSystem
         {
             if (highlightOnHover)
             {
-                UpdateHighlightRenderers();
+                 UpdateHighlightRenderers();
 
                 if (isHovering == false && highlightHolder != null)
                     Destroy(highlightHolder);

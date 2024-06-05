@@ -38,15 +38,21 @@ namespace SG.Examples
 		// Function
 
 		/// <summary> Send the waveFormToSend to each glove in memory. </summary>
-		public void SendWaveForm()
+		public void SendWaveForm(int number)
         {
-			Debug.Log("Sending " + waveFormToSend.name + " to " + hapticGloves.Length + " gloves");
+			// Debug.Log("Sending " + waveFormToSend.name + " to " + hapticGloves.Length + " gloves");
             foreach (SG_HapticGlove glove in hapticGloves)
             {
+				if ( glove != null )
+				{
+					glove. SendCmd ( allWaveForms[number] );
+				}
+				/*
 				if (glove != null)
                 {
 					glove.SendCmd(waveFormToSend);
                 }
+				*/
 			}
         }
 
@@ -100,7 +106,7 @@ namespace SG.Examples
 			}
 			if (this.sendBtn != null)
 			{ 
-				sendBtn.onClick.AddListener(SendWaveForm);
+			//	sendBtn.onClick.AddListener(SendWaveForm);
 				SG.Util.SG_Util.SetButtonText(sendBtn, "Send Wavefrom", this.sendWaveFormKey);
 			}
         }
@@ -109,7 +115,7 @@ namespace SG.Examples
 		{
 			if (this.nextBtn != null) { nextBtn.onClick.RemoveListener(SelectNext); }
 			if (this.prevBtn != null) { prevBtn.onClick.RemoveListener(SelectPrevious); }
-			if (this.sendBtn != null) { sendBtn.onClick.RemoveListener(SendWaveForm); }
+		//	if (this.sendBtn != null) { sendBtn.onClick.RemoveListener(SendWaveForm); }
 		}
 
 		// Use this for initialization
@@ -145,7 +151,7 @@ namespace SG.Examples
 #else
 			if (Input.GetKeyDown(sendWaveFormKey))
             {
-				SendWaveForm();
+				//SendWaveForm();
 			}
 			if (Input.GetKeyDown(nextWaveFormKey))
             {

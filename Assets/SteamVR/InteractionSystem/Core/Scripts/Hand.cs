@@ -1433,6 +1433,12 @@ namespace Valve.VR.InteractionSystem
             hapticAction.Execute(0, duration, frequency, amplitude, handType);
         }
 
+        public void ShowHaptic ( )
+        {
+            hapticAction. Execute ( 0 , 0.5f , 1 , 20 , handType );
+        }
+
+
         public void ShowGrabHint()
         {
             ControllerButtonHints.ShowButtonHint(this, grabGripAction); //todo: assess

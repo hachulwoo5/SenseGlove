@@ -12,6 +12,7 @@ public class ParentObject_VR : MonoBehaviour
     public bool isSideGrab;
     public float objMass;
     public GameObject grabbedObj_p;
+    private bool atleastOneTouching; // 이거 달아 놓는 이유는 sphere 중에 1개 라도 닿아있으면 grabbedObj_p 정보를 제대로 넘겨줄려고,, 1개 닿아있는데 1개 다시 안 닿으면 해제되서 넣어둔 임시해결책 넣는 방법에 근원적인 해결을 해야하긴 함
 
     private void Start ( )
     {
@@ -34,6 +35,16 @@ public class ParentObject_VR : MonoBehaviour
         InvokeRepeating ( "LogBeingTouchedRatio" , 0f , 1.2f );
 
     }
+
+    private void Update ( )
+    {
+        if ( !isReadyGrab )
+        {
+            grabbedObj_p = null;
+
+            atleastOneTouching = false;
+        }
+    }
     private void LogBeingTouchedRatio ( )
     {
         // 로그 출력
@@ -45,7 +56,17 @@ public class ParentObject_VR : MonoBehaviour
         Color targetColor1 = Color. red;
         Color targetColor2 = new Color ( 0x60 / 255f , 0 / 255f , 0xFF / 255f , 1f );
         objMass = Mass;
-        grabbedObj_p = other;
+        if(isReadyGrab)
+        {
+            if ( !atleastOneTouching )
+            {
+                grabbedObj_p = other;
+
+            }
+            atleastOneTouching = true;
+
+        }
+        
         // 색깔이 바뀐 자식 오브젝트의 갯수 증가
         if ( newColor == Color. green )
         {

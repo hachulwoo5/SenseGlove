@@ -8,14 +8,14 @@ using Valve. VR;
     public class Master_VR : MonoBehaviour
 {
     public SteamVR_Behaviour_Skeleton SkeleltonInformation;
-    public bool [ ] Checklist = new bool [ 5 ];
+    public bool [ ] Checklist = new bool [ 6 ];
 
     public ParentObject_VR thumbTouch;
     public ParentObject_VR indexTouch;
     public ParentObject_VR middleTouch;
     public ParentObject_VR ringTouch;
     public ParentObject_VR pinkyTouch;
-
+    public ParentObject_VR palmTouch;
 
     public int pointIndex = 0;
     public float objMass;
@@ -40,10 +40,10 @@ using Valve. VR;
     {
         thumbC = SkeleltonInformation. thumbCurl;
         indexC = SkeleltonInformation. indexCurl;
-
-        CheckSection ( );
+        CheckSection ( ); 
         EvaluateGrab ( );
-        EvaluateRelease ( );
+        EvaluateRelease ( );  
+
 
     }
 
@@ -51,18 +51,45 @@ using Valve. VR;
     {
         
 
-        if ( pointIndex >= 1 )
+        if ( pointIndex >= 2 && thumbTouch.isReadyGrab )
         {
-          //  DisableCapsuleCollidersRecursively ( transform );
+            // 각 손가락에서 감지된 오브젝트 리스트
+            List<GameObject> detectedObjects = new List<GameObject> ( );
+
+            // Thumb 손가락
+            if ( thumbTouch. grabbedObj_p != null )
+                detectedObjects. Add ( thumbTouch. grabbedObj_p );
+            // Index 손가락
+            if ( indexTouch. grabbedObj_p != null )
+                detectedObjects. Add ( indexTouch. grabbedObj_p );
+            // Middle 손가락
+            if ( middleTouch. grabbedObj_p != null )
+                detectedObjects. Add ( middleTouch. grabbedObj_p );
+            // Ring 손가락
+            if ( ringTouch. grabbedObj_p != null )
+                detectedObjects. Add ( ringTouch. grabbedObj_p );
+            // Pinky 손가락
+            if ( pinkyTouch. grabbedObj_p != null )
+                detectedObjects. Add ( pinkyTouch. grabbedObj_p );
+
+            // 감지된 오브젝트가 하나라도 있으면 그 중 가장 첫 번째 오브젝트를 grabbedObject로 할당
+            if ( detectedObjects. Count > 0 )
+            {
+                grabbedObject = detectedObjects [ 0 ];
+                //grabbedObject. GetComponent<ObjectGrabable_VR> ( ). isGrabbed = true;
+               // grabbedObject. GetComponent<ObjectGrabable_VR> ( ). grabbingHand = handTransform;
+               // grabbedObject. GetComponent<ObjectGrabable_VR> ( ). offset = handTransform. position - grabbedObject. transform. position;
+            }
+            /*
             if ( grabbedObject == null )
             {
                 grabbedObject = thumbTouch. grabbedObj_p;
             }
             grabbedObject = thumbTouch. grabbedObj_p;
-            grabbedObject. GetComponent<ObjectGrabable_VR> ( ). isGrabbed = true;
-            grabbedObject. GetComponent<ObjectGrabable_VR> ( ). grabbingHand = handTransform;
+            grabbedObject. GetComponent<ObjectGrabable_VR> ( ). isGrabbed = true;*/
+            //  
             //   grabbedObject.GetComponent<ObjectGrabable>().initialGrabHandPosition = handTransform.position;
-            grabbedObject. GetComponent<ObjectGrabable_VR> ( ). offset = handTransform. position - grabbedObject. transform. position;
+            //
 
 
             //  grabbedObject.GetComponent<ObjectGrabable>().lastHandPosition = handTransform.position;
@@ -75,11 +102,11 @@ using Valve. VR;
     {
         if ( grabbedObject != null )
         {
-            if ( pointIndex < 1 || SkeleltonInformation. thumbCurl < 0.2f )
+            if ( pointIndex < 2 || SkeleltonInformation. thumbCurl < 0.3f )
             {
                 //   Debug.Log(grabbedObject.GetComponent<Rigidbody>().velocity);
                // EnableCapsuleCollidersRecursively ( transform );
-                grabbedObject. GetComponent<ObjectGrabable_VR> ( ). isGrabbed = false;
+               // grabbedObject. GetComponent<ObjectGrabable_VR> ( ). isGrabbed = false;
                 grabbedObject = null;
             }
         }
@@ -91,7 +118,7 @@ using Valve. VR;
         Checklist [ 2 ] = middleTouch. isReadyGrab;
         Checklist [ 3 ] = ringTouch. isReadyGrab;
         Checklist [ 4 ] = pinkyTouch. isReadyGrab;
-
+        Checklist [ 5 ] = palmTouch. isReadyGrab;
 
 
         pointIndex = Checklist. Count ( value => value );
