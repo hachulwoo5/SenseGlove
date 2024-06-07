@@ -2383,6 +2383,26 @@ PrefabInstance:
       propertyPath: m_BoundingSphereOverride.z
       value: 12.666666
       objectReference: {fileID: 0}
+    - target: {fileID: 1245763033403546191, guid: 7f1c66ebe6e248d4b937d544cf7a34c7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1245763033403546191, guid: 7f1c66ebe6e248d4b937d544cf7a34c7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.878
+      objectReference: {fileID: 0}
+    - target: {fileID: 1245763033403546191, guid: 7f1c66ebe6e248d4b937d544cf7a34c7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.709
+      objectReference: {fileID: 0}
+    - target: {fileID: 1245763033403546191, guid: 7f1c66ebe6e248d4b937d544cf7a34c7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 8.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 1245763033403546191, guid: 7f1c66ebe6e248d4b937d544cf7a34c7, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1582866964366039676, guid: 7f1c66ebe6e248d4b937d544cf7a34c7, type: 3}
       propertyPath: m_BoundingSphereOverride.w
       value: 0

@@ -89,9 +89,9 @@
     <Compile Include="Assets\SenseGlove\Examples\Resources\SG_TriggerLogic.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Tracking\IHandPoseProvider.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Util\SG_Conversions.cs" />
+    <Compile Include="Assets\Table and chair\Standard Assets\Effects\ImageEffects\Scripts\ContrastEnhance.cs" />
     <Compile Include="Assets\#Custom\#VRcon\Scripts\TestNew.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\VR\SG_XR_Devices.cs" />
-    <Compile Include="Assets\Table and chair\Standard Assets\Effects\ImageEffects\Scripts\ContrastEnhance.cs" />
     <Compile Include="Assets\Table and chair\Standard Assets\Effects\CinematicEffects(BETA)\DepthOfField\DepthOfField.cs" />
     <Compile Include="Assets\Table and chair\Standard Assets\Effects\ImageEffects\Scripts\SunShafts.cs" />
     <Compile Include="Assets\#Custom\#VRcon\Scripts\HandController.cs" />
