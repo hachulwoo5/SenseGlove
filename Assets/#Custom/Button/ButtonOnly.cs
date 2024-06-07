@@ -62,6 +62,8 @@ public class ButtonOnly : MonoBehaviour
             button.transform.position += new Vector3(0, 0.01f, 0);
             onRelease.Invoke();
             isPressed = false;
+            presser = null;
+
         }
     }
 
