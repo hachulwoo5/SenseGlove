@@ -53,7 +53,7 @@
     <UnityVersion>2022.3.10f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.10f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.10f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
@@ -100,6 +100,7 @@
     <Compile Include="Assets\SenseGlove\Scripts\Devices\SG_Connections.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Tracking\SG_BasicGesture.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Interaction\SG_SimpleDrawer.cs" />
+    <Compile Include="Assets\#Custom\#VRcon\Scripts\ViveResetFloor.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Feedback\IHandFeedbackDevice.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Feedback\SG_FingerFeedback.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Controls\SG_SnapDropZone.cs" />
@@ -114,6 +115,7 @@
     <Compile Include="Assets\SenseGlove\Scripts\VR\SG_XR_RoomSetup.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Util\SG_SceneControl.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Calibration\SG_HandProfiles.cs" />
+    <Compile Include="Assets\#Custom\Button\ButtonOnly.cs" />
     <Compile Include="Assets\SenseGlove\CalibrationVoid\SG_XR_StablePanel.cs" />
     <Compile Include="Assets\#Custom\Scripts\SG_PhysicsGrab_Custom_Test.cs" />
     <Compile Include="Assets\SenseGlove\Examples\Resources\SGEx_RotateSimple.cs" />
