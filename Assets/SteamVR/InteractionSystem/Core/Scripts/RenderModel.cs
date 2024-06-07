@@ -320,6 +320,7 @@ namespace Valve.VR.InteractionSystem
 
         public Vector3 GetBonePosition(int boneIndex, bool local = false)
         {
+           
             if (handSkeleton != null)
             {
                 return handSkeleton.GetBonePosition(boneIndex, local);

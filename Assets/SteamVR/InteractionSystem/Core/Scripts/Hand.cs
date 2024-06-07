@@ -88,7 +88,6 @@ namespace Valve.VR.InteractionSystem
         public bool showDebugInteractables = false;
 
 
-
         public struct AttachedObject
         {
             public GameObject attachedObject;
@@ -795,6 +794,8 @@ namespace Valve.VR.InteractionSystem
                 if (trackedObject != null)
                     trackedObject.onTransformUpdatedEvent += OnTransformUpdated;
             }
+
+
         }
 
         protected virtual void OnDestroy()
@@ -883,7 +884,8 @@ namespace Valve.VR.InteractionSystem
             if (useFingerJointHover && mainRenderModel != null && mainRenderModel.IsHandVisibile())
             {
                 float scaledHoverRadius = fingerJointHoverRadius * Mathf.Abs(SteamVR_Utils.GetLossyScale(this.transform));
-                CheckHoveringForTransform(mainRenderModel.GetBonePosition((int)fingerJointHover), scaledHoverRadius / 2f, ref closestDistance, ref closestInteractable, Color.yellow);
+
+                CheckHoveringForTransform ( mainRenderModel.GetBonePosition((int)fingerJointHover), scaledHoverRadius / 2f, ref closestDistance, ref closestInteractable, Color.yellow);
                 CheckHoveringForTransform ( mainRenderModel. GetBonePosition ( ( int ) fingerJointHover+5 ) , scaledHoverRadius / 2f , ref closestDistance , ref closestInteractable , Color. yellow );
                 CheckHoveringForTransform ( mainRenderModel. GetBonePosition ( ( int ) fingerJointHover + 10 ) , scaledHoverRadius / 2f , ref closestDistance , ref closestInteractable , Color. yellow );
 
@@ -896,7 +898,7 @@ namespace Valve.VR.InteractionSystem
         protected virtual bool CheckHoveringForTransform(Vector3 hoverPosition, float hoverRadius, ref float closestDistance, ref Interactable closestInteractable, Color debugColor)
         {
             bool foundCloser = false;
-
+            
             // null out old vals
             for (int i = 0; i < overlappingColliders.Length; ++i)
             {
@@ -1386,6 +1388,7 @@ namespace Valve.VR.InteractionSystem
                 Gizmos. DrawWireSphere ( mainRenderModel. GetBonePosition ( ( int ) fingerJointHover+5) , scaledHoverRadius / 2 );
                 Gizmos. DrawWireSphere ( mainRenderModel. GetBonePosition ( ( int ) fingerJointHover + 10 ) , scaledHoverRadius / 2 );
 
+                
 
             }
         }

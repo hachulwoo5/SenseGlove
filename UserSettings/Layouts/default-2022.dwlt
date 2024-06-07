@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 500, y: 100}
   m_MaxSize: {x: 40480, y: 16192}
   vertical: 0
-  controlID: 88
+  controlID: 107
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 89
+  controlID: 108
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 50}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 90
+  controlID: 109
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -276,7 +276,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 148
+  controlID: 167
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -515,24 +515,24 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 152.40002}
+      scrollPos: {x: 0, y: 24.400024}
       m_SelectedIDs: 44f8ffff
       m_LastClickedID: -1980
-      m_ExpandedIDs: 8aecffff8eecffff92ecffff96ecffff9aecffffa0ecffffa6ecffff44f8ffff70f8ffff76f8ffff2afbfffff4ffffffca640000e4650000
+      m_ExpandedIDs: 70f8ffff76f8ffff2afbfffff4ffffffe4650000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: RightHand
-        m_OriginalName: RightHand
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: -1980
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 8}
       m_SearchString: 
@@ -1036,9 +1036,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0.13451102, y: 0.561902, z: -0.093224734, w: 0.8108527}
   m_Size:
-    m_Target: 0.18470673
+    m_Target: 1.7757229
     speed: 2
-    m_Value: 0.18470673
+    m_Value: 1.7757229
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1108,7 +1108,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/#Custom/Material
+    - Assets/#Custom/Prefab
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -1116,15 +1116,15 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/#Custom/Material
+  - Assets/#Custom/Prefab
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\hcw\SenseGlove\qwe\SenseGlove
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 206d0000
-    m_LastClickedID: 27936
+    m_SelectedIDs: 286d0000
+    m_LastClickedID: 27944
     m_ExpandedIDs: 00000000b86c0000ba6c0000bc6c0000be6c0000c06c0000fe6c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
