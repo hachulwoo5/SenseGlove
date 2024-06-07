@@ -87,6 +87,8 @@ namespace Valve.VR.InteractionSystem
         public bool spewDebugText = false;
         public bool showDebugInteractables = false;
 
+
+
         public struct AttachedObject
         {
             public GameObject attachedObject;
@@ -882,6 +884,9 @@ namespace Valve.VR.InteractionSystem
             {
                 float scaledHoverRadius = fingerJointHoverRadius * Mathf.Abs(SteamVR_Utils.GetLossyScale(this.transform));
                 CheckHoveringForTransform(mainRenderModel.GetBonePosition((int)fingerJointHover), scaledHoverRadius / 2f, ref closestDistance, ref closestInteractable, Color.yellow);
+                CheckHoveringForTransform ( mainRenderModel. GetBonePosition ( ( int ) fingerJointHover+5 ) , scaledHoverRadius / 2f , ref closestDistance , ref closestInteractable , Color. yellow );
+                CheckHoveringForTransform ( mainRenderModel. GetBonePosition ( ( int ) fingerJointHover + 10 ) , scaledHoverRadius / 2f , ref closestDistance , ref closestInteractable , Color. yellow );
+
             }
 
             // Hover on this one
@@ -1378,6 +1383,10 @@ namespace Valve.VR.InteractionSystem
                 Gizmos.color = Color.yellow;
                 float scaledHoverRadius = fingerJointHoverRadius * Mathf.Abs(SteamVR_Utils.GetLossyScale(this.transform));
                 Gizmos.DrawWireSphere(mainRenderModel.GetBonePosition((int)fingerJointHover), scaledHoverRadius / 2);
+                Gizmos. DrawWireSphere ( mainRenderModel. GetBonePosition ( ( int ) fingerJointHover+5) , scaledHoverRadius / 2 );
+                Gizmos. DrawWireSphere ( mainRenderModel. GetBonePosition ( ( int ) fingerJointHover + 10 ) , scaledHoverRadius / 2 );
+
+
             }
         }
 

@@ -5666,8 +5666,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11401046, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
+      propertyPath: useHoverSphere
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11401046, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: fingerJointHover
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11401046, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
+      propertyPath: fingerJointHoverRadius
+      value: 0.012
       objectReference: {fileID: 0}
     - target: {fileID: 11489144, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: flashColor.b
@@ -14867,5 +14875,5 @@ SceneRoots:
   - {fileID: 1360281610}
   - {fileID: 1449807057}
   - {fileID: 2012800178}
-  - {fileID: 942132706}
   - {fileID: 1865438736}
+  - {fileID: 942132706}
