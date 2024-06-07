@@ -40,6 +40,11 @@ public class ChildObject : MonoBehaviour
         {
             originalColor = sphereRenderer.material.color;
         }
+
+        if ( sphereRenderer != null )
+        {
+            sphereRenderer. enabled = !sphereRenderer. enabled;
+        }
     }
     void Update()
     {

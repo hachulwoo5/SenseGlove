@@ -1,0 +1,196 @@
+fileFormatVersion: 2
+guid: 83a1ab2d94a42484794f97f0fa19c9a9
+timeCreated: 1521640261
+licenseType: Store
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Big Pillow
+    100002: Center
+    100004: Left side
+    100006: Leg 1
+    100008: Leg 2
+    100010: Leg 3
+    100012: Leg 4
+    100014: Pillow 1
+    100016: Pillow 2
+    100018: Pillow 3
+    100020: Pillow 4
+    100022: Right side
+    100024: //RootNode
+    100026: Sofa lower part
+    400000: Big Pillow
+    400002: Center
+    400004: Left side
+    400006: Leg 1
+    400008: Leg 2
+    400010: Leg 3
+    400012: Leg 4
+    400014: Pillow 1
+    400016: Pillow 2
+    400018: Pillow 3
+    400020: Pillow 4
+    400022: Right side
+    400024: //RootNode
+    400026: Sofa lower part
+    2100000: Center
+    2100002: left side
+    2100004: right side
+    2100006: 02 - Default
+    2100008: 03 - Default
+    2100010: 04 - Default
+    2100012: 05 - Default
+    2300000: Big Pillow
+    2300002: Center
+    2300004: Left side
+    2300006: Leg 1
+    2300008: Leg 2
+    2300010: Leg 3
+    2300012: Leg 4
+    2300014: Pillow 1
+    2300016: Pillow 2
+    2300018: Pillow 3
+    2300020: Pillow 4
+    2300022: Right side
+    2300024: Sofa lower part
+    3300000: Big Pillow
+    3300002: Center
+    3300004: Left side
+    3300006: Leg 1
+    3300008: Leg 2
+    3300010: Leg 3
+    3300012: Leg 4
+    3300014: Pillow 1
+    3300016: Pillow 2
+    3300018: Pillow 3
+    3300020: Pillow 4
+    3300022: Right side
+    3300024: Sofa lower part
+    4300000: Center
+    4300002: Left side
+    4300004: Right side
+    4300006: Big Pillow
+    4300008: Pillow 1
+    4300010: Pillow 2
+    4300012: Pillow 3
+    4300014: Pillow 4
+    4300016: Sofa lower part
+    4300018: Leg 2
+    4300020: Leg 1
+    4300022: Leg 4
+    4300024: Leg 3
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 02 - Default
+    second: {fileID: 2100000, guid: 5beb53a64d8dcc4488801f8d539681cd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 03 - Default
+    second: {fileID: 2100000, guid: 65f93a4e7302a6949bc47ff3878c9db2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 04 - Default
+    second: {fileID: 2100000, guid: 65f93a4e7302a6949bc47ff3878c9db2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 05 - Default
+    second: {fileID: 2100000, guid: 9da0244b2882d4443818eaa45b0d7e7c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Center
+    second: {fileID: 2100000, guid: a9806b6dc1a81f646bb276f40661cb32, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: left side
+    second: {fileID: 2100000, guid: c07a8c563d1f8c249a62467c02d7fb79, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: right side
+    second: {fileID: 2100000, guid: 58b7166c30d21694f9c23c6f8aefaa5f, type: 2}
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

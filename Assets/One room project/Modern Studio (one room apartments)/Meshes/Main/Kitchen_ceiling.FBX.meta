@@ -1,0 +1,297 @@
+fileFormatVersion: 2
+guid: 073a046824e8e854ba57c0ae3cb5af38
+timeCreated: 1520694814
+licenseType: Store
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Line004
+    100004: Point light001
+    100006: Point light002
+    100008: Point light003
+    100010: Point light004
+    100012: Point light005
+    100014: Point light006
+    100016: Point light007
+    100018: Point light008
+    100020: Point light009
+    100022: Point light010
+    100024: Point light011
+    100026: Point light012
+    100028: Point light013
+    100030: Point light014
+    100032: Point light015
+    100034: Point light016
+    100036: Point light017
+    100038: Point light018
+    100040: Point light019
+    100042: Point light020
+    100044: Point light021
+    100046: Point light022
+    100048: Point light023
+    100050: Point light024
+    100052: Point light025
+    100054: Point light026
+    100056: Point light027
+    100058: Point light028
+    100060: Point light029
+    100062: Point light030
+    100064: Point light031
+    100066: Point light032
+    100068: Point light033
+    100070: Point light034
+    100072: Point light035
+    100074: Point light036
+    100076: Point light037
+    100078: Point light038
+    100080: Point light039
+    100082: Point light040
+    400000: //RootNode
+    400002: Line004
+    400004: Point light001
+    400006: Point light002
+    400008: Point light003
+    400010: Point light004
+    400012: Point light005
+    400014: Point light006
+    400016: Point light007
+    400018: Point light008
+    400020: Point light009
+    400022: Point light010
+    400024: Point light011
+    400026: Point light012
+    400028: Point light013
+    400030: Point light014
+    400032: Point light015
+    400034: Point light016
+    400036: Point light017
+    400038: Point light018
+    400040: Point light019
+    400042: Point light020
+    400044: Point light021
+    400046: Point light022
+    400048: Point light023
+    400050: Point light024
+    400052: Point light025
+    400054: Point light026
+    400056: Point light027
+    400058: Point light028
+    400060: Point light029
+    400062: Point light030
+    400064: Point light031
+    400066: Point light032
+    400068: Point light033
+    400070: Point light034
+    400072: Point light035
+    400074: Point light036
+    400076: Point light037
+    400078: Point light038
+    400080: Point light039
+    400082: Point light040
+    2100000: 16 - Default
+    2100002: 'Material #68'
+    2100004: 'Material #69'
+    2300000: Line004
+    2300002: Point light001
+    2300004: Point light002
+    2300006: Point light003
+    2300008: Point light004
+    2300010: Point light005
+    2300012: Point light006
+    2300014: Point light007
+    2300016: Point light008
+    2300018: Point light009
+    2300020: Point light010
+    2300022: Point light011
+    2300024: Point light012
+    2300026: Point light013
+    2300028: Point light014
+    2300030: Point light015
+    2300032: Point light016
+    2300034: Point light017
+    2300036: Point light018
+    2300038: Point light019
+    2300040: Point light020
+    2300042: Point light021
+    2300044: Point light022
+    2300046: Point light023
+    2300048: Point light024
+    2300050: Point light025
+    2300052: Point light026
+    2300054: Point light027
+    2300056: Point light028
+    2300058: Point light029
+    2300060: Point light030
+    2300062: Point light031
+    2300064: Point light032
+    2300066: Point light033
+    2300068: Point light034
+    2300070: Point light035
+    2300072: Point light036
+    2300074: Point light037
+    2300076: Point light038
+    2300078: Point light039
+    2300080: Point light040
+    3300000: Line004
+    3300002: Point light001
+    3300004: Point light002
+    3300006: Point light003
+    3300008: Point light004
+    3300010: Point light005
+    3300012: Point light006
+    3300014: Point light007
+    3300016: Point light008
+    3300018: Point light009
+    3300020: Point light010
+    3300022: Point light011
+    3300024: Point light012
+    3300026: Point light013
+    3300028: Point light014
+    3300030: Point light015
+    3300032: Point light016
+    3300034: Point light017
+    3300036: Point light018
+    3300038: Point light019
+    3300040: Point light020
+    3300042: Point light021
+    3300044: Point light022
+    3300046: Point light023
+    3300048: Point light024
+    3300050: Point light025
+    3300052: Point light026
+    3300054: Point light027
+    3300056: Point light028
+    3300058: Point light029
+    3300060: Point light030
+    3300062: Point light031
+    3300064: Point light032
+    3300066: Point light033
+    3300068: Point light034
+    3300070: Point light035
+    3300072: Point light036
+    3300074: Point light037
+    3300076: Point light038
+    3300078: Point light039
+    3300080: Point light040
+    4300000: Line004
+    4300002: Point light001
+    4300004: Point light002
+    4300006: Point light003
+    4300008: Point light004
+    4300010: Point light005
+    4300012: Point light006
+    4300014: Point light007
+    4300016: Point light008
+    4300018: Point light009
+    4300020: Point light010
+    4300022: Point light011
+    4300024: Point light012
+    4300026: Point light013
+    4300028: Point light014
+    4300030: Point light015
+    4300032: Point light016
+    4300034: Point light017
+    4300036: Point light018
+    4300038: Point light019
+    4300040: Point light020
+    4300042: Point light021
+    4300044: Point light022
+    4300046: Point light023
+    4300048: Point light024
+    4300050: Point light025
+    4300052: Point light026
+    4300054: Point light027
+    4300056: Point light028
+    4300058: Point light029
+    4300060: Point light030
+    4300062: Point light031
+    4300064: Point light032
+    4300066: Point light033
+    4300068: Point light034
+    4300070: Point light035
+    4300072: Point light036
+    4300074: Point light037
+    4300076: Point light038
+    4300078: Point light039
+    4300080: Point light040
+  externalObjects: {}
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

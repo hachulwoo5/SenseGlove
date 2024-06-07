@@ -1,0 +1,166 @@
+fileFormatVersion: 2
+guid: cfd4ae4d107b7254f99748d4579b79fc
+timeCreated: 1524833051
+licenseType: Store
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Knife box
+    100002: Knife bread
+    100004: Knife Chef
+    100006: //RootNode
+    100008: Knife sandwich
+    100010: Knife santoku
+    100012: Knife slicer
+    100014: Knife vegetable
+    400000: Knife box
+    400002: Knife bread
+    400004: Knife Chef
+    400006: //RootNode
+    400008: Knife sandwich
+    400010: Knife santoku
+    400012: Knife slicer
+    400014: Knife vegetable
+    2100000: Knife box
+    2100002: Knife Chef
+    2100004: Knife santoku
+    2100006: Knife bread
+    2100008: Knife slicer
+    2100010: Knife vegetable
+    2100012: Knife sandwich
+    2300000: Knife box
+    2300002: Knife bread
+    2300004: Knife Chef
+    2300006: Knife sandwich
+    2300008: Knife santoku
+    2300010: Knife slicer
+    2300012: Knife vegetable
+    3300000: Knife box
+    3300002: Knife bread
+    3300004: Knife Chef
+    3300006: Knife sandwich
+    3300008: Knife santoku
+    3300010: Knife slicer
+    3300012: Knife vegetable
+    4300000: Knife box
+    4300002: Knife Chef
+    4300004: Knife santoku
+    4300006: Knife bread
+    4300008: Knife slicer
+    4300010: Knife vegetable
+    4300012: Knife sandwich
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Knife Chef
+    second: {fileID: 2100000, guid: ae0895bdd46ddab4f8f33626889f901f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Knife box
+    second: {fileID: 2100000, guid: 70b766a212d62244fbb6d307ee808a3c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Knife bread
+    second: {fileID: 2100000, guid: ac86756ac5b102d4b844653c0d127058, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Knife sandwich
+    second: {fileID: 2100000, guid: c1a69b8accd32c34ead53d6f07a954ed, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Knife santoku
+    second: {fileID: 2100000, guid: 9a034d975f248f94bb5be1be05b96517, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Knife slicer
+    second: {fileID: 2100000, guid: 0d040057133e0c541ae4e2926cca0115, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Knife vegetable
+    second: {fileID: 2100000, guid: ee71544e8de1965428924e3b23a156db, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
