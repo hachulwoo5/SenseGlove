@@ -6,11 +6,23 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/SenseGlove/Examples/13_VR_Tryout.unity
-    guid: c6a9eeb2cb07d974d956e8fd1c8718b9
+    path: Assets/#Custom/#VR Test CubeStack.unity
+    guid: 854663c618a4b914e8fb45db9c1a6deb
   - enabled: 1
-    path: Assets/#Custom/13_VR_Tryout Origin.unity
-    guid: df0aa83bd0215b043bc1ee45571cf1c5
+    path: Assets/#Custom/#VR Test InObj.unity
+    guid: 6364b33a3bc04434091fba2f1d1e647f
+  - enabled: 1
+    path: Assets/#Custom/#VR Test Throw.unity
+    guid: 43d053db29eb58b4d93659d8a2628133
+  - enabled: 1
+    path: Assets/#Custom/#VR Test Vive CubeStack.unity
+    guid: 5733cc53704aeb6478412033d9ad1cd8
+  - enabled: 1
+    path: Assets/#Custom/#VR Test Vive InObj.unity
+    guid: 6837c8360801ccb4dba4d0b9af838737
+  - enabled: 1
+    path: Assets/#Custom/#VR Test Vive Throw.unity
+    guid: d4768fe1bd020594a8010c6d77539b6f
   m_configObjects:
     Unity.XR.OpenVR.Settings: {fileID: 11400000, guid: d3d96e23c161d134f838709e292dfa76, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: eab13587c46bb144f9fd70141670ff5e, type: 2}

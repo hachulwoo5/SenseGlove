@@ -70,7 +70,9 @@
     <Compile Include="Assets\SenseGlove\Scripts\Feedback\SG_Waveform.cs" />
     <Compile Include="Assets\#Custom\#VRcon\Scripts\ChildObject_VR.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Interaction\SG_Interactable.cs" />
+    <Compile Include="Assets\#Custom\Scripts\던지기씬\ThrowScene.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Util\SG_WireFrame.cs" />
+    <Compile Include="Assets\#Custom\Scripts\쌓기씬\BoxStackScene.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Util\SG_Util.cs" />
     <Compile Include="Assets\SenseGlove\Models\DK1CAD\SG_DK1Model.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Tracking\SG_LinkedHandPoser3D.cs" />
@@ -121,6 +123,7 @@
     <Compile Include="Assets\SenseGlove\Scripts\Tracking\SG_BasicGesture.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Interaction\SG_SimpleDrawer.cs" />
     <Compile Include="Assets\#Custom\#VRcon\Scripts\ViveResetFloor.cs" />
+    <Compile Include="Assets\#Custom\Scripts\넣기씬\InObjScene.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Feedback\IHandFeedbackDevice.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Feedback\SG_FingerFeedback.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Controls\SG_SnapDropZone.cs" />
@@ -136,6 +139,7 @@
     <Compile Include="Assets\Table and chair\Standard Assets\Effects\ImageEffects\Scripts\NoiseAndScratches.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Tracking\SG_HandModelInfo.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\VR\SG_XR_RoomSetup.cs" />
+    <Compile Include="Assets\#Custom\Scripts\씬컨트롤\SceneManager5.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Util\SG_SceneControl.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Calibration\SG_HandProfiles.cs" />
     <Compile Include="Assets\#Custom\Button\ButtonOnly.cs" />
