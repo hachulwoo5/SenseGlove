@@ -9,10 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteamVR_Input_Editor", "Ste
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{04E07168-3117-2860-AEDD-43CB58EA4999}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastScriptReload.Editor", "FastScriptReload.Editor.csproj", "{844ABD8D-AF4D-1088-93F2-3D0722B69945}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastScriptReload.Runtime", "FastScriptReload.Runtime.csproj", "{C1B1AF0E-98F9-165D-F4AD-1D1A67BDDC91}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteamVR_Actions", "SteamVR_Actions.csproj", "{D4F7A82E-C94E-3482-2A20-70944B95E091}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{7D483FD7-65AE-04F4-9C1B-2A9987999049}"
@@ -41,14 +37,6 @@ Global
 		{04E07168-3117-2860-AEDD-43CB58EA4999}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04E07168-3117-2860-AEDD-43CB58EA4999}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04E07168-3117-2860-AEDD-43CB58EA4999}.Release|Any CPU.Build.0 = Release|Any CPU
-		{844ABD8D-AF4D-1088-93F2-3D0722B69945}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{844ABD8D-AF4D-1088-93F2-3D0722B69945}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{844ABD8D-AF4D-1088-93F2-3D0722B69945}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{844ABD8D-AF4D-1088-93F2-3D0722B69945}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C1B1AF0E-98F9-165D-F4AD-1D1A67BDDC91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C1B1AF0E-98F9-165D-F4AD-1D1A67BDDC91}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C1B1AF0E-98F9-165D-F4AD-1D1A67BDDC91}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C1B1AF0E-98F9-165D-F4AD-1D1A67BDDC91}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D4F7A82E-C94E-3482-2A20-70944B95E091}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D4F7A82E-C94E-3482-2A20-70944B95E091}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4F7A82E-C94E-3482-2A20-70944B95E091}.Release|Any CPU.ActiveCfg = Release|Any CPU

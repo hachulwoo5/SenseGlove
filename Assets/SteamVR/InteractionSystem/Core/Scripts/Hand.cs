@@ -888,6 +888,9 @@ namespace Valve.VR.InteractionSystem
                 CheckHoveringForTransform ( mainRenderModel.GetBonePosition((int)fingerJointHover), scaledHoverRadius / 2f, ref closestDistance, ref closestInteractable, Color.yellow);
                 CheckHoveringForTransform ( mainRenderModel. GetBonePosition ( ( int ) fingerJointHover+5 ) , scaledHoverRadius / 2f , ref closestDistance , ref closestInteractable , Color. yellow );
                 CheckHoveringForTransform ( mainRenderModel. GetBonePosition ( ( int ) fingerJointHover + 10 ) , scaledHoverRadius / 2f , ref closestDistance , ref closestInteractable , Color. yellow );
+                CheckHoveringForTransform ( mainRenderModel. GetBonePosition ( ( int ) fingerJointHover + 15 ) , scaledHoverRadius / 2f , ref closestDistance , ref closestInteractable , Color. yellow );
+                CheckHoveringForTransform ( mainRenderModel. GetBonePosition ( ( int ) fingerJointHover + 20 ) , scaledHoverRadius / 2f , ref closestDistance , ref closestInteractable , Color. yellow );
+
 
             }
 
@@ -1387,8 +1390,10 @@ namespace Valve.VR.InteractionSystem
                 Gizmos.DrawWireSphere(mainRenderModel.GetBonePosition((int)fingerJointHover), scaledHoverRadius / 2);
                 Gizmos. DrawWireSphere ( mainRenderModel. GetBonePosition ( ( int ) fingerJointHover+5) , scaledHoverRadius / 2 );
                 Gizmos. DrawWireSphere ( mainRenderModel. GetBonePosition ( ( int ) fingerJointHover + 10 ) , scaledHoverRadius / 2 );
+                Gizmos. DrawWireSphere ( mainRenderModel. GetBonePosition ( ( int ) fingerJointHover + 15 ) , scaledHoverRadius / 2 );
+                Gizmos. DrawWireSphere ( mainRenderModel. GetBonePosition ( ( int ) fingerJointHover + 20 ) , scaledHoverRadius / 2 );
 
-                
+
 
             }
         }
