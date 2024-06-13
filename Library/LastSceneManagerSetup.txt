@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/#Custom/#VR Test CubeStack.unity
+- path: Assets/#Custom/#VR Test Vive InObj.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
