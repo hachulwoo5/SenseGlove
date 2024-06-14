@@ -404,6 +404,7 @@
 "Assets/#Custom/Scripts/쌓기씬/TargetBox.cs"
 "Assets/#Custom/Scripts/쌓기씬/Test2.cs"
 "Assets/#Custom/Scripts/쌓기씬/TestMani.cs"
+"Assets/#Custom/Scripts/씬컨트롤/EndButton.cs"
 "Assets/#Custom/Scripts/씬컨트롤/Name.cs"
 "Assets/#Custom/Scripts/씬컨트롤/SceneManager5.cs"
 "Assets/SenseGlove/CalibrationVoid/SG_CalibrationVoid.cs"

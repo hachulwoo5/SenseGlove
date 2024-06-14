@@ -81,6 +81,7 @@ public class ButtonOnly : MonoBehaviour
             StartCoroutine ( TimerCoroutine ( ) );
             Base. GetComponent<MeshRenderer> ( ). enabled = false;
             Press. GetComponent<MeshRenderer> ( ). enabled = false;
+            this. gameObject. GetComponent<BoxCollider> ( ). enabled = false;
             
         }
         else

@@ -184,6 +184,7 @@
     <Compile Include="Assets\SenseGlove\Scripts\Interaction\SG_Grabable.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Controls\SG_PrecisePlaceZone.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Feedback\SG_MaterialDetector.cs" />
+    <Compile Include="Assets\#Custom\Scripts\씬컨트롤\EndButton.cs" />
     <Compile Include="Assets\Table and chair\Standard Assets\Effects\ImageEffects\Scripts\Vortex.cs" />
     <Compile Include="Assets\#Custom\Scripts\DataSaved_InObj.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Tracking\SG_PassThroughCollider.cs" />

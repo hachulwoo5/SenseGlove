@@ -25,7 +25,10 @@ public class DataSaved_InObj : MonoBehaviour
             SaveDataToCSV ( namer , elapsedTime  );
         }
     }
-
+    public void SaveData()
+    {
+        SaveDataToCSV ( namer , elapsedTime );
+    }
     void SaveDataToCSV ( string name , float elapsedTime   )
     {
         string sceneName = UnityEngine. SceneManagement. SceneManager. GetActiveScene ( ). name; // 현재 씬 이름 가져오기
