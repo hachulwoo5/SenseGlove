@@ -35,11 +35,11 @@ namespace SG.Examples
         /// <summary> Keeps track of the 'grabbing' pose of fingers </summary>
         protected bool[] wantsGrab = new bool[3];
         /// <summary> Above these flexions, the hand is considered 'open' </summary>
-        protected static float[] openHandThresholds = new float[5] { 0.1f, 0.2f, 0.2f, 0.2f, 0.2f };
+        protected static float[] openHandThresholds = new float[5] { 0.05f, 0.05f, 0.05f, 0.05f, 0.04f };
         /// <summary> below these flexions, the hand is considered 'open' </summary>
         protected static float[] closedHandThresholds = new float[5] { 2, 0.9f, 0.9f, 0.9f, 0.9f }; //set to -360 so it won;t trigger for now
 
-        protected float releaseThreshold = 0.05f;
+        protected float releaseThreshold = 0.03f;
         protected bool[] grabRelevance = new bool[5];
         protected bool snapFrame = false;
 
@@ -50,7 +50,6 @@ namespace SG.Examples
 
         protected static float overrideGrabThreshold = 0.01f;
 
-        [HideInInspector]
         public float [ ] lastNormalized = new float[5];
         [HideInInspector]
         public float [ ] normalizedOnGrab = new float[5];
@@ -511,7 +510,7 @@ namespace SG.Examples
                     {   //check or undo grabrelevance
                         // 1이 굽어짐 0이 폄
                         grabDiff [ f ] = this. normalizedOnGrab [ f ] - this. lastNormalized [ f ];//i'd normally use latest - ongrab, but then extension is negative and I'd have to invert releaseThreshold. So we subract it the other way around. very tiny optimizations make me happy,
-                        if ( grabDiff [ f ] > 0.025f ) //the finger is now above the threshold, and we think you want to release.
+                        if ( grabDiff [ f ] > 0.0071f ) //the finger is now above the threshold, and we think you want to release.
                         {
                             fingerAngleDev [ f ] = true;
                             grabCodes [ f ] = -3; //want to release because we've extended a bit above when we grabbed the object
@@ -546,9 +545,19 @@ namespace SG.Examples
                         {
                             grabDesired = false;
                         }
-                        else // fingerAngleDev[0] ==false 란소리 // 엄지가 닿아있단 소리
+                        else // fingerAngleDev[0] == false 란소리 // 엄지가 닿아있단 소리
                         {
-                            if ( fingerAngleDev [ 1 ] == true && fingerAngleDev [ 2 ] == true && fingerAngleDev [ 3 ] == true && fingerAngleDev [ 4 ] == true ) // 엄지만 닿아있단 소리 나머지 다 떨어짐
+                            // fingerAngleDev 배열에서 true 값의 개수를 셉니다.
+                            int trueCount = 0;
+                            for ( int i = 1 ; i < 5 ; i++ )
+                            {
+                                if ( fingerAngleDev [ i ] )
+                                {
+                                    trueCount++;
+                                }
+                            }
+
+                            if ( trueCount >= 2 ) // 2개 이상의 손가락이 이탈했단 소리
                             {
                                 grabDesired = false;
                             }

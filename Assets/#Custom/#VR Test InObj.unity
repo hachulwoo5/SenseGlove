@@ -2176,7 +2176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hapticGloves:
-  - {fileID: 0}
+  - {fileID: 134817628}
   waveFormToSend: {fileID: 0}
   allWaveForms:
   - {fileID: 11400000, guid: 38878efab0d96e74c8555b89edb98383, type: 2}
@@ -7360,7 +7360,7 @@ Transform:
   m_GameObject: {fileID: 611332254}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.32, y: 0, z: 1.05}
+  m_LocalPosition: {x: -0.32, y: 0, z: 1.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17582,7 +17582,7 @@ MonoBehaviour:
   sidePointIndex: 0
   isNormalGrabbing: 0
   isSideGrabbing: 0
-  SendVib: {fileID: 0}
+  SendVib: {fileID: 165081154}
   grabDiff:
   - 0
   - 0
@@ -44395,7 +44395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb79c54106a7c8f42bbd7e30991b639a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialProperties: {fileID: 0}
+  materialProperties: {fileID: 11400000, guid: 3af9b547c36bb0a40bd0708d521e84a3, type: 2}
   breakable: 0
   yieldDistance: 0.03
   mustBeGrabbed: 0
@@ -44993,7 +44993,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb79c54106a7c8f42bbd7e30991b639a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialProperties: {fileID: 0}
+  materialProperties: {fileID: 11400000, guid: 3af9b547c36bb0a40bd0708d521e84a3, type: 2}
   breakable: 0
   yieldDistance: 0.03
   mustBeGrabbed: 0
@@ -46978,7 +46978,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb79c54106a7c8f42bbd7e30991b639a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialProperties: {fileID: 0}
+  materialProperties: {fileID: 11400000, guid: 3af9b547c36bb0a40bd0708d521e84a3, type: 2}
   breakable: 0
   yieldDistance: 0.03
   mustBeGrabbed: 0
@@ -52695,7 +52695,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb79c54106a7c8f42bbd7e30991b639a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialProperties: {fileID: 0}
+  materialProperties: {fileID: 11400000, guid: 3af9b547c36bb0a40bd0708d521e84a3, type: 2}
   breakable: 0
   yieldDistance: 0.03
   mustBeGrabbed: 0
@@ -53177,7 +53177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb79c54106a7c8f42bbd7e30991b639a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialProperties: {fileID: 0}
+  materialProperties: {fileID: 11400000, guid: 3af9b547c36bb0a40bd0708d521e84a3, type: 2}
   breakable: 0
   yieldDistance: 0.03
   mustBeGrabbed: 0
