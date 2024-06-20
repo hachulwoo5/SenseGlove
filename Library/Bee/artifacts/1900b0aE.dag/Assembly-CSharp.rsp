@@ -402,6 +402,7 @@
 "Assets/#Custom/Scripts/SG_PhysicsGrab_Custom_Test.cs"
 "Assets/#Custom/Scripts/TrackingTest.cs"
 "Assets/#Custom/Scripts/넣기씬/InObjScene.cs"
+"Assets/#Custom/Scripts/넣기씬/InObjTestScp.cs"
 "Assets/#Custom/Scripts/던지기씬/ThrowScene.cs"
 "Assets/#Custom/Scripts/쌓기씬/BoxStackCalculate.cs"
 "Assets/#Custom/Scripts/쌓기씬/BoxStackScene.cs"

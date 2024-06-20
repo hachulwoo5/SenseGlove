@@ -196,6 +196,7 @@
     <Compile Include="Assets\Table and chair\Standard Assets\Effects\ImageEffects\Scripts\ColorCorrectionRamp.cs" />
     <Compile Include="Assets\#Custom\Scripts\ParentObject.cs" />
     <Compile Include="Assets\Table and chair\Standard Assets\Effects\ImageEffects\Scripts\ScreenSpaceAmbientOcclusion.cs" />
+    <Compile Include="Assets\#Custom\Scripts\넣기씬\InObjTestScp.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Controls\SG_HandDetector.cs" />
     <Compile Include="Assets\SenseGlove\CalibrationVoid\SG_CalibrationVoid.cs" />
     <Compile Include="Assets\SenseGlove\Scripts\Util\SG_ResetFloor.cs" />

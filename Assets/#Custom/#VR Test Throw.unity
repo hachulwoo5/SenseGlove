@@ -19032,7 +19032,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resetKey: 114
-  SceneChangeKey: 285
+  SceneChangeKey: 265
   quitKey: 27
 --- !u!4 &1483256061
 Transform:

@@ -36,14 +36,19 @@ namespace SG.Util
 			{
 				string currentSceneName = SceneManager.GetActiveScene().name;
 				Debug.Log(currentSceneName);
-				if (currentSceneName == "13_VR_Tryout OriginTest")
+				if (currentSceneName == "#VR Test CubeStack" )
                 {
-					SceneManager.LoadScene("13_VR_Tryout Origin");
+					SceneManager.LoadScene( "#VR Test InObj" );
 				}
-				else if (currentSceneName == "13_VR_Tryout Origin")
-                {					
-					SceneManager.LoadScene("13_VR_Tryout OriginTest");					
+				else if (currentSceneName == "#VR Test InObj")
+				{					
+					SceneManager.LoadScene( "#VR Test Throw" );					
 				}
+				else if ( currentSceneName == "#VR Test Throw" )
+				{
+					SceneManager. LoadScene ( "#VR Test CubeStack" );
+				}
+
 				
 			}
 		}
