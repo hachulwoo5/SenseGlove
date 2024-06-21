@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2752
     height: 1068.8
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Scene
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 500, y: 100}
   m_MaxSize: {x: 40480, y: 16192}
   vertical: 0
-  controlID: 211
+  controlID: 209
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 109
+  controlID: 107
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 50}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 110
+  controlID: 108
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -191,8 +191,8 @@ MonoBehaviour:
     y: 0
     width: 390.4
     height: 577.6
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -217,8 +217,8 @@ MonoBehaviour:
     y: 0
     width: 650.4
     height: 577.6
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 18}
@@ -276,7 +276,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 169
+  controlID: 167
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -322,8 +322,8 @@ MonoBehaviour:
     y: 0
     width: 870.3999
     height: 441.20007
-  m_MinSize: {x: 102, y: 121}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 22}
   m_Panes:
   - {fileID: 22}
@@ -348,8 +348,8 @@ MonoBehaviour:
     y: 0
     width: 366.40015
     height: 1018.80005
-  m_MinSize: {x: 277, y: 121}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 275, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 23}
   m_Panes:
   - {fileID: 23}
@@ -516,23 +516,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 0a760000
-      m_LastClickedID: 0
-      m_ExpandedIDs: 9013feff8619feff983afeff243bfeff6c45feff9851feff565cfeff087cfeff3c89feff2694feffb29efeff0ab0feff2eb4feffbad0feffd0f6feff6a1cffff6a31ffff6c37ffffd249ffffd849ffffde49ffff085dffff628cffff8c8dffffb88dffffbe8dffffd495ffff1cb4ffffdec9ffff58d4ffff3adfffff3ceaffff2afbfffff4ffffffa8630000be640000e86600000e6700001c9800002c980000d69800000299000092990000bc4801008e510200
+      m_SelectedIDs: 7cfd0100
+      m_LastClickedID: 130428
+      m_ExpandedIDs: a49efeffcaa8feffccc1feffc8cffeff8edcfeffe6f3feff0cfcfeff7c2cffff3c2effff0076ffff38c5ffff78c6ffff20ebffff2afbfffff4ffffffa0650000087c0000968b0000a28b00001e1c0100c41c01001e3901009a70010040710100a2d101004efc0100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: "\uBAA9\uD45C \uB3C4\uAD6C"
+        m_OriginalName: "\uBAA9\uD45C \uB3C4\uAD6C"
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: 35746
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 8}
       m_SearchString: 
@@ -984,9 +984,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0.63195777, y: 1.2315209, z: -0.28587168}
+    m_Target: {x: 0.20675033, y: 1.4414123, z: -0.16109884}
     speed: 2
-    m_Value: {x: 0.63195777, y: 1.2315209, z: -0.28587168}
+    m_Value: {x: 0.20675033, y: 1.4414123, z: -0.16109884}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1032,13 +1032,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.43930832, y: -0.0021725257, z: 0.00100799, w: -0.8983809}
+    m_Target: {x: -0.22496298, y: 0.30019698, z: -0.073145814, w: -0.92412734}
     speed: 2
-    m_Value: {x: -0.4392895, y: -0.0021724328, z: 0.0010079468, w: -0.89834243}
+    m_Value: {x: -0.22495306, y: 0.30018374, z: -0.07314259, w: -0.9240866}
   m_Size:
-    m_Target: 0.7785233
+    m_Target: 0.75372106
     speed: 2
-    m_Value: 0.7785233
+    m_Value: 0.75372106
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1108,7 +1108,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/#Custom
+    - "Assets/#Custom/Scripts/\uB358\uC9C0\uAE30\uC52C"
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -1116,16 +1116,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/#Custom
+  - "Assets/#Custom/Scripts/\uB358\uC9C0\uAE30\uC52C"
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\hcw\SenseGlove\qwe\SenseGlove
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 7c750000
-    m_LastClickedID: 30076
-    m_ExpandedIDs: 000000006e75000070750000727500007475000076750000787500007a7500007c7500007e75000080750000c4750000
+    m_SelectedIDs: 7c000200
+    m_LastClickedID: 131196
+    m_ExpandedIDs: 000000001e75000020750000227500002475000026750000287500002a7500002c7500002e7500003075000078750000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1153,7 +1153,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000006e75000070750000727500007475000076750000787500007a7500007c7500007e75000080750000
+    m_ExpandedIDs: 000000001e75000020750000227500002475000026750000287500002a7500002c7500002e75000030750000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1284,7 +1284,7 @@ MonoBehaviour:
     m_ControlHash: 1412526313
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 0
+  m_LastVerticalScrollValue: 263.20007
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:

@@ -515,7 +515,7 @@ namespace SG.Examples
                             fingerAngleDev [ f ] = true;
                             grabCodes [ f ] = -3; //want to release because we've extended a bit above when we grabbed the object
                         }
-                        else if ( grabDiff [ f ] < -0.025f ) //the finger is now above the threshold, and we think you want to release.
+                        else if ( grabDiff [ f ] < -0.03f ) //the finger is now above the threshold, and we think you want to release.
                         {
                             fingerAngleVib [ f ] = true;
                         }
